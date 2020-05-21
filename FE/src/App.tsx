@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import GlobalStyle from "Styles/GlobalStyle";
 import Test from "Components/Test";
-import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
   return (
