@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Text = styled.span`
+  display: inline-block;
   color: ${props => props.theme.colors[props.color]};
   font-size: ${props => props.theme.fontSizes[props.fontSize] || props.theme.fontSizes.md};
   font-weight: ${props => props.theme.fontWeight[props.fontWeight] || props.theme.fontWeight.regular};
