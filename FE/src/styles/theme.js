@@ -30,7 +30,7 @@ const fontWeight = {
   extraBold: 800,
   bold: 700,
   semiBold: 600,
-  regular: 500,
+  regular: 400,
 };
 
 const UNIT = 4;

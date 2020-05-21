@@ -10,7 +10,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <StyledDiv>App</StyledDiv>
-      <Text textSm>small Text</Text>
+      <Text fontSize="sm">large Text</Text>
       <Test />
     </ThemeProvider>
   );
