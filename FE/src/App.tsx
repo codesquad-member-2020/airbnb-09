@@ -2,6 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "Styles/GlobalStyle";
 import theme from "Styles/theme";
+import Text from "Styles/Text";
 import Test from "Components/Test";
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <StyledDiv>App</StyledDiv>
+      <Text>small Text</Text>
       <Test />
     </ThemeProvider>
   );
