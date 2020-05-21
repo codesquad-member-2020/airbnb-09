@@ -15,7 +15,7 @@ const App = () => {
 };
 
 const StyledDiv = styled.div`
-  font-size: 10rem;
+  font-size: ${props => props.theme.fontSizes.lg};
   background-color: ${props => props.theme.colors.pink};
 `;
 
