@@ -12,7 +12,7 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env"],
@@ -26,7 +26,7 @@ module.exports = {
       Components: path.resolve(__dirname, "./src/components/"),
       Styles: path.resolve(__dirname, "./src/styles/"),
     },
-    extensions: [".js", "jsx", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
