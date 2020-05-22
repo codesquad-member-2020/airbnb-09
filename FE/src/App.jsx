@@ -10,23 +10,30 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <StyledDiv>App</StyledDiv>
-      <Button primary>
-        <Text fontSize="md" fontWeight="bold">
-          Primary Button
+      <StyledDiv>
+        <Text fontSize="lg" fontWeight="extraBold">
+          App
         </Text>
-      </Button>
-      <Button secondary>
-        <Text fontSize="md">Secondary Button</Text>
-      </Button>
+      </StyledDiv>
+      <Button primary>Primary Button</Button>
+      <Button secondary>Secondary Button</Button>
       <Button secondary disabled>
-        <Text fontSize="md">Secondary Button Disabled</Text>
+        Secondary Button Disabled
       </Button>
       <Button rounded bordered>
-        <Text fontSize="md">Border Button</Text>
+        Border Button
       </Button>
       <Button circular bordered>
-        <Text fontSize="md">+</Text>
+        +
+      </Button>
+      <Button circular highlighted>
+        +
+      </Button>
+      <Button underlined highlighted>
+        Underlined
+      </Button>
+      <Button rounded shadow>
+        Shadow Button
       </Button>
       <Test />
     </ThemeProvider>
