@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.tsx",
+  entry: "./src/index.jsx",
   devServer: {
     historyApiFallback: true,
     inline: true,
@@ -31,6 +31,7 @@ module.exports = {
   resolve: {
     alias: {
       Components: path.resolve(__dirname, "./src/components/"),
+      Styles: path.resolve(__dirname, "./src/styles/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },

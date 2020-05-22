@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.tsx",
+  entry: "./src/index.jsx",
   module: {
     rules: [
       {
@@ -12,7 +12,7 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env"],
@@ -24,8 +24,9 @@ module.exports = {
   resolve: {
     alias: {
       Components: path.resolve(__dirname, "./src/components/"),
+      Styles: path.resolve(__dirname, "./src/styles/"),
     },
-    extensions: [".js", "jsx", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
