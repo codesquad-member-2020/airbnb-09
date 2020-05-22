@@ -7,8 +7,8 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Getter
 @Builder
 public class MockInitResponseDto {
     private long id;

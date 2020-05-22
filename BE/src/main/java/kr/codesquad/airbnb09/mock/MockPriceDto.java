@@ -2,7 +2,6 @@ package kr.codesquad.airbnb09.mock;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
