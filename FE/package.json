@@ -15,6 +15,7 @@
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.0",
     "styled-reset": "^4.1.4",
+    "svg-url-loader": "^6.0.0",
     "typescript": "^3.9.2"
   },
   "devDependencies": {
