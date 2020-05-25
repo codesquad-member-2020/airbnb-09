@@ -6,7 +6,7 @@ import cardData from "../../mock/list";
 const CardList = () => {
   return (
     <div>
-      <Title />
+      <Title numberOfResult={300} />
       {cardData.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
         <Card
           key={id}
