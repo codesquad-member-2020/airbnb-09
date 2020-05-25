@@ -1,7 +1,8 @@
 import React from "react";
+import PriceButton from "./PriceButton";
 
 const Price = () => {
-  return <div>Price</div>;
+  return <PriceButton />;
 };
 
 export default Price;

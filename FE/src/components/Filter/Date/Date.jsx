@@ -1,7 +1,8 @@
 import React from "react";
+import DateButton from "./DateButton";
 
 const Date = () => {
-  return <div>Date</div>;
+  return <DateButton />;
 };
 
 export default Date;

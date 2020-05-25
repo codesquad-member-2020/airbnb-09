@@ -1,7 +1,8 @@
 import React from "react";
+import GuestButton from "./GuestButton";
 
 const Guest = () => {
-  return <div>Guest</div>;
+  return <GuestButton />;
 };
 
 export default Guest;

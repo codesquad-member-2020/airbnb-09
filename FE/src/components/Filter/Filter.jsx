@@ -1,16 +1,25 @@
 import React from "react";
+import styled from "styled-components";
+import Button from "Styles/Button";
 import Date from "./Date/Date";
 import Guest from "./Guest/Guest";
 import Price from "./Price/Price";
 
 const Filter = () => {
   return (
-    <div>
+    <Wrapper>
       <Date />
       <Guest />
       <Price />
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  padding-top: ${props => props.theme.spacing.unit(12)};
+  ${Button} {
+    margin-right: ${props => props.theme.spacing.xsm};
+  }
+`;
 
 export default Filter;
