@@ -18,6 +18,7 @@ const fontSizes = {
   lg: calcRem(18),
   md: calcRem(16),
   sm: calcRem(14),
+  xsm: calcRem(12),
 };
 
 const lineHeight = {
@@ -25,6 +26,7 @@ const lineHeight = {
   lg: calcRem(24),
   md: calcRem(22),
   sm: calcRem(18),
+  xsm: calcRem(16),
 };
 
 const fontWeight = {

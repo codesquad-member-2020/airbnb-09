@@ -1,11 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import Title from "./Title";
 import Card from "./Card/Card";
 import cardData from "../../mock/list";
 
 const CardList = () => {
   return (
-    <div>
+    <Wrapper>
       <Title numberOfResult={300} />
       {cardData.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
         <Card
@@ -19,9 +20,15 @@ const CardList = () => {
           sellingRate={oneNightRate.selling}
         />
       ))}
-      CardList
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: ${props => props.theme.spacing.base};
+  padding-bottom: ${props => props.theme.spacing.xxl};
+`;
 
 export default CardList;
