@@ -1,7 +1,7 @@
 import React from "react";
 
 const Date = () => {
-  return <div></div>;
+  return <div>Date</div>;
 };
 
 export default Date;
