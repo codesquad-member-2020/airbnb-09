@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { IconContext } from "react-icons";
+import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
 
 const Description = ({ name, country, rating, superHost, originalRate, sellingRate }) => {
@@ -20,6 +22,9 @@ const Description = ({ name, country, rating, superHost, originalRate, sellingRa
           {country}
         </Text>
         <RatingWrapper>
+          <IconContext.Provider value={{ color: "#FF5A5F" }}>
+            <IoIosStar />
+          </IconContext.Provider>
           <Text fontSize="sm">{rating}</Text>
         </RatingWrapper>
       </DetailWrapper>
@@ -47,7 +52,12 @@ const SuperHostBadge = styled.div`
 `;
 
 const RatingWrapper = styled(Text)`
+  display: flex;
+  justify-content: center;
   margin-left: auto;
+  ${Text} {
+    margin-left: 2px;
+  }
 `;
 
 const RateWrapper = styled.div`
