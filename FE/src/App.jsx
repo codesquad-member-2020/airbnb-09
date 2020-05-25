@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "Styles/GlobalStyle";
 import theme from "Styles/theme";
 import Header from "Components/Header/Header";
@@ -10,11 +10,19 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header />
-      <Filter />
-      <CardList />
+      <Wrapper>
+        <Header />
+        <Filter />
+        <CardList />
+      </Wrapper>
     </ThemeProvider>
   );
 };
+
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+`;
 
 export default App;
