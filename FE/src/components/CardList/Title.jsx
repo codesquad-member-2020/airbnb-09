@@ -16,8 +16,7 @@ const Title = ({ numberOfResult }) => {
 
 const TitleWrapper = styled.div`
   width: 100%;
-  grid-column-start: 1;
-  grid-column-end: 5;
+  grid-column: 1 / -1;
   padding-top: ${props => props.theme.spacing.base};
   padding-bottom: ${props => props.theme.spacing.xsm};
 `;

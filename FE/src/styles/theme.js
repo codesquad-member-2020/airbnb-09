@@ -1,5 +1,12 @@
 import { calcRem } from "./mixins";
 
+const sizes = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+};
+
 const colors = {
   pink: "#FF5A5F",
   green: "#006c70",
@@ -58,6 +65,7 @@ const spacing = {
 };
 
 const theme = {
+  sizes,
   colors,
   fontSizes,
   lineHeight,
