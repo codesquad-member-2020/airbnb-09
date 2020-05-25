@@ -6,6 +6,8 @@ import Text from "Styles/Text";
 
 const Description = ({ name, country, rating, superHost, originalRate, sellingRate }) => {
   const SUPER_HOST_TEXT = "슈퍼호스트";
+  const ORIGIN_RATE = `₩${originalRate}`;
+  const SELLING_RATE = `₩${sellingRate}`;
   const SELLING_RATE_TEXT = "/1박";
 
   return (
@@ -30,8 +32,8 @@ const Description = ({ name, country, rating, superHost, originalRate, sellingRa
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
       <RateWrapper fontSize="lg" as="div">
-        <OriginalRateText color="gray3">₩{originalRate}</OriginalRateText>
-        <Text fontWeight="extraBold">₩{sellingRate}</Text>
+        <OriginalRateText color="gray3">{ORIGIN_RATE}</OriginalRateText>
+        <Text fontWeight="extraBold">{SELLING_RATE}</Text>
         <Text>{SELLING_RATE_TEXT}</Text>
       </RateWrapper>
     </div>
