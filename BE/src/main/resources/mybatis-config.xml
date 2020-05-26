@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!-- XML 문서의 유효성 체크를 위해 필요 -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <package name="kr.codesquad.airbnb09.domain"/>
+    </typeAliases>
+    <!-- SQL 코드와 매핑 정의를 가지는 XML 파일인 mapper 의 목록을 지정한다. -->
+    <mappers>
+        <mapper resource="mapper/listingMapper.xml"/>
+    </mappers>
+</configuration>
