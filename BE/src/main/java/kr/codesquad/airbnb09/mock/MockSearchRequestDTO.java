@@ -1,12 +1,15 @@
 package kr.codesquad.airbnb09.mock;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
 @Builder
-public class MockSearchRequestDto {
+public class MockSearchRequestDTO {
     private String checkin;
     private String checkout;
     private int adults;

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Namespace를 통해 JAVA 클래스와 Annotation클래스와 동기 -->
+<mapper namespace="kr.codesquad.airbnb09.service.ListingMapper">
+
+    <!-- Sql id 설정 및 parameterType, resultType을 설정. -->
+    <select id="getAccommodationList" parameterType = "String" resultType="AccommodationDTO">
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT 500;
+    </select>
+</mapper>

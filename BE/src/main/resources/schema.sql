@@ -1,3 +1,4 @@
+SET foreign_key_checks = 0; # 외래키를 무시하고 지울 수 있도록 외래키 체크 설정을 off
 -- -----------------------------------------------------
 -- Schema airbnb
 -- -----------------------------------------------------
@@ -13,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`listing`
 (
     `id`             BIGINT      NOT NULL AUTO_INCREMENT,
     `title`          VARCHAR(64) NULL,
-    `price`          VARCHAR(64) NULL DEFAULT 0,
+    `price`          INT         NULL DEFAULT 0,
     `discount_price` INT         NULL,
     `cleaning_fee`   INT         NULL DEFAULT 0,
     `service_fee`    INT         NULL DEFAULT 0,
