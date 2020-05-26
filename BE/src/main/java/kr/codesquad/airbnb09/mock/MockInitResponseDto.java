@@ -10,14 +10,14 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
-public class MockInitResponseDto {
+public class MockInitResponseDTO {
     private long id;
     private String name;
     private String country;
     private double rating;
     private boolean isSuperHost;
     private List<String> thumbnails;
-    private MockOneNightRateDto oneNightRate;
+    private MockOneNightRateDTO oneNightRate;
     private int nights;
-    private MockPriceDto price;
+    private MockPriceDTO price;
 }

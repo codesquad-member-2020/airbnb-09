@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MockPriceDto {
+public class MockPriceDTO {
     private String accomdationRate;
     private String cleaningFee;
     private String serviceFee;

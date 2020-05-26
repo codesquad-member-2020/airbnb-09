@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
-public class MockOneNightRateDto {
+public class MockOneNightRateDTO {
     private String original;
     private String selling;
 
     @Builder
-    public MockOneNightRateDto(String original, String selling) {
+    public MockOneNightRateDTO(String original, String selling) {
         this.original = original;
         this.selling = selling;
     }
