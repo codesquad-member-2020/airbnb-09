@@ -10,8 +10,7 @@ const CardList = () => {
   const { cardList, dispatch } = useContext(CardListContext);
 
   const { loading, errorMsg } = useFetch({
-    // url: "http://3.34.15.148/api/listing",
-    url: "",
+    url: "http://3.34.15.148/api/listing",
     dispatch,
     actionType: {
       success: fetchActions.FETCH_SUCCESS,
