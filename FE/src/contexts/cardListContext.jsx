@@ -1,9 +1,22 @@
-import React, { createContext } from "react";
+import React, { createContext, useMemo, useReducer } from "react";
+import reducer from "Reducers/cardReducer";
 
-const CardListContext = createContext(initialState);
+const initialState = {};
+
+const CardListContext = createContext();
 
 const CardListProvider = ({ children }) => {
-  return <CardListContext.Provider>{children}</CardListContext.Provider>;
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const contextValue = useMemo(
+    () => ({
+      state,
+      dispatch,
+    }),
+    [state, dispatch],
+  );
+
+  return <CardListContext.Provider value={contextValue}>{children}</CardListContext.Provider>;
 };
 
 export { CardListContext, CardListProvider };

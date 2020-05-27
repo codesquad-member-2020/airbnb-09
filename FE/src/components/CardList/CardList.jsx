@@ -1,38 +1,10 @@
-import React, { useReducer, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Title from "./Title";
 import Card from "./Card/Card";
 import cardData from "../../mock/list";
 
-const initialState = {};
-
-const reducer = (state, action) => {
-  const { type } = action;
-  switch (type) {
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        loading: false,
-        data: action.payload,
-        error: "",
-      };
-    case "FETCH_ERROR":
-      return {
-        ...state,
-        loading: false,
-        data: {},
-        error: "Something went wrong!",
-      };
-    default:
-      return state;
-  }
-};
-
 const CardList = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {}, []);
-
   return (
     <Wrapper>
       <Title numberOfResult={300} />
