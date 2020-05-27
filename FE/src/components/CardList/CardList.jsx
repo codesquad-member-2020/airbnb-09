@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { CardListContext } from "Contexts/cardListContext";
 import { fetchActions } from "Actions/actions";
+import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
 import cardData from "../../mock/list";
@@ -10,18 +10,14 @@ import cardData from "../../mock/list";
 const CardList = () => {
   const { state, dispatch } = useContext(CardListContext);
 
-  useEffect(() => {
-    const getInitialData = async () => {
-      const response = await axios.get("http://3.34.15.148/api/listing");
-      try {
-        dispatch({ type: fetchActions.FETCH_SUCCESS, payload: response.data });
-      } catch (e) {
-        dispatch({ type: fetchActions.FETCH_ERROR });
-      }
-    };
-
-    getInitialData();
-  }, []);
+  useFetch({
+    url: "http://3.34.15.148/api/listing",
+    dispatch,
+    actionType: {
+      success: fetchActions.FETCH_SUCCESS,
+      error: fetchActions.FETCH_ERROR,
+    },
+  });
 
   return (
     <Wrapper>
