@@ -6,14 +6,14 @@ const initialState = {};
 const CardListContext = createContext();
 
 const CardListProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [cardList, dispatch] = useReducer(reducer, initialState);
 
   const contextValue = useMemo(
     () => ({
-      state,
+      cardList,
       dispatch,
     }),
-    [state, dispatch],
+    [cardList, dispatch],
   );
 
   return <CardListContext.Provider value={contextValue}>{children}</CardListContext.Provider>;

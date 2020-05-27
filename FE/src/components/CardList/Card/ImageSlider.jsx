@@ -14,7 +14,7 @@ const ImageSlider = ({ thumbnails }) => {
 
 const Image = styled.img`
   max-width: 100%;
-  border-radius: ${props => props.theme.spacing.xxsm};
+  border-radius: ${props => props.theme.spacings.xxsm};
 `;
 
 export default ImageSlider;

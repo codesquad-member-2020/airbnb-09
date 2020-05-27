@@ -43,14 +43,14 @@ const Description = ({ name, country, rating, superHost, originalRate, sellingRa
 const DetailWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-top: ${props => props.theme.spacing.xsm};
+  padding-top: ${props => props.theme.spacings.xsm};
 `;
 
 const SuperHostBadge = styled.div`
   border: 1px solid ${props => props.theme.colors.black};
-  border-radius: ${props => props.theme.spacing.xxsm};
-  margin-right: ${props => props.theme.spacing.xxsm};
-  padding: 0 ${props => props.theme.spacing.xxsm};
+  border-radius: ${props => props.theme.spacings.xxsm};
+  margin-right: ${props => props.theme.spacings.xxsm};
+  padding: 0 ${props => props.theme.spacings.xxsm};
 `;
 
 const RatingWrapper = styled(Text)`
@@ -65,7 +65,7 @@ const RatingWrapper = styled(Text)`
 const RateWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-top: ${props => props.theme.spacing.sm};
+  padding-top: ${props => props.theme.spacings.sm};
   ${Text} {
     line-height: 0;
   }
@@ -73,7 +73,7 @@ const RateWrapper = styled.div`
 
 const OriginalRateText = styled(Text)`
   text-decoration: line-through;
-  margin-right: ${props => props.theme.spacing.xxsm};
+  margin-right: ${props => props.theme.spacings.xxsm};
 `;
 
 const NameText = styled(Text)`
@@ -81,7 +81,7 @@ const NameText = styled(Text)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-top: ${props => props.theme.spacing.xsm};
+  padding-top: ${props => props.theme.spacings.xsm};
 `;
 
 export default Description;

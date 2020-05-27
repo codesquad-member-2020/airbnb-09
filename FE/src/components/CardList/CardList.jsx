@@ -8,7 +8,7 @@ import Card from "./Card/Card";
 import cardData from "../../mock/list";
 
 const CardList = () => {
-  const { state, dispatch } = useContext(CardListContext);
+  const { cardList, dispatch } = useContext(CardListContext);
 
   useFetch({
     url: "http://3.34.15.148/api/listing",
@@ -21,7 +21,7 @@ const CardList = () => {
 
   return (
     <Wrapper>
-      <Title numberOfResult={300} />
+      <Title numberOfResults={300} />
       {cardData.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
         <Card
           key={id}
@@ -41,8 +41,8 @@ const CardList = () => {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-gap: ${props => props.theme.spacing.base};
-  padding-bottom: ${props => props.theme.spacing.xxl};
+  grid-gap: ${props => props.theme.spacings.base};
+  padding-bottom: ${props => props.theme.spacings.xxl};
 
   @media (min-width: ${props => props.theme.sizes.md}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

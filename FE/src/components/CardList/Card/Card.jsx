@@ -23,7 +23,7 @@ const Card = ({ name, country, rating, superHost, thumbnails, originalRate, sell
 
 const Wrapper = styled.div`
   position: relative;
-  margin-bottom: ${props => props.theme.spacing.sm};
+  margin-bottom: ${props => props.theme.spacings.sm};
 `;
 
 export default Card;

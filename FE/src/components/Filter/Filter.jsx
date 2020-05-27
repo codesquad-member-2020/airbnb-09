@@ -16,9 +16,9 @@ const Filter = () => {
 };
 
 const Wrapper = styled.div`
-  padding-top: ${props => props.theme.spacing.unit(12)};
+  padding-top: ${props => props.theme.spacings.unit(12)};
   ${Button} {
-    margin-right: ${props => props.theme.spacing.xsm};
+    margin-right: ${props => props.theme.spacings.xsm};
   }
 `;
 

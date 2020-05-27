@@ -24,7 +24,7 @@ const App = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 0 ${props => props.theme.spacing.base};
+  padding: 0 ${props => props.theme.spacings.base};
 `;
 
 export default App;
