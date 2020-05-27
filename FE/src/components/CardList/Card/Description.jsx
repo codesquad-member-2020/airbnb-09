@@ -4,10 +4,18 @@ import { IconContext } from "react-icons";
 import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
 
-const Description = ({ name, country, rating, superHost, originalRate, sellingRate }) => {
+const Description = ({
+  data: {
+    name,
+    country,
+    rating,
+    superHost,
+    oneNightRate: { original, selling },
+  },
+}) => {
   const SUPER_HOST_TEXT = "슈퍼호스트";
-  const ORIGIN_RATE = `₩${originalRate}`;
-  const SELLING_RATE = `₩${sellingRate}`;
+  const ORIGIN_RATE = `₩${original}`;
+  const SELLING_RATE = `₩${selling}`;
   const SELLING_RATE_TEXT = "/1박";
 
   return (

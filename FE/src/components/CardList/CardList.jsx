@@ -5,7 +5,6 @@ import { fetchActions } from "Actions/actions";
 import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
-// import cardData from "../../mock/list";
 
 const CardList = () => {
   const { cardList, dispatch } = useContext(CardListContext);
@@ -22,19 +21,8 @@ const CardList = () => {
 
   return (
     <Wrapper>
-      <Title numberOfResults={cardList.data.length || 0} />
-      {cardList.data.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
-        <Card
-          key={id}
-          name={name}
-          country={country}
-          rating={rating}
-          superHost={superHost}
-          thumbnails={thumbnails}
-          originalRate={oneNightRate.original}
-          sellingRate={oneNightRate.selling}
-        />
-      ))}
+      <Title numberOfResults={cardList.length} />
+      {loading ? <span>로딩중</span> : cardList.map(({ id, ...cardData }) => <Card key={id} data={cardData} />)}
     </Wrapper>
   );
 };

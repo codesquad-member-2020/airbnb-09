@@ -4,18 +4,11 @@ import ImageSlider from "./ImageSlider";
 import Description from "./Description";
 import ReservationButton from "./ReservationButton";
 
-const Card = ({ name, country, rating, superHost, thumbnails, originalRate, sellingRate }) => {
+const Card = ({ data: { thumbnails, ...descData } }) => {
   return (
     <Wrapper>
       <ImageSlider thumbnails={thumbnails} />
-      <Description
-        name={name}
-        country={country}
-        rating={rating}
-        superHost={superHost}
-        originalRate={originalRate}
-        sellingRate={sellingRate}
-      />
+      <Description data={descData} />
       <ReservationButton />
     </Wrapper>
   );

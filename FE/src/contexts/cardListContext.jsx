@@ -1,9 +1,7 @@
 import React, { createContext, useMemo, useReducer } from "react";
 import reducer from "Reducers/cardReducer";
 
-const initialState = {
-  data: [],
-};
+const initialState = [];
 
 const CardListContext = createContext();
 

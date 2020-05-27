@@ -6,15 +6,9 @@ const reducer = (state, action) => {
 
   switch (type) {
     case FETCH_SUCCESS:
-      return {
-        ...state,
-        data: payload,
-      };
+      return [...state, ...payload];
     case FETCH_ERROR:
-      return {
-        ...state,
-        data: [],
-      };
+      return [...state];
     default:
       return state;
   }
