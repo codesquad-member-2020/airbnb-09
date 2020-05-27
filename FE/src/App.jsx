@@ -5,6 +5,7 @@ import theme from "Styles/theme";
 import Header from "Components/Header/Header";
 import Filter from "Components/Filter/Filter";
 import CardList from "Components/CardList/CardList";
+import { CardListProvider } from "Contexts/cardListContext";
 
 const App = () => {
   return (
@@ -13,7 +14,9 @@ const App = () => {
       <Wrapper>
         <Header />
         <Filter />
-        <CardList />
+        <CardListProvider>
+          <CardList />
+        </CardListProvider>
       </Wrapper>
     </ThemeProvider>
   );
