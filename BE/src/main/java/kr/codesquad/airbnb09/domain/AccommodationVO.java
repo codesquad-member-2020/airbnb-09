@@ -2,8 +2,10 @@ package kr.codesquad.airbnb09.domain;
 
 import lombok.*;
 
-@Data
-public class AccommodationDTO {
+@Getter
+@Builder
+@ToString
+public class AccommodationVO {
     private Long id;
     private String title;
     private int price;
