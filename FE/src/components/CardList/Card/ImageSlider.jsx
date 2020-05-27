@@ -7,7 +7,7 @@ const ImageSlider = ({ thumbnails }) => {
       {/* {thumbnails.map((imageUrl, index) => (
         <img key={index} src={imageUrl} alt="숙소 이미지" />
       ))} */}
-      <Image src={thumbnails[0]} />
+      <Image src="/" />
     </div>
   );
 };
