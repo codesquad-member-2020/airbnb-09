@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface ListingMapper {
 
-    List<AccommodationVO> getAccommodationList();
+    List<AccommodationVO> selectAllListing();
 }
