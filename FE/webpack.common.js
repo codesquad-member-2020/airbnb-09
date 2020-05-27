@@ -39,6 +39,7 @@ module.exports = {
       Actions: path.resolve(__dirname, "./src/actions/"),
       Reducers: path.resolve(__dirname, "./src/reducers/"),
       Contexts: path.resolve(__dirname, "./src/contexts/"),
+      CustomHooks: path.resolve(__dirname, "./src/customHooks/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
