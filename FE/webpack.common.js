@@ -18,12 +18,24 @@ module.exports = {
         },
         exclude: /node_modules/,
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
     alias: {
       Components: path.resolve(__dirname, "./src/components/"),
       Styles: path.resolve(__dirname, "./src/styles/"),
+      Assets: path.resolve(__dirname, "./src/assets/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },

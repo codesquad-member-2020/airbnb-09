@@ -1,5 +1,12 @@
 import { calcRem } from "./mixins";
 
+const sizes = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+};
+
 const colors = {
   pink: "#FF5A5F",
   green: "#006c70",
@@ -18,6 +25,7 @@ const fontSizes = {
   lg: calcRem(18),
   md: calcRem(16),
   sm: calcRem(14),
+  xsm: calcRem(12),
 };
 
 const lineHeight = {
@@ -25,6 +33,7 @@ const lineHeight = {
   lg: calcRem(24),
   md: calcRem(22),
   sm: calcRem(18),
+  xsm: calcRem(16),
 };
 
 const fontWeight = {
@@ -34,24 +43,36 @@ const fontWeight = {
   regular: 400,
 };
 
-const UNIT = 4;
+const shadow = {
+  xxl: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+  xl: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
+  lg: "0 2px 8px rgba(0,0,0,0.24)",
+  md: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
+  sm: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)",
+};
+
+const unit = 4;
 
 const spacing = {
-  xxl: calcRem(UNIT * 16),
-  xl: calcRem(UNIT * 12),
-  lg: calcRem(UNIT * 8),
-  base: calcRem(UNIT * 6),
-  sm: calcRem(UNIT * 4),
-  xsm: calcRem(UNIT * 2),
-  xxsm: calcRem(UNIT),
+  xxl: calcRem(unit * 16),
+  xl: calcRem(unit * 12),
+  lg: calcRem(unit * 8),
+  base: calcRem(unit * 6),
+  sm: calcRem(unit * 4),
+  xsm: calcRem(unit * 2),
+  xxsm: calcRem(unit),
+  unit: num => calcRem(unit * num),
 };
 
 const theme = {
+  sizes,
   colors,
   fontSizes,
   lineHeight,
   fontWeight,
+  shadow,
   spacing,
+  unit,
 };
 
 export default theme;

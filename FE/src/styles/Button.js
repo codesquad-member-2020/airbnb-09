@@ -19,11 +19,12 @@ const Button = styled.button`
   ${props =>
     props.shadow &&
     css`
+      font-weight: ${props.theme.fontWeight.semiBold};
       border: 1px solid transparent;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
+      box-shadow: ${props.theme.shadow.md};
       transition: box-shadow 0.2s ease;
       &:hover {
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+        box-shadow: ${props.theme.shadow.lg};
       }
     `}
 

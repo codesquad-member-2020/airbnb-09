@@ -15,7 +15,9 @@
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.0",
     "styled-reset": "^4.1.4",
-    "typescript": "^3.9.2"
+    "svg-url-loader": "^6.0.0",
+    "typescript": "^3.9.2",
+    "react-icons": "^3.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
