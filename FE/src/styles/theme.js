@@ -1,4 +1,4 @@
-import { calcRem } from "./mixins";
+const calcRem = size => `${size / 16}rem`;
 
 const sizes = {
   sm: "640px",
