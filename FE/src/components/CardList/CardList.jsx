@@ -10,13 +10,17 @@ import cardData from "../../mock/list";
 const CardList = () => {
   const { state, dispatch } = useContext(CardListContext);
 
-  useEffect(async () => {
-    const response = await axios.get("http://3.34.15.148/api/listing");
-    try {
-      dispatch({ type: fetchActions.FETCH_SUCCESS, payload: response.data });
-    } catch (e) {
-      dispatch({ type: fetchActions.FETCH_ERROR });
-    }
+  useEffect(() => {
+    const getInitialData = async () => {
+      const response = await axios.get("http://3.34.15.148/api/listing");
+      try {
+        dispatch({ type: fetchActions.FETCH_SUCCESS, payload: response.data });
+      } catch (e) {
+        dispatch({ type: fetchActions.FETCH_ERROR });
+      }
+    };
+
+    getInitialData();
   }, []);
 
   return (
