@@ -5,13 +5,14 @@ import { fetchActions } from "Actions/actions";
 import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
-import cardData from "../../mock/list";
+// import cardData from "../../mock/list";
 
 const CardList = () => {
   const { cardList, dispatch } = useContext(CardListContext);
 
-  useFetch({
-    url: "http://3.34.15.148/api/listing",
+  const { loading, errorMsg } = useFetch({
+    // url: "http://3.34.15.148/api/listing",
+    url: "",
     dispatch,
     actionType: {
       success: fetchActions.FETCH_SUCCESS,
@@ -21,8 +22,8 @@ const CardList = () => {
 
   return (
     <Wrapper>
-      <Title numberOfResults={300} />
-      {cardData.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
+      <Title numberOfResults={cardList.data.length || 0} />
+      {cardList.data.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
         <Card
           key={id}
           name={name}
