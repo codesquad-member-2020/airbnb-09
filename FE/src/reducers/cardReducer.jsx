@@ -1,21 +1,24 @@
 import { fetchActions } from "Actions/actions";
 
 const reducer = (state, action) => {
-  const { type } = action;
+  const { type, payload } = action;
+  const { FETCH_SUCCESS, FETCH_ERROR } = fetchActions;
+  const ERROR_MESSAGE = "Something went wrong!";
+
   switch (type) {
-    case fetchActions.FETCH_SUCCESS:
+    case FETCH_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: payload,
         error: "",
       };
-    case fetchActions.FETCH_ERROR:
+    case FETCH_ERROR:
       return {
         ...state,
         loading: false,
         data: {},
-        error: "Something went wrong!",
+        error: ERROR_MESSAGE,
       };
     default:
       return state;
