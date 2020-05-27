@@ -28,7 +28,7 @@ const fontSizes = {
   xsm: calcRem(12),
 };
 
-const lineHeight = {
+const lineHeights = {
   xl: calcRem(36),
   lg: calcRem(24),
   md: calcRem(22),
@@ -36,14 +36,14 @@ const lineHeight = {
   xsm: calcRem(16),
 };
 
-const fontWeight = {
+const fontWeights = {
   extraBold: 800,
   bold: 700,
   semiBold: 600,
   regular: 400,
 };
 
-const shadow = {
+const shadows = {
   xxl: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
   xl: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
   lg: "0 2px 8px rgba(0,0,0,0.24)",
@@ -53,7 +53,7 @@ const shadow = {
 
 const unit = 4;
 
-const spacing = {
+const spacings = {
   xxl: calcRem(unit * 16),
   xl: calcRem(unit * 12),
   lg: calcRem(unit * 8),
@@ -68,10 +68,10 @@ const theme = {
   sizes,
   colors,
   fontSizes,
-  lineHeight,
-  fontWeight,
-  shadow,
-  spacing,
+  lineHeights,
+  fontWeights,
+  shadows,
+  spacings,
   unit,
 };
 

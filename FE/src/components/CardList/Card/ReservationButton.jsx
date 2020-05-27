@@ -13,7 +13,7 @@ const ReservationButton = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: ${props => props.theme.spacing.base};
+  margin-top: ${props => props.theme.spacings.base};
 `;
 
 const PrimaryButton = styled(Button)`

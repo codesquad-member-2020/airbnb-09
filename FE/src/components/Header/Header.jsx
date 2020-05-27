@@ -24,7 +24,7 @@ const Header = () => {
 
 const Placeholder = styled.div`
   width: 100%;
-  height: ${props => props.theme.spacing.unit(20)};
+  height: ${props => props.theme.spacings.unit(20)};
 `;
 
 const Wrapper = styled.header`
@@ -36,9 +36,9 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ${props => props.theme.spacing.base};
+  padding: 0 ${props => props.theme.spacings.base};
   background-color: ${props => props.theme.colors.white};
-  box-shadow: ${props => props.theme.shadow.sm};
+  box-shadow: ${props => props.theme.shadows.sm};
 `;
 
 const LogoLink = styled.a`
@@ -49,7 +49,7 @@ const LogoLink = styled.a`
 
 const Logo = styled.object`
   pointer-events: none;
-  width: ${props => props.theme.spacing.unit(25)};
+  width: ${props => props.theme.spacings.unit(25)};
 `;
 
 const Title = styled.h1`

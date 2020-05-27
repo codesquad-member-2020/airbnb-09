@@ -7,14 +7,14 @@ const ImageSlider = ({ thumbnails }) => {
       {/* {thumbnails.map((imageUrl, index) => (
         <img key={index} src={imageUrl} alt="숙소 이미지" />
       ))} */}
-      <Image src={thumbnails[0]} />
+      <Image src="/" />
     </div>
   );
 };
 
 const Image = styled.img`
   max-width: 100%;
-  border-radius: ${props => props.theme.spacing.xxsm};
+  border-radius: ${props => props.theme.spacings.xxsm};
 `;
 
 export default ImageSlider;

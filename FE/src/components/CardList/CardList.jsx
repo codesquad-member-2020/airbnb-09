@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { CardListContext } from "Contexts/cardListContext";
+import { fetchActions } from "Actions/actions";
+import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
-import cardData from "../../mock/list";
 
 const CardList = () => {
+  const { cardList, dispatch } = useContext(CardListContext);
+
+  const { loading, errorMsg } = useFetch({
+    url: "http://3.34.15.148/api/listing",
+    dispatch,
+    actionType: {
+      success: fetchActions.FETCH_SUCCESS,
+      error: fetchActions.FETCH_ERROR,
+    },
+  });
+
   return (
     <Wrapper>
-      <Title numberOfResult={300} />
-      {cardData.map(({ id, name, country, rating, superHost, thumbnails, oneNightRate }) => (
-        <Card
-          key={id}
-          name={name}
-          country={country}
-          rating={rating}
-          superHost={superHost}
-          thumbnails={thumbnails}
-          originalRate={oneNightRate.original}
-          sellingRate={oneNightRate.selling}
-        />
-      ))}
+      <Title numberOfResults={cardList.length} />
+      {loading ? <span>로딩중</span> : cardList.map(({ id, ...cardData }) => <Card key={id} data={cardData} />)}
     </Wrapper>
   );
 };
@@ -27,8 +29,8 @@ const CardList = () => {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-gap: ${props => props.theme.spacing.base};
-  padding-bottom: ${props => props.theme.spacing.xxl};
+  grid-gap: ${props => props.theme.spacings.base};
+  padding-bottom: ${props => props.theme.spacings.xxl};
 
   @media (min-width: ${props => props.theme.sizes.md}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

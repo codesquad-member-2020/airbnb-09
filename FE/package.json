@@ -10,17 +10,19 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.0",
     "styled-reset": "^4.1.4",
     "svg-url-loader": "^6.0.0",
-    "typescript": "^3.9.2",
-    "react-icons": "^3.10.0"
+    "typescript": "^3.9.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.10.0",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",

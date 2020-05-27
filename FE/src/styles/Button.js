@@ -10,21 +10,21 @@ const Button = styled.button`
   opacity: ${props => (props.disabled ? 0.3 : 1)};
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors[props.color] || props.theme.colors.gray2};
-  border-radius: ${props => props.theme.spacing.xsm};
-  padding: ${props => props.theme.spacing.xsm} ${props => props.theme.spacing.base};
+  border-radius: ${props => props.theme.spacings.xsm};
+  padding: ${props => props.theme.spacings.xsm} ${props => props.theme.spacings.base};
   font-size: ${props => props.theme.fontSizes.sm};
-  font-weight: ${props => props.theme.fontWeight.regular};
+  font-weight: ${props => props.theme.fontWeights.regular};
 
   /* Shadow Button */
   ${props =>
     props.shadow &&
     css`
-      font-weight: ${props.theme.fontWeight.semiBold};
+      font-weight: ${props.theme.fontWeights.semiBold};
       border: 1px solid transparent;
-      box-shadow: ${props.theme.shadow.md};
+      box-shadow: ${props.theme.shadows.md};
       transition: box-shadow 0.2s ease;
       &:hover {
-        box-shadow: ${props.theme.shadow.lg};
+        box-shadow: ${props.theme.shadows.lg};
       }
     `}
 
@@ -54,26 +54,26 @@ const Button = styled.button`
         background-color: ${props.theme.colors.pink};
         color: ${props.theme.colors.white};
         font-size: ${props.theme.fontSizes.md};
-        font-weight: ${props.theme.fontWeight.bold};
+        font-weight: ${props.theme.fontWeights.bold};
       `;
     }
     if (props.secondary) {
       return css`
         background-color: ${props.theme.colors.black};
         color: ${props.theme.colors.white};
-        font-weight: ${props.theme.fontWeight.semiBold};
+        font-weight: ${props.theme.fontWeights.semiBold};
       `;
     }
     if (props.rounded) {
       return css`
-        border-radius: ${props.theme.spacing.base};
+        border-radius: ${props.theme.spacings.base};
       `;
     }
     if (props.circular) {
       return css`
         padding: 0;
-        width: ${props.theme.spacing[props.size] || props.theme.spacing.lg};
-        height: ${props.theme.spacing[props.size] || props.theme.spacing.lg};
+        width: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
+        height: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
         border-radius: 50%;
       `;
     }
@@ -81,7 +81,7 @@ const Button = styled.button`
       return css`
         color: ${props.theme.colors.black};
         text-decoration: underline;
-        font-weight: ${props.theme.fontWeight.semiBold};
+        font-weight: ${props.theme.fontWeights.semiBold};
       `;
     }
     return css``;
