@@ -18,6 +18,7 @@ const GButton = styled(Button)`
     left: -1px;
     border: 2px solid ${props => props.theme.colors.black};
     border-radius: ${props => props.theme.spacings.base};
+    background-color: ${props => props.theme.colors.shadow};
     width: calc(100% + 2px);
     height: calc(100% + 2px);
   }

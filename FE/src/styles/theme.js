@@ -18,6 +18,7 @@ const colors = {
   gray5: "#DDDDDD",
   gray6: "#F7F7F7",
   white: "#FFFFFF",
+  shadow: "rgba(0, 0, 0, 0.05)",
 };
 
 const fontSizes = {

@@ -76,6 +76,7 @@ const Button = styled.button`
         width: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
         height: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
         border-radius: 50%;
+        line-height: 0;
       `;
     }
     if (props.underlined) {
