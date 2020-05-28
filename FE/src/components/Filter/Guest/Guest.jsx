@@ -9,33 +9,42 @@ import Modal from "./Modal";
 const Guest = () => {
   const guestTypes = [
     {
+      id: 1,
       term: "성인",
       description: "만 13세 이상",
     },
     {
+      id: 2,
       term: "어린이",
       description: "2~12세",
     },
     {
+      id: 3,
       term: "유아",
       description: "2세 미만",
     },
   ];
 
+  const MIN_GUEST_NUM = 0;
+  const MAX_GUEST_NUM = 8;
+
+  // ! 성인, 어린이, 아이 상태에 해당하는 수 로 이후 변경해야 함
+  const GUEST_NUM_TEST = 0;
+
   const modalContent = (
     <ContentsWrapper>
-      {guestTypes.map(({ term, description }) => (
-        <TypeListWrapper>
+      {guestTypes.map(({ id, term, description }) => (
+        <TypeListWrapper key={id}>
           <TextWrapper>
             <Text fontSize="lg">{term}</Text>
             <Text color="gray3">{description}</Text>
           </TextWrapper>
           <ButtonsWrapper>
-            <Button circular bordered>
+            <Button circular bordered disabled={GUEST_NUM_TEST <= MIN_GUEST_NUM}>
               <MdRemove />
             </Button>
-            <GuestNumberText fontSize="lg">0</GuestNumberText>
-            <Button circular bordered>
+            <GuestNumberText fontSize="lg">{GUEST_NUM_TEST}</GuestNumberText>
+            <Button circular bordered disabled={GUEST_NUM_TEST >= MAX_GUEST_NUM}>
               <MdAdd />
             </Button>
           </ButtonsWrapper>
