@@ -16,10 +16,8 @@ const Filter = () => {
 };
 
 const Wrapper = styled.div`
+  display: flex;
   padding-top: ${props => props.theme.spacings.unit(12)};
-  ${Button} {
-    margin-right: ${props => props.theme.spacings.xsm};
-  }
 `;
 
 export default Filter;
