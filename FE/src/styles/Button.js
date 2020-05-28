@@ -59,6 +59,7 @@ const Button = styled.button`
     }
     if (props.secondary) {
       return css`
+        padding: ${props.theme.spacings.xsm} ${props.theme.spacings.sm};
         background-color: ${props.theme.colors.black};
         color: ${props.theme.colors.white};
         font-weight: ${props.theme.fontWeights.semiBold};
@@ -79,6 +80,7 @@ const Button = styled.button`
     }
     if (props.underlined) {
       return css`
+        padding: ${props.theme.spacings.xsm} ${props.theme.spacings.sm};
         color: ${props.theme.colors.black};
         text-decoration: underline;
         font-weight: ${props.theme.fontWeights.semiBold};
