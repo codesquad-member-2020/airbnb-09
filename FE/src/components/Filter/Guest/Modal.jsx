@@ -2,21 +2,21 @@ import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
 
-const Modal = () => {
+const Modal = ({ options: { contents = "", hasContents = false, clearHandler = null, saveHandler = null } }) => {
   const SAVE_BUTTON_TEXT = "저장";
   const CLEAR_BUTTON_TEXT = "지우기";
 
   return (
     <ModalWrapper>
-      <ContentsWrapper>
-        <div />
-      </ContentsWrapper>
+      <ContentsWrapper>{contents}</ContentsWrapper>
       <ButtonsWrapper>
         <Buttons>
-          <ClearButton highlighted underlined>
+          <ClearButton highlighted underlined disabled={!hasContents} onClick={clearHandler}>
             {CLEAR_BUTTON_TEXT}
           </ClearButton>
-          <Button secondary>{SAVE_BUTTON_TEXT}</Button>
+          <Button secondary onClick={saveHandler}>
+            {SAVE_BUTTON_TEXT}
+          </Button>
         </Buttons>
       </ButtonsWrapper>
     </ModalWrapper>
@@ -24,7 +24,6 @@ const Modal = () => {
 };
 
 const ModalWrapper = styled.div`
-  width: 400px;
   z-index: 10;
   position: absolute;
   top: ${props => props.theme.spacings.xl};
@@ -35,6 +34,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ContentsWrapper = styled.div`
+  min-width: ${props => props.theme.spacings.unit(80)};
   padding: ${props => props.theme.spacings.base};
   overflow-x: hidden;
   overflow-y: auto;
