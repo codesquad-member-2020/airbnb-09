@@ -139,16 +139,14 @@ const Guest = () => {
   const renderGuestButtonText = state => {
     let numOfGuests = 0;
     let numOfInfants = 0;
-    const noGuest = numOfGuests <= 0;
-    const hasInfants = numOfInfants > 0;
 
     Object.entries(state).forEach(([type, num]) => {
       if (type !== "infants") numOfGuests += num;
       else numOfInfants += num;
     });
 
-    if (noGuest) return `게스트`;
-    return hasInfants ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
+    if (numOfGuests <= 0) return `게스트`;
+    return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
   };
 
   const modalOption = {
