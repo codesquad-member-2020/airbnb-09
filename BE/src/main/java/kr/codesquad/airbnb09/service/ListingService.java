@@ -21,7 +21,7 @@ public class ListingService {
         this.listingMapper = listingMapper;
     }
 
-    public List getAllListing() {
+    public List<AccommodationVO> getAllListing() {
         return listingMapper.selectAllListing();
     }
 
@@ -31,16 +31,11 @@ public class ListingService {
 
         for (AccommodationVO accommodationVO : accommodationVOs) {
             AllListingDTO allListingDTO;
-            OneNightRateDTO oneNightRateDTO = OneNightRateDTO.builder()
-                    .original(NumberFormat.getInstance().format(accommodationVO.getPrice()))
-                    .selling(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice()))
-                    .build();
             log.debug("accommodationVO : {}", accommodationVO);
             log.debug("id : {}, name : {}, country : {}", accommodationVO.getId(), accommodationVO.getTitle(), accommodationVO.getCountry());
             allListingDTO = AllListingDTO.builder()
                     .id(accommodationVO.getId())
                     .name(accommodationVO.getTitle())
-                    .oneNightRate(oneNightRateDTO)
                     .country(accommodationVO.getCountry())
                     .rating(accommodationVO.getRating())
                     .isSuperHost(accommodationVO.isSuperhost())
