@@ -79,6 +79,14 @@ const renderGuestButtonText = guestNum => {
 const Guest = () => {
   const [guestNum, dispatch] = useReducer(reducer, initialState);
 
+  const decrementBtnHandler = type => {
+    if (type !== "adults") {
+      dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 });
+    } else if (!guestNum.children && !guestNum.infants) {
+      dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 });
+    }
+  };
+
   const incrementBtnHandler = type => {
     dispatch({ type: actions.CHANGE_GUEST(type), payload: 1 });
     if (guestNum.adults === 0 && type !== "adults") {
@@ -95,12 +103,7 @@ const Guest = () => {
             <Text color="gray3">{description}</Text>
           </TextWrapper>
           <ButtonsWrapper>
-            <Button
-              circular
-              bordered
-              disabled={minNum >= guestNum[type]}
-              onClick={() => dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 })}
-            >
+            <Button circular bordered disabled={minNum >= guestNum[type]} onClick={() => decrementBtnHandler(type)}>
               <MdRemove />
             </Button>
             <GuestNumberText fontSize="lg">{guestNum[type]}</GuestNumberText>
