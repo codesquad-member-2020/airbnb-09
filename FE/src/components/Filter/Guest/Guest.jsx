@@ -41,10 +41,11 @@ const actions = {
   CHANGE_ADULTS: "CHANGE_ADULTS",
   CHANGE_CHILDREN: "CHANGE_CHILDREN",
   CHANGE_INFANTS: "CHANGE_INFANTS",
+  RESET: "RESET",
 };
 
 const reducer = (state, action) => {
-  const { CHANGE_ADULTS, CHANGE_CHILDREN, CHANGE_INFANTS } = actions;
+  const { CHANGE_ADULTS, CHANGE_CHILDREN, CHANGE_INFANTS, RESET } = actions;
   const { adults, children, infants } = state;
   const { type, payload } = action;
 
@@ -55,6 +56,8 @@ const reducer = (state, action) => {
       return { ...state, children: children + payload };
     case CHANGE_INFANTS:
       return { ...state, infants: infants + payload };
+    case RESET:
+      return { ...state, ...initialState };
     default:
       return state;
   }
@@ -97,15 +100,20 @@ const Guest = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  // ! clearHandler => 게스트 값 초기화하는 디스패치
   // ! saveHandler => 값 저장, fetch 요청 보내고 => 카드 업데이트 + 모달 닫는 기능
   // ! 저장 버튼, 모달 바깥을 눌렀을 때, 게스트 버튼 눌렀을 때
+
+  const getTotalNumOfGuests = () =>
+    Object.values(guestNum).reduce((total, curr) => {
+      total += curr;
+      return total;
+    }, 0);
 
   const modalOption = {
     setToggle: () => setToggle(false),
     contents: modalContent,
-    hasContents: false,
-    clearHandler: null,
+    hasContents: getTotalNumOfGuests(),
+    clearHandler: () => dispatch({ type: actions.RESET }),
     saveHandler: null,
   };
 
