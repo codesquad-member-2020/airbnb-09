@@ -10,13 +10,13 @@ const Description = ({
     country,
     rating,
     superHost,
-    oneNightRate: { original, selling },
+    // oneNightRate: { original, selling },
   },
 }) => {
   const SUPER_HOST_TEXT = "슈퍼호스트";
-  const ORIGIN_RATE = `₩${original}`;
-  const SELLING_RATE = `₩${selling}`;
-  const SELLING_RATE_TEXT = "/1박";
+  // const ORIGIN_RATE = `₩${original}`;
+  // const SELLING_RATE = `₩${selling}`;
+  // const SELLING_RATE_TEXT = "/1박";
 
   return (
     <div>
@@ -40,9 +40,9 @@ const Description = ({
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
       <RateWrapper fontSize="lg" as="div">
-        <OriginalRateText color="gray3">{ORIGIN_RATE}</OriginalRateText>
+        {/* <OriginalRateText color="gray3">{ORIGIN_RATE}</OriginalRateText>
         <Text fontWeight="extraBold">{SELLING_RATE}</Text>
-        <Text>{SELLING_RATE_TEXT}</Text>
+        <Text>{SELLING_RATE_TEXT}</Text> */}
       </RateWrapper>
     </div>
   );
