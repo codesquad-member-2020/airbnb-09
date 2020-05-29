@@ -79,6 +79,13 @@ const renderGuestButtonText = guestNum => {
 const Guest = () => {
   const [guestNum, dispatch] = useReducer(reducer, initialState);
 
+  const incrementBtnHandler = type => {
+    dispatch({ type: actions.CHANGE_GUEST(type), payload: 1 });
+    if (guestNum.adults === 0 && type !== "adults") {
+      dispatch({ type: actions.CHANGE_ADULTS, payload: 1 });
+    }
+  };
+
   const modalContent = (
     <ContentsWrapper>
       {guestTypes.map(({ type, term, description, minNum, maxNum }) => (
@@ -97,12 +104,7 @@ const Guest = () => {
               <MdRemove />
             </Button>
             <GuestNumberText fontSize="lg">{guestNum[type]}</GuestNumberText>
-            <Button
-              circular
-              bordered
-              disabled={maxNum <= guestNum[type]}
-              onClick={() => dispatch({ type: actions.CHANGE_GUEST(type), payload: 1 })}
-            >
+            <Button circular bordered disabled={maxNum <= guestNum[type]} onClick={() => incrementBtnHandler(type)}>
               <MdAdd />
             </Button>
           </ButtonsWrapper>
