@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdAdd, MdRemove } from "react-icons/md";
 import Text from "Styles/Text";
@@ -9,17 +9,17 @@ import Modal from "./Modal";
 const Guest = () => {
   const guestTypes = [
     {
-      id: 1,
+      type: "adult",
       term: "성인",
       description: "만 13세 이상",
     },
     {
-      id: 2,
+      type: "child",
       term: "어린이",
       description: "2~12세",
     },
     {
-      id: 3,
+      type: "baby",
       term: "유아",
       description: "2세 미만",
     },
@@ -33,8 +33,8 @@ const Guest = () => {
 
   const modalContent = (
     <ContentsWrapper>
-      {guestTypes.map(({ id, term, description }) => (
-        <TypeListWrapper key={id}>
+      {guestTypes.map(({ type, term, description }) => (
+        <TypeListWrapper key={type}>
           <TextWrapper>
             <Text fontSize="lg">{term}</Text>
             <Text color="gray3">{description}</Text>
@@ -53,7 +53,16 @@ const Guest = () => {
     </ContentsWrapper>
   );
 
+  const [isRender, setIsRender] = useState(true);
+
+  useEffect(() => console.log(isRender), [isRender]);
+
+  // ! clearHandler => 게스트 값 초기화하는 디스패치
+  // ! saveHandler => 값 저장, fetch 요청 보내고 => 카드 업데이트 + 모달 닫는 기능
+  // ! 저장 버튼, 모달 바깥을 눌렀을 때, 게스트 버튼 눌렀을 때
+
   const modalOption = {
+    setIsRender: () => setIsRender(false),
     contents: modalContent,
     hasContents: false,
     clearHandler: null,
@@ -62,8 +71,8 @@ const Guest = () => {
 
   return (
     <GuestWrapper>
-      <GuestButton />
-      <Modal options={modalOption} />
+      <GuestButton clickHandler={() => setIsRender(!isRender)} />
+      {isRender && <Modal options={modalOption} />}
     </GuestWrapper>
   );
 };

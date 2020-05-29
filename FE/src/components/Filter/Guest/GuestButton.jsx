@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Button from "Styles/Button";
 
-const GuestButton = () => {
+const GuestButton = ({ clickHandler }) => {
   return (
-    <GButton bordered rounded>
+    <GButton bordered rounded onClick={clickHandler}>
       게스트
     </GButton>
   );
@@ -13,6 +13,7 @@ const GuestButton = () => {
 const GButton = styled(Button)`
   &::after {
     content: "";
+    pointer-events: none;
     position: absolute;
     top: -1px;
     left: -1px;
