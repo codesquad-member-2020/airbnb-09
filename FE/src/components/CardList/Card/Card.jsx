@@ -9,7 +9,7 @@ const Card = ({ data: { thumbnails, ...descData } }) => {
     <Wrapper>
       <ImageSlider thumbnails={thumbnails} />
       <Description data={descData} />
-      <ReservationButton />
+      {descData.oneNightRate && <ReservationButton />}
     </Wrapper>
   );
 };

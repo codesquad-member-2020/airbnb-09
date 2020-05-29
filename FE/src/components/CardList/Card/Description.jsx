@@ -4,19 +4,10 @@ import { IconContext } from "react-icons";
 import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
 
-const Description = ({
-  data: {
-    name,
-    country,
-    rating,
-    superHost,
-    // oneNightRate: { original, selling },
-  },
-}) => {
+const Description = ({ data: { name, country, rating, superHost, oneNightRate } }) => {
   const SUPER_HOST_TEXT = "슈퍼호스트";
-  // const ORIGIN_RATE = `₩${original}`;
-  // const SELLING_RATE = `₩${selling}`;
-  // const SELLING_RATE_TEXT = "/1박";
+  const SELLING_RATE_TEXT = "/1박";
+  const addedWonUnitRate = rate => `₩${rate}`;
 
   return (
     <div>
@@ -39,11 +30,13 @@ const Description = ({
         </RatingWrapper>
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
-      <RateWrapper fontSize="lg" as="div">
-        {/* <OriginalRateText color="gray3">{ORIGIN_RATE}</OriginalRateText>
-        <Text fontWeight="extraBold">{SELLING_RATE}</Text>
-        <Text>{SELLING_RATE_TEXT}</Text> */}
-      </RateWrapper>
+      {oneNightRate && (
+        <RateWrapper fontSize="lg" as="div">
+          <OriginalRateText color="gray3">{addedWonUnitRate(oneNightRate.original)}</OriginalRateText>
+          <Text fontWeight="extraBold">{addedWonUnitRate(oneNightRate.selling)}</Text>
+          <Text>{SELLING_RATE_TEXT}</Text>
+        </RateWrapper>
+      )}
     </div>
   );
 };
@@ -51,7 +44,7 @@ const Description = ({
 const DetailWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-top: ${props => props.theme.spacings.xsm};
+  padding-top: ${props => props.theme.spacings.unit(3)};
 `;
 
 const SuperHostBadge = styled.div`
