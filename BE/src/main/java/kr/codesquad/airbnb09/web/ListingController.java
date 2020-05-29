@@ -21,7 +21,7 @@ public class ListingController {
     }
 
     @GetMapping
-    public List viewAllListing() {
+    public List<AllListingDTO> viewAllListing() {
         return listingService.getAccommodations();
     }
 
