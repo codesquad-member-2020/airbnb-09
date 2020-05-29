@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { MdAdd, MdRemove } from "react-icons/md";
 import Text from "Styles/Text";
 import Button from "Styles/Button";
-import GuestButton from "./GuestButton";
-import Modal from "./Modal";
+import FilterButton from "../FilterButton";
+import Modal from "../Modal";
 
 const Guest = () => {
   const guestTypes = [
@@ -71,7 +71,7 @@ const Guest = () => {
 
   return (
     <GuestWrapper>
-      <GuestButton clickHandler={() => setIsRender(!isRender)} />
+      <FilterButton clickHandler={() => setIsRender(!isRender)} />
       {isRender && <Modal options={modalOption} />}
     </GuestWrapper>
   );
