@@ -63,36 +63,40 @@ const reducer = (state, action) => {
   }
 };
 
-const renderGuestButtonText = guestNum => {
-  let numOfGuests = 0;
-  let numOfInfants = 0;
-
-  Object.entries(guestNum).forEach(([type, num]) => {
-    if (type !== "infants") numOfGuests += num;
-    else numOfInfants += num;
-  });
-
-  if (numOfGuests <= 0) return `게스트`;
-  return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
-};
-
 const Guest = () => {
+  const [toggle, setToggle] = useState(false);
   const [guestNum, dispatch] = useReducer(reducer, initialState);
 
-  const decrementBtnHandler = type => {
-    if (type !== "adults") {
-      dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 });
-    } else if (!guestNum.children && !guestNum.infants) {
+  const decrementButtonHandler = type => {
+    const isOnlyOneAdult = type === "adults" && guestNum[type] <= 1;
+    const hasNotChildren = !guestNum.children && !guestNum.infants;
+
+    if (isOnlyOneAdult) {
+      if (hasNotChildren) {
+        dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 });
+      }
+    } else {
       dispatch({ type: actions.CHANGE_GUEST(type), payload: -1 });
     }
   };
 
-  const incrementBtnHandler = type => {
+  const incrementButtonHandler = type => {
+    const isOnlyChildren = guestNum.adults === 0 && type !== "adults";
+
     dispatch({ type: actions.CHANGE_GUEST(type), payload: 1 });
-    if (guestNum.adults === 0 && type !== "adults") {
+    if (isOnlyChildren) {
       dispatch({ type: actions.CHANGE_ADULTS, payload: 1 });
     }
   };
+
+  const resetButtonHandler = () => dispatch({ type: actions.RESET });
+  const saveButtonHandler = () => {
+    setToggle(false);
+    // ! 요청 로직 추가
+  };
+
+  const smallerThanMinNum = (minNum, num) => minNum >= num;
+  const largerThanMaxNum = (maxNum, num) => maxNum <= num;
 
   const modalContent = (
     <ContentsWrapper>
@@ -103,11 +107,21 @@ const Guest = () => {
             <Text color="gray3">{description}</Text>
           </TextWrapper>
           <ButtonsWrapper>
-            <Button circular bordered disabled={minNum >= guestNum[type]} onClick={() => decrementBtnHandler(type)}>
+            <Button
+              circular
+              bordered
+              disabled={smallerThanMinNum(minNum, guestNum[type])}
+              onClick={() => decrementButtonHandler(type)}
+            >
               <MdRemove />
             </Button>
             <GuestNumberText fontSize="lg">{guestNum[type]}</GuestNumberText>
-            <Button circular bordered disabled={maxNum <= guestNum[type]} onClick={() => incrementBtnHandler(type)}>
+            <Button
+              circular
+              bordered
+              disabled={largerThanMaxNum(maxNum, guestNum[type])}
+              onClick={() => incrementButtonHandler(type)}
+            >
               <MdAdd />
             </Button>
           </ButtonsWrapper>
@@ -116,23 +130,32 @@ const Guest = () => {
     </ContentsWrapper>
   );
 
-  const [toggle, setToggle] = useState(false);
-
-  // ! saveHandler => 값 저장, fetch 요청 보내고 => 카드 업데이트 + 모달 닫는 기능
-  // ! 저장 버튼, 모달 바깥을 눌렀을 때, 게스트 버튼 눌렀을 때
-
-  const getTotalNumOfGuests = () =>
-    Object.values(guestNum).reduce((total, curr) => {
-      total += curr;
-      return total;
+  const getTotalNumOfValue = obj =>
+    Object.values(obj).reduce((totalNum, curr) => {
+      totalNum += curr;
+      return totalNum;
     }, 0);
 
+  const renderGuestButtonText = state => {
+    let numOfGuests = 0;
+    let numOfInfants = 0;
+    const noGuest = numOfGuests <= 0;
+    const hasInfants = numOfInfants > 0;
+
+    Object.entries(state).forEach(([type, num]) => {
+      if (type !== "infants") numOfGuests += num;
+      else numOfInfants += num;
+    });
+
+    if (noGuest) return `게스트`;
+    return hasInfants ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
+  };
+
   const modalOption = {
-    setToggle: () => setToggle(false),
     contents: modalContent,
-    hasContents: getTotalNumOfGuests(),
-    clearHandler: () => dispatch({ type: actions.RESET }),
-    saveHandler: null,
+    hasContents: getTotalNumOfValue(guestNum),
+    clearHandler: resetButtonHandler,
+    saveHandler: saveButtonHandler,
   };
 
   return (
