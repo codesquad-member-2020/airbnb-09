@@ -53,16 +53,14 @@ const Guest = () => {
     </ContentsWrapper>
   );
 
-  const [isRender, setIsRender] = useState(true);
-
-  useEffect(() => console.log(isRender), [isRender]);
+  const [toggle, setToggle] = useState(false);
 
   // ! clearHandler => 게스트 값 초기화하는 디스패치
   // ! saveHandler => 값 저장, fetch 요청 보내고 => 카드 업데이트 + 모달 닫는 기능
   // ! 저장 버튼, 모달 바깥을 눌렀을 때, 게스트 버튼 눌렀을 때
 
   const modalOption = {
-    setIsRender: () => setIsRender(false),
+    setToggle: () => setToggle(false),
     contents: modalContent,
     hasContents: false,
     clearHandler: null,
@@ -71,8 +69,8 @@ const Guest = () => {
 
   return (
     <GuestWrapper>
-      <FilterButton clickHandler={() => setIsRender(!isRender)} />
-      {isRender && <Modal options={modalOption} />}
+      <FilterButton clickHandler={() => setToggle(!toggle)} active={toggle} />
+      {toggle && <Modal options={modalOption} />}
     </GuestWrapper>
   );
 };
