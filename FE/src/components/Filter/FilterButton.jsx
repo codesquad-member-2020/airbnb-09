@@ -2,15 +2,15 @@ import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
 
-const GuestButton = ({ clickHandler, active }) => {
+const FilterButton = ({ clickHandler, active, name }) => {
   return (
-    <GButton bordered rounded onClick={clickHandler} active={active}>
-      게스트
-    </GButton>
+    <TogglingButton bordered rounded onClick={clickHandler} active={active}>
+      {name}
+    </TogglingButton>
   );
 };
 
-const GButton = styled(Button)`
+const TogglingButton = styled(Button)`
   ${props =>
     props.active &&
     css`
@@ -29,4 +29,4 @@ const GButton = styled(Button)`
     `}
 `;
 
-export default GuestButton;
+export default FilterButton;
