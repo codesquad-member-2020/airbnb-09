@@ -63,6 +63,19 @@ const reducer = (state, action) => {
   }
 };
 
+const renderGuestButtonText = guestNum => {
+  let numOfGuests = 0;
+  let numOfInfants = 0;
+
+  for (const [type, num] of Object.entries(guestNum)) {
+    if (type !== "infants") numOfGuests += num;
+    else numOfInfants += num;
+  }
+
+  if (numOfGuests <= 0) return `게스트`;
+  return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
+};
+
 const Guest = () => {
   const [guestNum, dispatch] = useReducer(reducer, initialState);
 
@@ -119,7 +132,7 @@ const Guest = () => {
 
   return (
     <GuestWrapper>
-      <FilterButton clickHandler={() => setToggle(!toggle)} active={toggle} />
+      <FilterButton clickHandler={() => setToggle(!toggle)} active={toggle} text={renderGuestButtonText(guestNum)} />
       {toggle && <Modal options={modalOption} />}
     </GuestWrapper>
   );

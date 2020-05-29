@@ -2,10 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
 
-const FilterButton = ({ clickHandler, active, name }) => {
+const FilterButton = ({ clickHandler, active, text }) => {
   return (
     <TogglingButton bordered rounded onClick={clickHandler} active={active}>
-      {name}
+      {text}
     </TogglingButton>
   );
 };
