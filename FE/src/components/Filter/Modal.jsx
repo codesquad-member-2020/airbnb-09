@@ -26,23 +26,23 @@ const Modal = ({ options: { contents = "", hasContents = false, clearHandler = n
 const ModalWrapper = styled.div`
   z-index: 10;
   position: absolute;
-  top: ${props => props.theme.spacings.xl};
-  box-shadow: ${props => props.theme.shadows.xl};
-  background-color: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.gray5};
-  border-radius: ${props => props.theme.spacings.unit(3)};
+  top: ${({ theme }) => theme.spacings.xl};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray5};
+  border-radius: ${({ theme }) => theme.spacings.unit(3)};
 `;
 
 const ContentsWrapper = styled.div`
-  min-width: ${props => props.theme.spacings.unit(80)};
-  padding: ${props => props.theme.spacings.base};
+  min-width: ${({ theme }) => theme.spacings.unit(80)};
+  padding: ${({ theme }) => theme.spacings.base};
   overflow-x: hidden;
   overflow-y: auto;
 `;
 
 const ButtonsWrapper = styled.div`
-  padding: ${props => props.theme.spacings.sm};
-  border-top: 1px solid ${props => props.theme.colors.gray5};
+  padding: ${({ theme }) => theme.spacings.sm};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray5};
 `;
 
 const Buttons = styled.div`
@@ -52,8 +52,8 @@ const Buttons = styled.div`
 `;
 
 const ClearButton = styled(Button)`
-  padding: ${props => props.theme.spacings.xsm};
-  font-size: ${props => props.theme.fontSizes.md};
+  padding: ${({ theme }) => theme.spacings.xsm};
+  font-size: ${({ theme }) => theme.fontSizes.md};
   transform: ${props => css`translateX(-${props.theme.spacings.xsm})`};
 `;
 

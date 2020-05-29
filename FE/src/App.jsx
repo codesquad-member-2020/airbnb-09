@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "Styles/GlobalStyle";
-import theme from "Styles/theme";
+import styleTheme from "Styles/theme";
 import Header from "Components/Header/Header";
 import Filter from "Components/Filter/Filter";
 import CardList from "Components/CardList/CardList";
@@ -9,7 +9,7 @@ import { CardListProvider } from "Contexts/cardListContext";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={styleTheme}>
       <GlobalStyle />
       <Wrapper>
         <Header />
@@ -24,7 +24,7 @@ const App = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 0 ${props => props.theme.spacings.base};
+  padding: 0 ${({ theme }) => theme.spacings.base};
 `;
 
 export default App;

@@ -171,10 +171,10 @@ const TypeListWrapper = styled.div`
 `;
 
 const ContentsWrapper = styled.div`
-  padding: ${props => props.theme.spacings.xsm} 0;
+  padding: ${({ theme }) => theme.spacings.xsm} 0;
 
   ${TypeListWrapper} + ${TypeListWrapper} {
-    padding-top: ${props => props.theme.spacings.lg};
+    padding-top: ${({ theme }) => theme.spacings.lg};
   }
 `;
 
@@ -191,8 +191,8 @@ const ButtonsWrapper = styled.div`
 const GuestNumberText = styled(Text)`
   display: inline-block;
   text-align: center;
-  width: ${props => props.theme.spacings.sm};
-  margin: 0 ${props => props.theme.spacings.sm};
+  width: ${({ theme }) => theme.spacings.sm};
+  margin: 0 ${({ theme }) => theme.spacings.sm};
 `;
 
 const GuestWrapper = styled.div`

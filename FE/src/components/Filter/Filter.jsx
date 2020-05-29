@@ -16,9 +16,9 @@ const Filter = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  padding-top: ${props => props.theme.spacings.unit(12)};
+  padding-top: ${({ theme }) => theme.spacings.unit(12)};
   & > div {
-    padding: 0 ${props => props.theme.spacings.xsm};
+    padding: 0 ${({ theme }) => theme.spacings.xsm};
   }
 `;
 

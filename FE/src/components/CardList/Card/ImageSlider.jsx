@@ -27,8 +27,8 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: ${props => props.theme.colors.gray6};
-  border-radius: ${props => props.theme.spacings.xxsm};
+  background-color: ${({ theme }) => theme.colors.gray6};
+  border-radius: ${({ theme }) => theme.spacings.xxsm};
 `;
 
 export default ImageSlider;

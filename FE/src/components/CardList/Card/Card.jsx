@@ -16,7 +16,7 @@ const Card = ({ data: { thumbnails, ...descData } }) => {
 
 const Wrapper = styled.div`
   position: relative;
-  margin-bottom: ${props => props.theme.spacings.sm};
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
 `;
 
 export default Card;

@@ -11,8 +11,8 @@ const FilterButton = ({ clickHandler, active, text }) => {
 };
 
 const TogglingButton = styled(Button)`
-  ${props =>
-    props.active &&
+  ${({ theme, active }) =>
+    active &&
     css`
       &:after {
         content: "";
@@ -20,9 +20,9 @@ const TogglingButton = styled(Button)`
         position: absolute;
         top: -1px;
         left: -1px;
-        border: 2px solid ${props.theme.colors.black};
-        border-radius: ${props.theme.spacings.base};
-        background-color: ${props.theme.colors.shadow};
+        border: 2px solid ${theme.colors.black};
+        border-radius: ${theme.spacings.base};
+        background-color: ${theme.colors.shadow};
         width: calc(100% + 2px);
         height: calc(100% + 2px);
       }
