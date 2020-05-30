@@ -25,7 +25,7 @@ public class ListingController {
 
     @GetMapping
     public List<AllListingDTO> viewAllListing() {
-        return listingService.getAccommodations();
+        return listingService.getAccommodations(30);
     }
 
     @GetMapping("/search")

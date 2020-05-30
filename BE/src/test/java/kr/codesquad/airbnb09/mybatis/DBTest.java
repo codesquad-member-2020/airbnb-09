@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @AutoConfigureMybatis // Mybatis를 포함하고 있는 프로젝트라면 꼭 사용
@@ -23,12 +22,13 @@ public class DBTest {
 
     @Test
     public void selectAllListingTest() {
-        List<AccommodationVO> accommodationVOList = listingMapper.selectAllListing();
+        int count = 30;
+        List<AccommodationVO> accommodationVOList = listingMapper.selectAllListing(count);
 
         for (AccommodationVO accommodationVO : accommodationVOList) {
             log.debug("accommodationVO : {}", accommodationVO);
         }
 
-        assertThat(accommodationVOList.size()).isEqualTo(500);
+        assertThat(accommodationVOList.size()).isEqualTo(count);
     }
 }

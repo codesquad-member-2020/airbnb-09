@@ -2,12 +2,10 @@ package kr.codesquad.airbnb09.service;
 
 import kr.codesquad.airbnb09.domain.AccommodationVO;
 import kr.codesquad.airbnb09.web.AllListingDTO;
-import kr.codesquad.airbnb09.web.OneNightRateDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +19,13 @@ public class ListingService {
         this.listingMapper = listingMapper;
     }
 
-    public List<AccommodationVO> getAllListing() {
-        return listingMapper.selectAllListing();
+    public List<AccommodationVO> getAllListing(int count) {
+        return listingMapper.selectAllListing(count);
     }
 
-    public List<AllListingDTO> getAccommodations() {
+    public List<AllListingDTO> getAccommodations(int count) {
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
-        List<AccommodationVO> accommodationVOs = getAllListing();
+        List<AccommodationVO> accommodationVOs = getAllListing(count);
 
         for (AccommodationVO accommodationVO : accommodationVOs) {
             AllListingDTO allListingDTO;
