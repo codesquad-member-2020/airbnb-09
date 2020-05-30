@@ -1,3 +1,8 @@
+-- user 데이터 추가
+INSERT INTO user (name)
+VALUES ('tester');
+
+-- booking 데이터 추가
 INSERT INTO booking ( checkin, checkout, adults, children, infants, total_price, user_id
                     , listing_id) VALUE ('2020-05-10', '2020-05-11', 1, 0, 1, 81767, 1, 1);
 INSERT INTO booking ( checkin, checkout, adults, children, infants, total_price, user_id
