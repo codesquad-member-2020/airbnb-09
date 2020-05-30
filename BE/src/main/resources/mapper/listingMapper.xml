@@ -10,4 +10,14 @@
     <select id="selectAllListing" parameterType = "Integer" resultType="AccommodationVO">
         SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT #{count};
     </select>
+
+    <select id="filterListingByDate" parameterType="java.time.LocalDate" resultType="AccommodationVO">
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude
+          FROM listing
+         WHERE id NOT IN (SELECT listing_id
+                            FROM booking
+                           WHERE #{date_checkout} > checkin
+                             AND listing_id IN (SELECT listing_id FROM booking WHERE checkout > #{date_checkin}))
+         LIMIT 20;
+    </select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping("/listing")
@@ -31,6 +32,10 @@ public class ListingController {
     @GetMapping("/search")
     public String searchData(SearchRequestDTO searchRequestDTO) {
         log.debug("[*] searchRequestDto : {}", searchRequestDTO);
+        LocalDate checkin = LocalDate.of(2020,5,11);
+        LocalDate checkout = LocalDate.of(2020,5,15);
+
+        listingService.searhAccommodations(checkin, checkout);
         return "필터링한 목록";
     }
 }

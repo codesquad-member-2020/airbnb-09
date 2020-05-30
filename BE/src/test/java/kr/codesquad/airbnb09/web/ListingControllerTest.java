@@ -31,13 +31,17 @@ class ListingControllerTest {
     @Test
     void searchData() throws Exception {
         // given
-        SearchRequestDTO searchRequestDTO = SearchRequestDTO.builder()
-                .checkin("2020-05-29")
-                .checkout("2020-05-30")
-                .adults(1)
-                .build();
+        String checkin = "2020-05-29";
+        String checkout = "2020-05-31";
+        int adults = 1;
+        int children = 0;
+        int infants = 0;
+        int priceMin = 0;
+        int priceMax = 0;
 
-        String url = "http://localhost:" + port + "/listing/search";
+
+        String url = "http://localhost:" + port + "/listing/search?checkin=" + checkin +"&checkout=" + checkout + "&adults=" + adults
+                + "&children=" + children + "&infants=" + infants;
 
         //when
         ResponseEntity<String> responseEntity = testRestTemplate.getForEntity(url, String.class);

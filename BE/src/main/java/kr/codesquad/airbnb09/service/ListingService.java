@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,16 @@ public class ListingService {
                     .build();
             allListingDTOs.add(allListingDTO);
         }
+        return allListingDTOs;
+    }
+
+    public List<AllListingDTO> searhAccommodations(LocalDate checkin, LocalDate checkout) {
+        log.debug("[*] checkin : {}, checkout : {}", checkin, checkout);
+
+        if (checkin != null && checkout != null) {
+            listingMapper.filterListingByDate(checkin, checkout);
+        }
+        List<AllListingDTO> allListingDTOs = new ArrayList<>();
         return allListingDTOs;
     }
 }
