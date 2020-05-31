@@ -55,12 +55,10 @@ public class ListingService {
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
         List<AccommodationVO> accommodationVOs = null;
 
+        searchRequestDTO.setDefaultValue(); //인원수와 checkin 날짜가 선택되지 않은 경우 default value를 저장
         LocalDate checkin = searchRequestDTO.getCheckin();
         LocalDate checkout = searchRequestDTO.getCheckout();
         int nights = (int) ChronoUnit.DAYS.between(checkin, checkout);
-        log.debug("[*] checkin : {}, checkout : {}, nights : {}", checkin, checkout, nights);
-
-        searchRequestDTO.setDefaultValue(); //인원수와 checkin 날짜가 선택되지 않은 경우 default value를 저장
         log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
 
         int accommodates = searchRequestDTO.totalPeraonnel();

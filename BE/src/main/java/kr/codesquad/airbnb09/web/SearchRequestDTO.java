@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Builder
 @Getter
@@ -37,6 +38,11 @@ public class SearchRequestDTO {
 
         if(this.priceMin == null) {
             this.priceMin = 0;
+        }
+
+        if(this.checkin == null) {
+            this.checkin = LocalDate.now();
+            this.checkout = this.checkin.plus(1, ChronoUnit.DAYS);
         }
     }
 
