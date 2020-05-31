@@ -30,15 +30,6 @@ const guestTypes = [
   },
 ];
 
-const smallerThanMinNum = (minNum, num) => minNum >= num;
-const largerThanMaxNum = (maxNum, num) => maxNum <= num;
-
-const getTotalNumOfValue = obj =>
-  Object.values(obj).reduce((totalNum, curr) => {
-    totalNum += curr;
-    return totalNum;
-  }, 0);
-
 const GuestModal = ({ setToggle, guestNum, dispatch }) => {
   const decrementButtonHandler = type => {
     const isOnlyOneAdult = type === "adults" && guestNum[type] <= 1;
@@ -67,6 +58,9 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
     setToggle(false);
     // ! 요청 로직 추가
   };
+
+  const smallerThanMinNum = (minNum, num) => minNum >= num;
+  const largerThanMaxNum = (maxNum, num) => maxNum <= num;
 
   const modalContent = (
     <ContentsWrapper>
@@ -99,6 +93,12 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
       ))}
     </ContentsWrapper>
   );
+
+  const getTotalNumOfValue = obj =>
+    Object.values(obj).reduce((totalNum, curr) => {
+      totalNum += curr;
+      return totalNum;
+    }, 0);
 
   const modalOption = {
     contents: modalContent,
