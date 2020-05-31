@@ -9,14 +9,14 @@ const Card = ({ data: { thumbnails, ...descData } }) => {
     <Wrapper>
       <ImageSlider thumbnails={thumbnails} />
       <Description data={descData} />
-      <ReservationButton />
+      {descData.oneNightRate && <ReservationButton />}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
-  margin-bottom: ${props => props.theme.spacings.sm};
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
 `;
 
 export default Card;

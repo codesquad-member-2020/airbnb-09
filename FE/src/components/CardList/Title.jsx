@@ -19,8 +19,8 @@ const Title = ({ numberOfResults }) => {
 const TitleWrapper = styled.div`
   width: 100%;
   grid-column: 1 / -1;
-  padding-top: ${props => props.theme.spacings.base};
-  padding-bottom: ${props => props.theme.spacings.xsm};
+  padding-top: ${({ theme }) => theme.spacings.base};
+  padding-bottom: ${({ theme }) => theme.spacings.xsm};
 `;
 
 export default Title;

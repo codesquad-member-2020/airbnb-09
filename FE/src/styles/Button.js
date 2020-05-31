@@ -5,86 +5,86 @@ const Button = styled.button`
   text-align: center;
   border: none;
   outline: none;
-  pointer-events: ${props => (props.disabled ? "none" : "auto")};
-  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
-  opacity: ${props => (props.disabled ? 0.3 : 1)};
-  background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors[props.color] || props.theme.colors.gray2};
-  border-radius: ${props => props.theme.spacings.xsm};
-  padding: ${props => props.theme.spacings.xsm} ${props => props.theme.spacings.base};
-  font-size: ${props => props.theme.fontSizes.sm};
-  font-weight: ${props => props.theme.fontWeights.regular};
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, color }) => theme.colors[color] || theme.colors.gray2};
+  border-radius: ${({ theme }) => theme.spacings.xsm};
+  padding: ${({ theme }) => theme.spacings.xsm} ${({ theme }) => theme.spacings.base};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
 
   /* Shadow Button */
-  ${props =>
-    props.shadow &&
+  ${({ theme, shadow }) =>
+    shadow &&
     css`
-      font-weight: ${props.theme.fontWeights.semiBold};
+      font-weight: ${theme.fontWeights.semiBold};
       border: 1px solid transparent;
-      box-shadow: ${props.theme.shadows.md};
+      box-shadow: ${theme.shadows.md};
       transition: box-shadow 0.2s ease;
       &:hover {
-        box-shadow: ${props.theme.shadows.lg};
+        box-shadow: ${theme.shadows.lg};
       }
     `}
 
   /* Border Button */
-  ${props =>
-    props.bordered &&
+  ${({ theme, bordered }) =>
+    bordered &&
     css`
-      border: 1px solid ${props.theme.colors.gray4};
+      border: 1px solid ${theme.colors.gray4};
       &:hover {
-        border: 1px solid ${props.theme.colors.gray1};
+        border: 1px solid ${theme.colors.gray1};
       }
     `}
 
   /* White Button hover gray */
-  ${props =>
-    props.highlighted &&
+  ${({ theme, highlighted }) =>
+    highlighted &&
     css`
       &:hover {
-        background-color: ${props.theme.colors.gray6};
+        background-color: ${theme.colors.gray6};
       }
     `}
 
   /* Main Button types */
-  ${props => {
+  ${({ theme, ...props }) => {
     if (props.primary) {
       return css`
-        background-color: ${props.theme.colors.pink};
-        color: ${props.theme.colors.white};
-        font-size: ${props.theme.fontSizes.md};
-        font-weight: ${props.theme.fontWeights.bold};
+        background-color: ${theme.colors.pink};
+        color: ${theme.colors.white};
+        font-size: ${theme.fontSizes.md};
+        font-weight: ${theme.fontWeights.bold};
       `;
     }
     if (props.secondary) {
       return css`
-        padding: ${props.theme.spacings.xsm} ${props.theme.spacings.sm};
-        background-color: ${props.theme.colors.black};
-        color: ${props.theme.colors.white};
-        font-weight: ${props.theme.fontWeights.semiBold};
+        padding: ${theme.spacings.xsm} ${theme.spacings.sm};
+        background-color: ${theme.colors.black};
+        color: ${theme.colors.white};
+        font-weight: ${theme.fontWeights.semiBold};
       `;
     }
     if (props.rounded) {
       return css`
-        border-radius: ${props.theme.spacings.base};
+        border-radius: ${theme.spacings.base};
       `;
     }
     if (props.circular) {
       return css`
         padding: 0;
-        width: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
-        height: ${props.theme.spacings[props.size] || props.theme.spacings.lg};
+        width: ${theme.spacings[props.size] || theme.spacings.lg};
+        height: ${theme.spacings[props.size] || theme.spacings.lg};
         border-radius: 50%;
         line-height: 0;
       `;
     }
     if (props.underlined) {
       return css`
-        padding: ${props.theme.spacings.xsm} ${props.theme.spacings.sm};
-        color: ${props.theme.colors.black};
+        padding: ${theme.spacings.xsm} ${theme.spacings.sm};
+        color: ${theme.colors.black};
         text-decoration: underline;
-        font-weight: ${props.theme.fontWeights.semiBold};
+        font-weight: ${theme.fontWeights.semiBold};
       `;
     }
     return css``;

@@ -29,18 +29,18 @@ const CardList = () => {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-gap: ${props => props.theme.spacings.base};
-  padding-bottom: ${props => props.theme.spacings.xxl};
+  grid-gap: ${({ theme }) => theme.spacings.base};
+  padding-bottom: ${({ theme }) => theme.spacings.xxl};
 
-  @media (min-width: ${props => props.theme.sizes.md}) {
+  @media (min-width: ${({ theme }) => theme.sizes.md}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (min-width: ${props => props.theme.sizes.lg}) {
+  @media (min-width: ${({ theme }) => theme.sizes.lg}) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  @media (min-width: ${props => props.theme.sizes.xl}) {
+  @media (min-width: ${({ theme }) => theme.sizes.xl}) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 `;

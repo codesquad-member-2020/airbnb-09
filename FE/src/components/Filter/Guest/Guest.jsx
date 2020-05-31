@@ -1,100 +1,39 @@
-import React from "react";
+import React, { useState, useReducer } from "react";
 import styled from "styled-components";
-import { MdAdd, MdRemove } from "react-icons/md";
-import Text from "Styles/Text";
-import Button from "Styles/Button";
-import GuestButton from "./GuestButton";
-import Modal from "./Modal";
+import guestReducer from "Reducers/guestReducer";
+import { guestInitialState } from "InitialStates/initialStates";
+import FilterButton from "../FilterButton";
+import GuestModal from "./GuestModal";
 
-const Guest = () => {
-  const guestTypes = [
-    {
-      id: 1,
-      term: "성인",
-      description: "만 13세 이상",
-    },
-    {
-      id: 2,
-      term: "어린이",
-      description: "2~12세",
-    },
-    {
-      id: 3,
-      term: "유아",
-      description: "2세 미만",
-    },
-  ];
+const Guest = ({ dispatchHandler }) => {
+  const [toggle, setToggle] = useState(false);
+  const [guestNum, dispatch] = useReducer(guestReducer, guestInitialState);
 
-  const MIN_GUEST_NUM = 0;
-  const MAX_GUEST_NUM = 8;
+  const renderGuestButtonText = state => {
+    let numOfGuests = 0;
+    let numOfInfants = 0;
 
-  // ! 성인, 어린이, 아이 상태에 해당하는 수 로 이후 변경해야 함
-  const GUEST_NUM_TEST = 0;
+    Object.entries(state).forEach(([type, num]) => {
+      if (type !== "infants") numOfGuests += num;
+      else numOfInfants += num;
+    });
 
-  const modalContent = (
-    <ContentsWrapper>
-      {guestTypes.map(({ id, term, description }) => (
-        <TypeListWrapper key={id}>
-          <TextWrapper>
-            <Text fontSize="lg">{term}</Text>
-            <Text color="gray3">{description}</Text>
-          </TextWrapper>
-          <ButtonsWrapper>
-            <Button circular bordered disabled={GUEST_NUM_TEST <= MIN_GUEST_NUM}>
-              <MdRemove />
-            </Button>
-            <GuestNumberText fontSize="lg">{GUEST_NUM_TEST}</GuestNumberText>
-            <Button circular bordered disabled={GUEST_NUM_TEST >= MAX_GUEST_NUM}>
-              <MdAdd />
-            </Button>
-          </ButtonsWrapper>
-        </TypeListWrapper>
-      ))}
-    </ContentsWrapper>
-  );
+    if (numOfGuests <= 0) return `게스트`;
+    return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
+  };
 
-  const modalOption = {
-    contents: modalContent,
-    hasContents: false,
-    clearHandler: null,
-    saveHandler: null,
+  const setFilterState = () => {
+    if (toggle) dispatchHandler(guestNum);
+    setToggle(!toggle);
   };
 
   return (
     <GuestWrapper>
-      <GuestButton />
-      <Modal options={modalOption} />
+      <FilterButton clickHandler={setFilterState} active={toggle} text={renderGuestButtonText(guestNum)} />
+      {toggle && <GuestModal setToggle={setFilterState} guestNum={guestNum} dispatch={dispatch} />}
     </GuestWrapper>
   );
 };
-
-const TypeListWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const ContentsWrapper = styled.div`
-  padding: ${props => props.theme.spacings.xsm} 0;
-
-  ${TypeListWrapper} + ${TypeListWrapper} {
-    padding-top: ${props => props.theme.spacings.lg};
-  }
-`;
-
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const GuestNumberText = styled(Text)`
-  margin: 0 ${props => props.theme.spacings.sm};
-`;
 
 const GuestWrapper = styled.div`
   position: relative;
