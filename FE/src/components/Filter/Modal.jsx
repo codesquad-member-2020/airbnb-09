@@ -1,25 +1,28 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
+import OutsideClicker from "CustomHooks/useOutsideClick";
 
 const Modal = ({ options: { contents = "", hasContents = false, clearHandler = null, toggleHandler = null } }) => {
   const SAVE_BUTTON_TEXT = "저장";
   const CLEAR_BUTTON_TEXT = "지우기";
 
   return (
-    <ModalWrapper>
-      <ContentsWrapper>{contents}</ContentsWrapper>
-      <ButtonsWrapper>
-        <Buttons>
-          <ClearButton highlighted underlined disabled={!hasContents} onClick={clearHandler}>
-            {CLEAR_BUTTON_TEXT}
-          </ClearButton>
-          <Button secondary onClick={toggleHandler}>
-            {SAVE_BUTTON_TEXT}
-          </Button>
-        </Buttons>
-      </ButtonsWrapper>
-    </ModalWrapper>
+    <OutsideClicker clickHandler={toggleHandler}>
+      <ModalWrapper>
+        <ContentsWrapper>{contents}</ContentsWrapper>
+        <ButtonsWrapper>
+          <Buttons>
+            <ClearButton highlighted underlined disabled={!hasContents} onClick={clearHandler}>
+              {CLEAR_BUTTON_TEXT}
+            </ClearButton>
+            <Button secondary onClick={toggleHandler}>
+              {SAVE_BUTTON_TEXT}
+            </Button>
+          </Buttons>
+        </ButtonsWrapper>
+      </ModalWrapper>
+    </OutsideClicker>
   );
 };
 
