@@ -5,7 +5,7 @@ const useFetch = ({ url, dispatch, actionType: { success, error } }) => {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  const getInitialData = async () => {
+  const getData = async () => {
     const { data } = await axios.get(url);
     try {
       dispatch({ type: success, payload: data });
@@ -17,7 +17,7 @@ const useFetch = ({ url, dispatch, actionType: { success, error } }) => {
   };
 
   useEffect(() => {
-    getInitialData();
+    getData();
   }, []);
 
   return { loading, errorMsg };
