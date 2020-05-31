@@ -1,12 +1,11 @@
 import React, { createContext, useMemo, useReducer } from "react";
 import reducer from "Reducers/cardReducer";
-
-const initialState = [];
+import { cardListInitialState } from "InitialStates/initialStates";
 
 const CardListContext = createContext();
 
 const CardListProvider = ({ children }) => {
-  const [cardList, dispatch] = useReducer(reducer, initialState);
+  const [cardList, dispatch] = useReducer(reducer, cardListInitialState);
 
   const contextValue = useMemo(
     () => ({

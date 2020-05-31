@@ -1,6 +1,6 @@
 import { fetchActions } from "Actions/actions";
 
-const reducer = (state, action) => {
+const cardReducer = (state, action) => {
   const { type, payload } = action;
   const { FETCH_SUCCESS, FETCH_ERROR } = fetchActions;
 
@@ -14,4 +14,4 @@ const reducer = (state, action) => {
   }
 };
 
-export default reducer;
+export default cardReducer;
