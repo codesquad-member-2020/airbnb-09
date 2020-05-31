@@ -5,7 +5,7 @@ import { guestInitialState } from "InitialStates/initialStates";
 import FilterButton from "../FilterButton";
 import GuestModal from "./GuestModal";
 
-const Guest = () => {
+const Guest = ({ dispatchHandler }) => {
   const [toggle, setToggle] = useState(false);
   const [guestNum, dispatch] = useReducer(guestReducer, guestInitialState);
 
@@ -22,10 +22,15 @@ const Guest = () => {
     return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
   };
 
+  const setFilterState = () => {
+    if (toggle) dispatchHandler(guestNum);
+    setToggle(!toggle);
+  };
+
   return (
     <GuestWrapper>
-      <FilterButton clickHandler={() => setToggle(!toggle)} active={toggle} text={renderGuestButtonText(guestNum)} />
-      {toggle && <GuestModal setToggle={setToggle} guestNum={guestNum} dispatch={dispatch} />}
+      <FilterButton clickHandler={setFilterState} active={toggle} text={renderGuestButtonText(guestNum)} />
+      {toggle && <GuestModal setToggle={setFilterState} guestNum={guestNum} dispatch={dispatch} />}
     </GuestWrapper>
   );
 };

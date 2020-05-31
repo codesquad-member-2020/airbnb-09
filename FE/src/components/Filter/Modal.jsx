@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
 
-const Modal = ({ options: { contents = "", hasContents = false, clearHandler = null, saveHandler = null } }) => {
+const Modal = ({ options: { contents = "", hasContents = false, clearHandler = null, toggleHandler = null } }) => {
   const SAVE_BUTTON_TEXT = "저장";
   const CLEAR_BUTTON_TEXT = "지우기";
 
@@ -14,7 +14,7 @@ const Modal = ({ options: { contents = "", hasContents = false, clearHandler = n
           <ClearButton highlighted underlined disabled={!hasContents} onClick={clearHandler}>
             {CLEAR_BUTTON_TEXT}
           </ClearButton>
-          <Button secondary onClick={saveHandler}>
+          <Button secondary onClick={toggleHandler}>
             {SAVE_BUTTON_TEXT}
           </Button>
         </Buttons>

@@ -1,19 +1,19 @@
 import { filterActions } from "Actions/actions";
 
-const cardReducer = (state, action) => {
+const filterReducer = (state, action) => {
   const { type, payload } = action;
   const { FILTER_BY_DATE, FILTER_BY_GUEST, FILTER_BY_PRICE } = filterActions;
 
   switch (type) {
     case FILTER_BY_DATE:
-      return [...state, ...payload];
+      return { ...state, checkin: payload.checkin, checkout: payload.checkout };
     case FILTER_BY_GUEST:
-      return [...state, ...payload];
+      return { ...state, adults: payload.adults, children: payload.children, infants: payload.infants };
     case FILTER_BY_PRICE:
-      return [...state, ...payload];
+      return { ...state, priceMin: payload.priceMin, priceMax: payload.priceMax };
     default:
       return state;
   }
 };
 
-export default cardReducer;
+export default filterReducer;

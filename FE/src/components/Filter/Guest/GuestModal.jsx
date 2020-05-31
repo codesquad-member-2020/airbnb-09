@@ -54,10 +54,6 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
   };
 
   const resetButtonHandler = () => dispatch({ type: guestActions.RESET });
-  const saveButtonHandler = () => {
-    setToggle(false);
-    // ! 요청 로직 추가
-  };
 
   const smallerThanMinNum = (minNum, num) => minNum >= num;
   const largerThanMaxNum = (maxNum, num) => maxNum <= num;
@@ -104,7 +100,7 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
     contents: modalContent,
     hasContents: getTotalNumOfValue(guestNum),
     clearHandler: resetButtonHandler,
-    saveHandler: saveButtonHandler,
+    toggleHandler: setToggle,
   };
 
   return <Modal options={modalOption} />;
