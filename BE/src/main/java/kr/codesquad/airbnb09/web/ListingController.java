@@ -32,6 +32,6 @@ public class ListingController {
     public List<AllListingDTO> searchData(SearchRequestDTO searchRequestDTO) {
         log.debug("[*] searchRequestDto : {}", searchRequestDTO);
 
-        return listingService.searhAccommodations(searchRequestDTO.getCheckin(), searchRequestDTO.getCheckout());
+        return listingService.searhAccommodations(searchRequestDTO);
     }
 }

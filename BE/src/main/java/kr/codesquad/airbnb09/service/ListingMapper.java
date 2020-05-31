@@ -12,5 +12,5 @@ import java.util.List;
 public interface ListingMapper {
 
     List<AccommodationVO> selectAllListing(@Param("count") int count);
-    List<AccommodationVO> filterListingByDate(@Param("date_checkin") LocalDate checkin, @Param("date_checkout")LocalDate checkout);
+    List<AccommodationVO> filterListingByDate(@Param("date_checkin") LocalDate checkin, @Param("date_checkout") LocalDate checkout, @Param("total_personnel") Integer accommodates);
 }
