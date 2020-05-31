@@ -50,8 +50,6 @@ public class ListingService {
     }
 
     public List<AllListingDTO> searhAccommodations(SearchRequestDTO searchRequestDTO) {
-        log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
-
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
         List<AccommodationVO> accommodationVOs = null;
 
@@ -59,12 +57,14 @@ public class ListingService {
         LocalDate checkin = searchRequestDTO.getCheckin();
         LocalDate checkout = searchRequestDTO.getCheckout();
         int nights = (int) ChronoUnit.DAYS.between(checkin, checkout);
+        int accommodates = searchRequestDTO.totalPeraonnel();
+        int minPrice = searchRequestDTO.getPriceMin();
+        int maxPrice = searchRequestDTO.getPriceMax();
+
         log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
 
-        int accommodates = searchRequestDTO.totalPeraonnel();
-
         if (checkin != null && checkout != null) {
-             accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates);
+             accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
         }
 
         fillAllListing(allListingDTOs, accommodationVOs, nights);

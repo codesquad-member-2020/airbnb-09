@@ -40,6 +40,10 @@ public class SearchRequestDTO {
             this.priceMin = 0;
         }
 
+        if(this.priceMax == null) {
+            this.priceMax = 100000000;
+        }
+
         if(this.checkin == null) {
             this.checkin = LocalDate.now();
             this.checkout = this.checkin.plus(1, ChronoUnit.DAYS);
