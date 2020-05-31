@@ -33,6 +33,28 @@ const guestTypes = [
   },
 ];
 
+const smallerThanMinNum = (minNum, num) => minNum >= num;
+const largerThanMaxNum = (maxNum, num) => maxNum <= num;
+
+const getTotalNumOfValue = obj =>
+  Object.values(obj).reduce((totalNum, curr) => {
+    totalNum += curr;
+    return totalNum;
+  }, 0);
+
+const renderGuestButtonText = state => {
+  let numOfGuests = 0;
+  let numOfInfants = 0;
+
+  Object.entries(state).forEach(([type, num]) => {
+    if (type !== "infants") numOfGuests += num;
+    else numOfInfants += num;
+  });
+
+  if (numOfGuests <= 0) return `게스트`;
+  return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
+};
+
 const Guest = () => {
   const [toggle, setToggle] = useState(false);
   const [guestNum, dispatch] = useReducer(guestReducer, guestInitialState);
@@ -63,28 +85,6 @@ const Guest = () => {
   const saveButtonHandler = () => {
     setToggle(false);
     // ! 요청 로직 추가
-  };
-
-  const smallerThanMinNum = (minNum, num) => minNum >= num;
-  const largerThanMaxNum = (maxNum, num) => maxNum <= num;
-
-  const getTotalNumOfValue = obj =>
-    Object.values(obj).reduce((totalNum, curr) => {
-      totalNum += curr;
-      return totalNum;
-    }, 0);
-
-  const renderGuestButtonText = state => {
-    let numOfGuests = 0;
-    let numOfInfants = 0;
-
-    Object.entries(state).forEach(([type, num]) => {
-      if (type !== "infants") numOfGuests += num;
-      else numOfInfants += num;
-    });
-
-    if (numOfGuests <= 0) return `게스트`;
-    return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
   };
 
   const modalContent = (
