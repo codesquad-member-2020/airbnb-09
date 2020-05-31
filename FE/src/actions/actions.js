@@ -10,3 +10,9 @@ export const guestActions = {
   CHANGE_INFANTS: "CHANGE_INFANTS",
   RESET: "RESET",
 };
+
+export const filterActions = {
+  FILTER_BY_DATE: "FILTER_BY_DATE",
+  FILTER_BY_GUEST: "FILTER_BY_GUEST",
+  FILTER_BY_PRICE: "FILTER_BY_PRICE",
+};

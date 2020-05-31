@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { FilterContext } from "Contexts/filterContext";
 import styled from "styled-components";
 import Date from "./Date/Date";
 import Guest from "./Guest/Guest";
 import Price from "./Price/Price";
 
 const Filter = () => {
+  const { queries, filterDispatch } = useContext(FilterContext);
+
+  // useFetch Test
+  useEffect(() => {
+    console.log(queries);
+  }, [queries]);
+
+  const handleDispatch = () => {};
+
   return (
     <Wrapper>
       <Date />
-      <Guest />
+      <Guest handleDispatch={handleDispatch} />
       <Price />
     </Wrapper>
   );

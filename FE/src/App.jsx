@@ -6,6 +6,7 @@ import Header from "Components/Header/Header";
 import Filter from "Components/Filter/Filter";
 import CardList from "Components/CardList/CardList";
 import { CardListProvider } from "Contexts/cardListContext";
+import { FilterProvider } from "Contexts/filterContext";
 
 const App = () => {
   return (
@@ -13,8 +14,10 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
         <Header />
-        <Filter />
         <CardListProvider>
+          <FilterProvider>
+            <Filter />
+          </FilterProvider>
           <CardList />
         </CardListProvider>
       </Wrapper>
