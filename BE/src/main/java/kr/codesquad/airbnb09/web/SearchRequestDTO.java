@@ -1,6 +1,9 @@
 package kr.codesquad.airbnb09.web;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Builder
 @Getter
@@ -8,15 +11,17 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class SearchRequestDTO {
-    private String checkin;
-    private String checkout;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkout;
     private int adults;
     private int children;
     private int infants;
     private int priceMin;
     private int priceMax;
 
-    public SearchRequestDTO(String checkin, String checkout, int adults, int children, int infants, int priceMin, int priceMax) {
+    public SearchRequestDTO(LocalDate checkin, LocalDate checkout, int adults, int children, int infants, int priceMin, int priceMax) {
         this.checkin = checkin;
         this.checkout = checkout;
         this.adults = adults;
