@@ -17,11 +17,11 @@ const Filter = () => {
   const { checkin, checkout, adults, children, infants, priceMin, priceMax } = queries;
 
   // Todo:
-  // ! 초기 런더링시 필터 요청 보내지 않도록 처리
   // ! queries가 같을 때 재요청을 보내지 않도록 처리
   // ! useFetch 사용 여부 확인
 
   useEffect(() => {
+    if (queries === filterInitialState) return;
     const getData = async () => {
       const url = `http://3.34.15.148/api/listing/search?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&infants=${infants}&priceMin=${priceMin}&priceMax=${priceMax}`;
       const { data } = await axios.get(url);
