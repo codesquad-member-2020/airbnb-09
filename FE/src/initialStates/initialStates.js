@@ -12,6 +12,6 @@ export const filterInitialState = {
   adults: 0,
   children: 0,
   infants: 0,
-  priceMin: 0,
-  priceMax: 0,
+  priceMin: "",
+  priceMax: "",
 };
