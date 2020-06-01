@@ -3,11 +3,15 @@ package kr.codesquad.airbnb09.service;
 import kr.codesquad.airbnb09.domain.AccommodationVO;
 import kr.codesquad.airbnb09.web.AllListingDTO;
 import kr.codesquad.airbnb09.web.OneNightRateDTO;
+import kr.codesquad.airbnb09.web.PriceDTO;
+import kr.codesquad.airbnb09.web.SearchRequestDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +25,13 @@ public class ListingService {
         this.listingMapper = listingMapper;
     }
 
-    public List<AccommodationVO> getAllListing() {
-        return listingMapper.selectAllListing();
+    public List<AccommodationVO> getAllListing(int count) {
+        return listingMapper.selectAllListing(count);
     }
 
-    public List<AllListingDTO> getAccommodations() {
+    public List<AllListingDTO> getAccommodations(int count) {
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
-        List<AccommodationVO> accommodationVOs = getAllListing();
+        List<AccommodationVO> accommodationVOs = getAllListing(count);
 
         for (AccommodationVO accommodationVO : accommodationVOs) {
             AllListingDTO allListingDTO;
@@ -43,5 +47,59 @@ public class ListingService {
             allListingDTOs.add(allListingDTO);
         }
         return allListingDTOs;
+    }
+
+    public List<AllListingDTO> searhAccommodations(SearchRequestDTO searchRequestDTO) {
+        List<AllListingDTO> allListingDTOs = new ArrayList<>();
+        List<AccommodationVO> accommodationVOs = null;
+
+        searchRequestDTO.setDefaultValue(); //인원수와 checkin 날짜가 선택되지 않은 경우 default value를 저장
+        LocalDate checkin = searchRequestDTO.getCheckin();
+        LocalDate checkout = searchRequestDTO.getCheckout();
+        int nights = (int) ChronoUnit.DAYS.between(checkin, checkout);
+        int accommodates = searchRequestDTO.totalPeraonnel();
+        int minPrice = searchRequestDTO.getPriceMin();
+        int maxPrice = searchRequestDTO.getPriceMax();
+
+        log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
+
+        if (checkin != null && checkout != null) {
+             accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
+        }
+
+        fillAllListing(allListingDTOs, accommodationVOs, nights);
+        return allListingDTOs;
+    }
+
+    private void fillAllListing(List<AllListingDTO> allListingDTOs, List<AccommodationVO> accommodationVOs, int nights) {
+        for (AccommodationVO accommodationVO : accommodationVOs) {
+            OneNightRateDTO oneNightRateDTO = OneNightRateDTO.builder()
+                    .original(NumberFormat.getInstance().format(accommodationVO.getPrice()))
+                    .selling(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice()))
+                    .build();
+            AllListingDTO allListingDTO = AllListingDTO.builder()
+                    .id(accommodationVO.getId())
+                    .name(accommodationVO.getTitle())
+                    .country(accommodationVO.getCountry())
+                    .rating(accommodationVO.getRating())
+                    .isSuperHost(accommodationVO.isSuperhost())
+                    .oneNightRate(oneNightRateDTO)
+                    .nights(nights)
+                    .build();
+            if (nights > 0) {
+                PriceDTO priceDTO = fillPriceDTO(nights, accommodationVO);
+                allListingDTO.setPrice(priceDTO);
+            }
+            allListingDTOs.add(allListingDTO);
+        }
+    }
+
+    private PriceDTO fillPriceDTO(int nights, AccommodationVO accommodationVO) {
+        return PriceDTO.builder()
+                        .accomdationRate(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice() * (long) nights))
+                        .cleaningFee(NumberFormat.getInstance().format(accommodationVO.getCleaningFee()))
+                        .serviceFee(NumberFormat.getInstance().format(accommodationVO.getServiceFee()))
+                        .totalPrice(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice() * nights + accommodationVO.getCleaningFee() + (long) accommodationVO.getServiceFee()))
+                        .build();
     }
 }

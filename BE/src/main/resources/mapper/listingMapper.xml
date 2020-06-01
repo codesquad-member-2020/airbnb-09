@@ -7,7 +7,24 @@
 <mapper namespace="kr.codesquad.airbnb09.service.ListingMapper">
 
     <!-- Sql id 설정 및 parameterType, resultType을 설정. -->
-    <select id="selectAllListing" parameterType = "String" resultType="AccommodationVO">
-        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT 500;
+    <select id="selectAllListing" parameterType = "Integer" resultType="AccommodationVO">
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT #{count};
+    </select>
+
+    <select id="filterListingByDate" resultType="AccommodationVO">
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude
+          FROM listing
+         WHERE id NOT IN (SELECT listing_id
+                            FROM booking
+                           WHERE #{date_checkout} > checkin
+                             AND listing_id IN (SELECT listing_id FROM booking WHERE checkout > #{date_checkin}))
+        AND accommodates >= #{total_personnel}
+        AND discount_price >= #{min_price}
+        AND #{max_price} >= discount_price
+        LIMIT 20;
+    </select>
+
+    <select id="filterListingByAccommodates" parameterType="Integer" resultType="AccommodationVO">
+        SELECT  * FROM listing WHERE accommodates >= #{total_personnel};
     </select>
 </mapper>

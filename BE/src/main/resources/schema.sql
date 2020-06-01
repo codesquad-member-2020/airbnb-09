@@ -8,7 +8,7 @@ USE `airbnb`;
 -- -----------------------------------------------------
 -- Table `airbnb`.`listing`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `airbnb`.`listing`;
+# DROP TABLE IF EXISTS `airbnb`.`listing`;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`listing`
 (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`listing`
 -- -----------------------------------------------------
 -- Table `airbnb`.`image`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `airbnb`.`image`;
+# DROP TABLE IF EXISTS `airbnb`.`image`;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`image`
 (
