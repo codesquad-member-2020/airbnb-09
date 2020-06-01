@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`image`
 -- -----------------------------------------------------
 -- Table `airbnb`.`user`
 -- -----------------------------------------------------
-# DROP TABLE IF EXISTS `airbnb`.`user`;
+DROP TABLE IF EXISTS `airbnb`.`user`;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`user`
 (
