@@ -3,6 +3,8 @@ package kr.codesquad.airbnb09.web;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -15,7 +17,7 @@ public class AllListingDTO {
     private String country;
     private double rating;
     private boolean isSuperHost;
-//    private List<String> thumbnails;
+    private List<String> thumbnails;
     private OneNightRateDTO oneNightRate;
     private int nights;
     private PriceDTO price;
