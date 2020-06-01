@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`listing`
 CREATE TABLE IF NOT EXISTS `airbnb`.`image`
 (
     `id`         BIGINT      NOT NULL AUTO_INCREMENT,
-    `url`        VARCHAR(64) NULL COMMENT '이미지 url',
+    `url`        VARCHAR(1024) NULL COMMENT '이미지 url',
     `listing_id` BIGINT      NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`listing_id`) REFERENCES listing (id)
