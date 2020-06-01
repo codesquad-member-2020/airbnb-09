@@ -19,7 +19,7 @@ const Filter = () => {
   const isValidRequest = !(isSameValue(queries, filterInitialState) || isSameObject(queries, previousQueries));
 
   const fetchOptions = {
-    url: `http://3.34.15.148/api/listing/search?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&infants=${infants}&priceMin=${priceMin}&priceMax=${priceMax}`,
+    url: `${process.env.API_KEY}/search?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&infants=${infants}&priceMin=${priceMin}&priceMax=${priceMax}`,
     dispatch: cardListDispatch,
     actionType: { success: fetchActions.FETCH_SUCCESS },
     state: queries,
