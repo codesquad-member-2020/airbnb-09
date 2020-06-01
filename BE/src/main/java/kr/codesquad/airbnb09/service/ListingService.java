@@ -1,10 +1,7 @@
 package kr.codesquad.airbnb09.service;
 
 import kr.codesquad.airbnb09.domain.AccommodationVO;
-import kr.codesquad.airbnb09.web.AllListingDTO;
-import kr.codesquad.airbnb09.web.OneNightRateDTO;
-import kr.codesquad.airbnb09.web.PriceDTO;
-import kr.codesquad.airbnb09.web.SearchRequestDTO;
+import kr.codesquad.airbnb09.web.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -44,6 +41,8 @@ public class ListingService {
                     .rating(accommodationVO.getRating())
                     .isSuperHost(accommodationVO.isSuperhost())
                     .build();
+            List<String> imageDTOS = getImageUrls(accommodationVO.getId());
+            allListingDTO.setThumbnails(imageDTOS);
             allListingDTOs.add(allListingDTO);
         }
         return allListingDTOs;
@@ -90,6 +89,8 @@ public class ListingService {
                 PriceDTO priceDTO = fillPriceDTO(nights, accommodationVO);
                 allListingDTO.setPrice(priceDTO);
             }
+            List<String> imageDTOS = getImageUrls(accommodationVO.getId());
+            allListingDTO.setThumbnails(imageDTOS);
             allListingDTOs.add(allListingDTO);
         }
     }
@@ -101,5 +102,9 @@ public class ListingService {
                         .serviceFee(NumberFormat.getInstance().format(accommodationVO.getServiceFee()))
                         .totalPrice(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice() * nights + accommodationVO.getCleaningFee() + (long) accommodationVO.getServiceFee()))
                         .build();
+    }
+
+    private List<String> getImageUrls(Long listingId) {
+        return listingMapper.selectImageUrlsByListingId(listingId);
     }
 }

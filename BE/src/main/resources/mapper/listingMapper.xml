@@ -8,11 +8,13 @@
 
     <!-- Sql id 설정 및 parameterType, resultType을 설정. -->
     <select id="selectAllListing" parameterType = "Integer" resultType="AccommodationVO">
-        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT #{count};
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country,
+               rating, is_superhost, accommodates, latitude, longitude FROM airbnb.listing LIMIT #{count};
     </select>
 
     <select id="filterListingByDate" resultType="AccommodationVO">
-        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country, rating, is_superhost, accommodates, latitude, longitude
+        SELECT id, title, price, discount_price, cleaning_fee, service_fee, country,
+               rating, is_superhost, accommodates, latitude, longitude
           FROM listing
          WHERE id NOT IN (SELECT listing_id
                             FROM booking
@@ -25,6 +27,10 @@
     </select>
 
     <select id="filterListingByAccommodates" parameterType="Integer" resultType="AccommodationVO">
-        SELECT  * FROM listing WHERE accommodates >= #{total_personnel};
+        SELECT * FROM listing WHERE accommodates >= #{total_personnel};
+    </select>
+
+    <select id="selectImageUrlsByListingId" parameterType="Long" resultType="String">
+        SELECT url FROM airbnb.image WHERE listing_id = #{listing_id};
     </select>
 </mapper>
