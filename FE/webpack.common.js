@@ -41,6 +41,7 @@ module.exports = {
       Contexts: path.resolve(__dirname, "./src/contexts/"),
       CustomHooks: path.resolve(__dirname, "./src/customHooks/"),
       InitialStates: path.resolve(__dirname, "./src/initialStates/"),
+      Utils: path.resolve(__dirname, "./src/utils/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
