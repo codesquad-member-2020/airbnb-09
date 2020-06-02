@@ -15,3 +15,8 @@ export const filterInitialState = {
   priceMin: "",
   priceMax: "",
 };
+
+export const dateInitialState = {
+  startDate: null,
+  endDate: null,
+};
