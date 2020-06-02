@@ -1,14 +1,13 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import Button from "Styles/Button";
-import OutsideClicker from "CustomHooks/useOutsideClick";
 
 const Modal = ({ options: { contents = "", hasContents = false, clearHandler = null, toggleHandler = null } }) => {
   const SAVE_BUTTON_TEXT = "저장";
   const CLEAR_BUTTON_TEXT = "지우기";
 
   return (
-    <OutsideClicker clickHandler={toggleHandler}>
+    <>
       <ModalWrapper>
         <ContentsWrapper>{contents}</ContentsWrapper>
         <ButtonsWrapper>
@@ -22,12 +21,22 @@ const Modal = ({ options: { contents = "", hasContents = false, clearHandler = n
           </Buttons>
         </ButtonsWrapper>
       </ModalWrapper>
-    </OutsideClicker>
+      <OutsideWrapper onClick={toggleHandler} />
+    </>
   );
 };
 
-const ModalWrapper = styled.div`
+const OutsideWrapper = styled.div`
   z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const ModalWrapper = styled.div`
+  z-index: 50;
   position: absolute;
   top: ${({ theme }) => theme.spacings.xl};
   box-shadow: ${({ theme }) => theme.shadows.xl};
