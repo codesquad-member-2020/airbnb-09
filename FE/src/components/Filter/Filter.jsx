@@ -42,7 +42,7 @@ const Filter = () => {
 const Wrapper = styled.div`
   display: flex;
   padding-top: ${({ theme }) => theme.spacings.unit(12)};
-  & > div {
+  & > div + div {
     padding: 0 ${({ theme }) => theme.spacings.xsm};
   }
 `;
