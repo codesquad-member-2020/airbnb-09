@@ -3,6 +3,7 @@ import { filterInitialState } from "InitialStates/initialStates";
 import { FilterContext } from "Contexts/filterContext";
 import { CardListContext } from "Contexts/cardListContext";
 import { fetchActions, filterActions } from "Actions/actions";
+import { filterByDate, filterByGuest } from "Actions/filterAction";
 import { isSameObject, isSameValue } from "Utils/utils";
 import useFetch from "CustomHooks/useFetch";
 import usePrevious from "CustomHooks/usePrevious";
@@ -28,12 +29,13 @@ const Filter = () => {
 
   useFetch(fetchOptions);
 
-  const filterByGuest = payload => filterDispatch({ type: filterActions.FILTER_BY_GUEST, payload });
+  const dateFilterDispatch = date => filterDispatch(filterByDate(date));
+  const guestFilterDispatch = guest => filterDispatch(filterByGuest(guest));
 
   return (
     <Wrapper>
-      <Date />
-      <Guest dispatchHandler={filterByGuest} />
+      <Date dispatchHandler={dateFilterDispatch} />
+      <Guest dispatchHandler={guestFilterDispatch} />
       <Price />
     </Wrapper>
   );
