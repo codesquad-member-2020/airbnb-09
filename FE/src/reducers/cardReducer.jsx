@@ -6,7 +6,7 @@ const cardReducer = (state, action) => {
 
   switch (type) {
     case FETCH_SUCCESS:
-      return [...state, ...payload];
+      return [...payload];
     case FETCH_ERROR:
       return [...state];
     default:

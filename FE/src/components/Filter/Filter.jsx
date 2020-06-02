@@ -1,6 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { filterInitialState } from "InitialStates/initialStates";
 import { FilterContext } from "Contexts/filterContext";
-import { filterActions } from "Actions/actions";
+import { CardListContext } from "Contexts/cardListContext";
+import { fetchActions, filterActions } from "Actions/actions";
+import { isSameObject, isSameValue } from "Utils/utils";
+import useFetch from "CustomHooks/useFetch";
+import usePrevious from "CustomHooks/usePrevious";
 import styled from "styled-components";
 import Date from "./Date/Date";
 import Guest from "./Guest/Guest";
@@ -8,12 +13,20 @@ import Price from "./Price/Price";
 
 const Filter = () => {
   const { queries, filterDispatch } = useContext(FilterContext);
+  const { cardListDispatch } = useContext(CardListContext);
+  const { checkin, checkout, adults, children, infants, priceMin, priceMax } = queries;
+  const previousQueries = usePrevious(queries);
+  const isValidRequest = !(isSameValue(queries, filterInitialState) || isSameObject(queries, previousQueries));
 
-  // ! useFetch Test
-  // ! queries가 같을 때 재 요청을 보내지 않도록
-  useEffect(() => {
-    console.log(queries);
-  }, [queries]);
+  const fetchOptions = {
+    url: `${process.env.API_KEY}/search?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&infants=${infants}&priceMin=${priceMin}&priceMax=${priceMax}`,
+    dispatch: cardListDispatch,
+    actionType: { success: fetchActions.FETCH_SUCCESS },
+    state: queries,
+    isValidRequest,
+  };
+
+  useFetch(fetchOptions);
 
   const filterByGuest = payload => filterDispatch({ type: filterActions.FILTER_BY_GUEST, payload });
 

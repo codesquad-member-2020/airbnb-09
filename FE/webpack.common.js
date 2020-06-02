@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/index.jsx",
@@ -41,6 +42,7 @@ module.exports = {
       Contexts: path.resolve(__dirname, "./src/contexts/"),
       CustomHooks: path.resolve(__dirname, "./src/customHooks/"),
       InitialStates: path.resolve(__dirname, "./src/initialStates/"),
+      Utils: path.resolve(__dirname, "./src/utils/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
@@ -50,5 +52,6 @@ module.exports = {
       filename: "index.html",
       template: "public/index.html",
     }),
+    new Dotenv(),
   ],
 };

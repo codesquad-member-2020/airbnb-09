@@ -7,11 +7,11 @@ import Title from "./Title";
 import Card from "./Card/Card";
 
 const CardList = () => {
-  const { cardList, dispatch } = useContext(CardListContext);
+  const { cardList, cardListDispatch } = useContext(CardListContext);
 
   const { loading, errorMsg } = useFetch({
-    url: "http://3.34.15.148/api/listing",
-    dispatch,
+    url: `${process.env.API_KEY}`,
+    dispatch: cardListDispatch,
     actionType: {
       success: fetchActions.FETCH_SUCCESS,
       error: fetchActions.FETCH_ERROR,

@@ -5,14 +5,14 @@ import { cardListInitialState } from "InitialStates/initialStates";
 const CardListContext = createContext();
 
 const CardListProvider = ({ children }) => {
-  const [cardList, dispatch] = useReducer(reducer, cardListInitialState);
+  const [cardList, cardListDispatch] = useReducer(reducer, cardListInitialState);
 
   const contextValue = useMemo(
     () => ({
       cardList,
-      dispatch,
+      cardListDispatch,
     }),
-    [cardList, dispatch],
+    [cardList, cardListDispatch],
   );
 
   return <CardListContext.Provider value={contextValue}>{children}</CardListContext.Provider>;
