@@ -1,5 +1,6 @@
 package kr.codesquad.airbnb09.web.user;
 
+import kr.codesquad.airbnb09.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class LoginController {
     public ResponseEntity<String> githubLogin(@PathParam("code") String code, HttpServletResponse response) {
         log.debug("code : {}", code);
         String jwtToken = loginService.loginAsGithub(code);
-        return ResponseEntity.ok(jwtToken);
+        response.setHeader("Authorization", jwtToken);
+        return ResponseEntity.ok("logined");
     }
 }

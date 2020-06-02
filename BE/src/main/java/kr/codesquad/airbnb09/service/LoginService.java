@@ -1,5 +1,7 @@
-package kr.codesquad.airbnb09.web.user;
+package kr.codesquad.airbnb09.service;
 
+import kr.codesquad.airbnb09.web.user.GithubToken;
+import kr.codesquad.airbnb09.web.user.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -58,6 +60,7 @@ public class LoginService {
         UserVO userVO = requestUserInfo(githubToken);
         // user table에 저장
         // jwt 토큰 발행
-        return "JWT 토큰 발행";
+        String jwtToken = JwtUtil.createToken(userVO);
+        return jwtToken;
     }
 }
