@@ -12,11 +12,19 @@ const Date = ({ dispatchHandler }) => {
   const { startDate, endDate } = dateState;
 
   const setFilterState = () => {
-    if (toggle)
-      dispatchHandler({
-        checkin: formatDate(dateState.startDate),
-        checkout: formatDate(dateState.endDate),
-      });
+    if (toggle) {
+      if (!dateState.endDate) {
+        const nextDay = dateState.startDate.clone().add(1, "days");
+        dispatchHandler({
+          checkin: formatDate(dateState.startDate),
+          checkout: formatDate(nextDay),
+        });
+      } else if (dateState.startDate)
+        dispatchHandler({
+          checkin: formatDate(dateState.startDate),
+          checkout: formatDate(dateState.endDate),
+        });
+    }
     setToggle(!toggle);
   };
 
