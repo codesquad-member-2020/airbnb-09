@@ -20,6 +20,14 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        rules: [
+          {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          },
+        ],
+      },
+      {
         test: /\.svg$/,
         use: [
           {
