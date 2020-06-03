@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ToString
 public class UserVO {
+    private Long index;
     private Long id;
     private String name;
     private String email;
