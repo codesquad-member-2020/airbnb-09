@@ -1,8 +1,7 @@
-import { guestActions } from "Actions/actions";
+import { CHANGE_ADULTS, CHANGE_CHILDREN, CHANGE_INFANTS, RESET_GUEST } from "Actions/guestAction";
 import { guestInitialState } from "InitialStates/initialStates";
 
 const guestReducer = (state, action) => {
-  const { CHANGE_ADULTS, CHANGE_CHILDREN, CHANGE_INFANTS, RESET } = guestActions;
   const { adults, children, infants } = state;
   const { type, payload } = action;
 
@@ -13,8 +12,8 @@ const guestReducer = (state, action) => {
       return { ...state, children: children + payload };
     case CHANGE_INFANTS:
       return { ...state, infants: infants + payload };
-    case RESET:
-      return { ...state, ...guestInitialState };
+    case RESET_GUEST:
+      return { ...guestInitialState };
     default:
       return state;
   }

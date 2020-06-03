@@ -20,6 +20,14 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        rules: [
+          {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          },
+        ],
+      },
+      {
         test: /\.svg$/,
         use: [
           {
@@ -51,6 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "public/index.html",
+      favicon: "public/favicon.svg",
     }),
     new Dotenv(),
   ],

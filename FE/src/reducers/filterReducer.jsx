@@ -1,8 +1,7 @@
-import { filterActions } from "Actions/actions";
+import { FILTER_BY_DATE, FILTER_BY_GUEST, FILTER_BY_PRICE } from "Actions/filterAction";
 
 const filterReducer = (state, action) => {
   const { type, payload } = action;
-  const { FILTER_BY_DATE, FILTER_BY_GUEST, FILTER_BY_PRICE } = filterActions;
 
   switch (type) {
     case FILTER_BY_DATE:
