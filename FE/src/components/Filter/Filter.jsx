@@ -29,6 +29,10 @@ const Filter = () => {
 
   useFetch(fetchOptions);
 
+  useEffect(() => {
+    console.log("[log] filterState:", queries);
+  }, [queries]);
+
   const dateFilterDispatch = date => filterDispatch(filterByDate(date));
   const guestFilterDispatch = guest => filterDispatch(filterByGuest(guest));
 

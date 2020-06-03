@@ -8,6 +8,8 @@ const useFetch = ({ url, dispatch, actionType: { success, error }, state = null,
   const getData = async () => {
     const { data } = await axios.get(url);
     try {
+      console.log("[log] url:", url);
+      console.log("[log] fetchingData:", data);
       dispatch({ type: success, payload: data });
     } catch (e) {
       dispatch({ type: error });
