@@ -31,9 +31,13 @@ const Description = ({ data: { name, country, rating, superHost, oneNightRate } 
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
       {oneNightRate && (
-        <RateWrapper fontSize="lg" as="div">
-          <OriginalRateText color="gray3">{addedWonUnitRate(oneNightRate.original)}</OriginalRateText>
-          <Text fontWeight="extraBold">{addedWonUnitRate(oneNightRate.selling)}</Text>
+        <RateWrapper>
+          <OriginalRateText fontSize="lg" color="gray3">
+            {addedWonUnitRate(oneNightRate.original)}
+          </OriginalRateText>
+          <Text fontSize="lg" fontWeight="bold">
+            {addedWonUnitRate(oneNightRate.selling)}
+          </Text>
           <Text>{SELLING_RATE_TEXT}</Text>
         </RateWrapper>
       )}
@@ -54,7 +58,7 @@ const SuperHostBadge = styled.div`
   padding: 0 ${({ theme }) => theme.spacings.xxsm};
 `;
 
-const RatingWrapper = styled(Text)`
+const RatingWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-left: auto;

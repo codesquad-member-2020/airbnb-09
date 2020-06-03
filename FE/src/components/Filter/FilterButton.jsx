@@ -11,6 +11,7 @@ const FilterButton = ({ clickHandler, active, text }) => {
 };
 
 const TogglingButton = styled(Button)`
+  font-size: ${({ theme }) => theme.fontSizes.md};
   ${({ theme, active }) =>
     active &&
     css`

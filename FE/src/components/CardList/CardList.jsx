@@ -44,6 +44,10 @@ const Wrapper = styled.div`
   @media (min-width: ${({ theme }) => theme.sizes.xl}) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  @media (min-width: ${({ theme }) => theme.sizes.xxl}) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 `;
 
 export default CardList;
