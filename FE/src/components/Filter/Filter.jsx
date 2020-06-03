@@ -6,7 +6,7 @@ import { CardListContext } from "Contexts/cardListContext";
 import { fetchSuccess, fetchError } from "Actions/fetchAction";
 import { filterByDate, filterByGuest } from "Actions/filterAction";
 import { isSameObject, isSameValue } from "Utils/utils";
-import { filterURL } from "Utils/urls";
+import { generateFilteringURL } from "Utils/urls";
 import useFetch from "CustomHooks/useFetch";
 import usePrevious from "CustomHooks/usePrevious";
 import Date from "./Date/Date";
@@ -20,7 +20,7 @@ const Filter = () => {
   const isValidRequest = !(isSameValue(queries, filterInitialState) || isSameObject(queries, previousQueries));
 
   const fetchOptions = {
-    url: filterURL(queries),
+    url: generateFilteringURL(queries),
     dispatch: cardListDispatch,
     actionType: { success: fetchSuccess, error: fetchError },
     state: queries,
