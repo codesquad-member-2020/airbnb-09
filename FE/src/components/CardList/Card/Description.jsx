@@ -31,7 +31,7 @@ const Description = ({ data: { name, country, rating, superHost, oneNightRate } 
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
       {oneNightRate && (
-        <RateWrapper as="div">
+        <RateWrapper>
           <OriginalRateText fontSize="lg" color="gray3">
             {addedWonUnitRate(oneNightRate.original)}
           </OriginalRateText>
