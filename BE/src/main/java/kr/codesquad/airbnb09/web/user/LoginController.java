@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
+import java.io.IOException;
 
 @RequestMapping("/login")
 @RestController
@@ -23,10 +25,13 @@ public class LoginController {
     }
 
     @GetMapping("/oauth2/github")
-    public ResponseEntity<String> githubLogin(@PathParam("code") String code, HttpServletResponse response) {
+    public ResponseEntity<String> githubLogin(@PathParam("code") String code, HttpServletResponse response) throws IOException {
         log.debug("code : {}", code);
         String jwtToken = loginService.loginAsGithub(code);
-        response.setHeader("Authorization", jwtToken);
+        Cookie cookie = new Cookie("jwtToken", jwtToken);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        response.sendRedirect("/");
         return ResponseEntity.ok("logined");
     }
 }
