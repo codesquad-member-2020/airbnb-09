@@ -1,5 +1,7 @@
 package kr.codesquad.airbnb09.service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +45,20 @@ public class JwtService {
     // 2. void로 유효하지 않은 경우에 runtime error 발생 (v)
     public void checkValid(String jwtToken) {
         log.trace("[*] 토큰 유효성 체크 : {}", jwtToken);
-        Jwts.parser().setSigningKey(secretKey.getBytes()).parseClaimsJwt(jwtToken);
+        jwtToken = jwtToken.replace("Bearer ", "");
+        Jwts.parser().setSigningKey(secretKey.getBytes()).parseClaimsJws(jwtToken);
+    }
+
+    // JWT Token으로 부터 필요한 정보 반환
+    public Map<String, Object> getData(String jwtToken) throws SignatureException {
+        Jws<Claims> claims = null;
+        try {
+            claims = Jwts.parser().setSigningKey(secretKey.getBytes()).parseClaimsJws(jwtToken);
+        } catch (Exception e) {
+            throw new SignatureException();
+        }
+
+        log.trace("[*] claims : {}", claims);
+        return claims.getBody();
     }
 }
