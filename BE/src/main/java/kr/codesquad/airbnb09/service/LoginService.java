@@ -18,9 +18,11 @@ public class LoginService {
     private static final Logger log = LoggerFactory.getLogger(LoginService.class);
 
     private JwtService jwtService;
+    private UserMapper userMapper;
 
-    public LoginService(JwtService jwtService) {
+    public LoginService(JwtService jwtService, UserMapper userMapper) {
         this.jwtService = jwtService;
+        this.userMapper = userMapper;
     }
 
     public GithubToken authenticateGithub(String code) {
@@ -60,13 +62,11 @@ public class LoginService {
         return null;
     }
 
-    // github인증 후, jwt 토큰 발행
     public String loginAsGithub(String code) {
         GithubToken githubToken = authenticateGithub(code);
         UserVO userVO = requestUserInfo(githubToken);
-        // user table에 저장
-        // jwt 토큰 발행
         String jwtToken = jwtService.createToken(userVO);
+        userMapper.insertUser(userVO.getId(), userVO.getName(), userVO.getEmail());
         return jwtToken;
     }
 }
