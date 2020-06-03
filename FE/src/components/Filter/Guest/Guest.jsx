@@ -9,6 +9,11 @@ const Guest = ({ dispatchHandler }) => {
   const [toggle, setToggle] = useState(false);
   const [guestNum, dispatch] = useReducer(guestReducer, guestInitialState);
 
+  const setFilterState = () => {
+    if (toggle) dispatchHandler(guestNum);
+    setToggle(!toggle);
+  };
+
   const renderGuestButtonText = state => {
     let numOfGuests = 0;
     let numOfInfants = 0;
@@ -20,11 +25,6 @@ const Guest = ({ dispatchHandler }) => {
 
     if (numOfGuests <= 0) return `게스트`;
     return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
-  };
-
-  const setFilterState = () => {
-    if (toggle) dispatchHandler(guestNum);
-    setToggle(!toggle);
   };
 
   return (
