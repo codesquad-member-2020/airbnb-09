@@ -5,6 +5,7 @@ import "react-dates/lib/css/_datepicker.css";
 import { DayPickerRangeController } from "react-dates";
 import { START_DATE } from "react-dates/constants";
 import { setDate, resetDate } from "Actions/dateAction";
+import DatesWrapper from "Styles/DatesWrapper";
 import Modal from "../Modal";
 
 const DateModal = ({ setToggle, dateState, dateDispatch }) => {
@@ -15,14 +16,16 @@ const DateModal = ({ setToggle, dateState, dateDispatch }) => {
   const onFocusChange = focusedInput => setFocus(!focusedInput ? START_DATE : focusedInput);
 
   const modalContent = (
-    <DayPickerRangeController
-      numberOfMonths={2}
-      startDate={startDate}
-      endDate={endDate}
-      onDatesChange={onDatesChange}
-      focusedInput={focus}
-      onFocusChange={onFocusChange}
-    />
+    <DatesWrapper>
+      <DayPickerRangeController
+        numberOfMonths={2}
+        startDate={startDate}
+        endDate={endDate}
+        onDatesChange={onDatesChange}
+        focusedInput={focus}
+        onFocusChange={onFocusChange}
+      />
+    </DatesWrapper>
   );
 
   const resetButtonHandler = () => {
