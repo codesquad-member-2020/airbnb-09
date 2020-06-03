@@ -7,31 +7,16 @@ import Text from "Styles/Text";
 import Button from "Styles/Button";
 import Modal from "../Modal";
 
-const guestTypes = [
-  {
-    type: "adults",
-    term: "성인",
-    description: "만 13세 이상",
-    minNum: 0,
-    maxNum: 8,
-  },
-  {
-    type: "children",
-    term: "어린이",
-    description: "2~12세",
-    minNum: 0,
-    maxNum: 8,
-  },
-  {
-    type: "infants",
-    term: "유아",
-    description: "2세 미만",
-    minNum: 0,
-    maxNum: 8,
-  },
-];
-
 const GuestModal = ({ setToggle, guestNum, dispatch }) => {
+  const incrementButtonHandler = type => {
+    const isOnlyChildren = guestNum.adults === 0 && type !== "adults";
+
+    dispatch(changeGuest(type, 1));
+    if (isOnlyChildren) {
+      dispatch(changeAdults(1));
+    }
+  };
+
   const decrementButtonHandler = type => {
     const isOnlyOneAdult = type === "adults" && guestNum[type] <= 1;
     const hasNotChildren = !guestNum.children && !guestNum.infants;
@@ -45,16 +30,31 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
     }
   };
 
-  const incrementButtonHandler = type => {
-    const isOnlyChildren = guestNum.adults === 0 && type !== "adults";
-
-    dispatch(changeGuest(type, 1));
-    if (isOnlyChildren) {
-      dispatch(changeAdults(1));
-    }
-  };
-
   const resetButtonHandler = () => dispatch(resetGuest());
+
+  const guestTypes = [
+    {
+      type: "adults",
+      term: "성인",
+      description: "만 13세 이상",
+      minNum: 0,
+      maxNum: 8,
+    },
+    {
+      type: "children",
+      term: "어린이",
+      description: "2~12세",
+      minNum: 0,
+      maxNum: 8,
+    },
+    {
+      type: "infants",
+      term: "유아",
+      description: "2세 미만",
+      minNum: 0,
+      maxNum: 8,
+    },
+  ];
 
   const modalContent = (
     <ContentsWrapper>
