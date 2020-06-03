@@ -7,7 +7,7 @@ import { DayPickerRangeController } from "react-dates";
 import { START_DATE } from "react-dates/constants";
 import isInclusivelyAfterDay from "react-dates/src/utils/isInclusivelyAfterDay";
 import { setDate, resetDate } from "Actions/dateAction";
-import DatesWrapper from "Styles/DatesWrapper";
+import DateWrapper from "Styles/DateWrapper";
 import Modal from "../Modal";
 
 const DateModal = ({ setToggle, dateState, dateDispatch }) => {
@@ -21,7 +21,7 @@ const DateModal = ({ setToggle, dateState, dateDispatch }) => {
   const nextYear = moment().clone().add(1, "year");
 
   const modalContent = (
-    <DatesWrapper>
+    <DateWrapper>
       <DayPickerRangeController
         numberOfMonths={2}
         startDate={startDate}
@@ -33,7 +33,7 @@ const DateModal = ({ setToggle, dateState, dateDispatch }) => {
         onFocusChange={onFocusChange}
         isOutsideRange={isOutsideRange}
       />
-    </DatesWrapper>
+    </DateWrapper>
   );
 
   const resetButtonHandler = () => {
