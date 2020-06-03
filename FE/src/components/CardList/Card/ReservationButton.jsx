@@ -13,7 +13,7 @@ const ReservationButton = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: ${({ theme }) => theme.spacings.base};
+  margin-top: ${({ theme }) => theme.spacings.xxsm};
 `;
 
 const PrimaryButton = styled(Button)`
