@@ -1,3 +1,5 @@
+import { css } from "styled-components";
+
 const calcRem = size => `${size / 16}rem`;
 
 const sizes = {
@@ -66,6 +68,15 @@ const spacings = {
   unit: num => calcRem(unit * num),
 };
 
+const aligns = {
+  center: css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `,
+};
+
 const theme = {
   sizes,
   colors,
@@ -75,6 +86,7 @@ const theme = {
   shadows,
   spacings,
   unit,
+  aligns,
 };
 
 export default theme;
