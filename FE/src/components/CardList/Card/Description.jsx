@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { IconContext } from "react-icons";
-import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
+import Rating from "./Rating";
 
 const Description = ({ data: { name, country, rating, superHost, oneNightRate, price } }) => {
   const addedWonUnitRate = rate => `₩${rate}`;
@@ -24,10 +23,7 @@ const Description = ({ data: { name, country, rating, superHost, oneNightRate, p
           {country}
         </Text>
         <RatingWrapper>
-          <IconContext.Provider value={{ color: "#FF5A5F" }}>
-            <IoIosStar />
-          </IconContext.Provider>
-          <Text fontSize="sm">{rating}</Text>
+          <Rating ratingValue={rating} />
         </RatingWrapper>
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
