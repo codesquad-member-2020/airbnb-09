@@ -52,6 +52,14 @@ public class ListingService {
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
         List<AccommodationVO> accommodationVOs = null;
 
+//         날짜가 비어있는 경우
+        if (searchRequestDTO.isEmptyDate()) {
+            accommodationVOs = listingMapper.filterListingByAccommodates(searchRequestDTO.totalPeraonnel());
+            fillAllListing(allListingDTOs,accommodationVOs, 0);
+            log.debug("[*] count of accommodationVOs : {}", allListingDTOs.size());
+            return allListingDTOs;
+        }
+
         searchRequestDTO.setDefaultValue(); //인원수와 checkin 날짜가 선택되지 않은 경우 default value를 저장
         LocalDate checkin = searchRequestDTO.getCheckin();
         LocalDate checkout = searchRequestDTO.getCheckout();
@@ -72,20 +80,20 @@ public class ListingService {
 
     private void fillAllListing(List<AllListingDTO> allListingDTOs, List<AccommodationVO> accommodationVOs, int nights) {
         for (AccommodationVO accommodationVO : accommodationVOs) {
-            OneNightRateDTO oneNightRateDTO = OneNightRateDTO.builder()
-                    .original(NumberFormat.getInstance().format(accommodationVO.getPrice()))
-                    .selling(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice()))
-                    .build();
             AllListingDTO allListingDTO = AllListingDTO.builder()
                     .id(accommodationVO.getId())
                     .name(accommodationVO.getTitle())
                     .country(accommodationVO.getCountry())
                     .rating(accommodationVO.getRating())
                     .isSuperHost(accommodationVO.isSuperhost())
-                    .oneNightRate(oneNightRateDTO)
                     .nights(nights)
                     .build();
             if (nights > 0) {
+                OneNightRateDTO oneNightRateDTO = OneNightRateDTO.builder()
+                        .original(NumberFormat.getInstance().format(accommodationVO.getPrice()))
+                        .selling(NumberFormat.getInstance().format(accommodationVO.getDiscountPrice()))
+                        .build();
+                allListingDTO.setOneNightRate(oneNightRateDTO);
                 PriceDTO priceDTO = fillPriceDTO(nights, accommodationVO);
                 allListingDTO.setPrice(priceDTO);
             }

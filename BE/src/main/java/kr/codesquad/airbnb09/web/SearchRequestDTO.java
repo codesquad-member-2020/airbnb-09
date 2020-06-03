@@ -36,15 +36,15 @@ public class SearchRequestDTO {
             this.infants = 0;
         }
 
-        if(this.priceMin == null) {
+        if (this.priceMin == null) {
             this.priceMin = 0;
         }
 
-        if(this.priceMax == null) {
+        if (this.priceMax == null) {
             this.priceMax = 100000000;
         }
 
-        if(this.checkin == null) {
+        if (this.checkin == null) {
             this.checkin = LocalDate.now();
             this.checkout = this.checkin.plus(1, ChronoUnit.DAYS);
         }
@@ -53,5 +53,9 @@ public class SearchRequestDTO {
     public int totalPeraonnel() {
         setDefaultValue();
         return this.adults + this.children + this.infants;
+    }
+
+    public boolean isEmptyDate() {
+        return this.checkin == null && this.checkout == null;
     }
 }
