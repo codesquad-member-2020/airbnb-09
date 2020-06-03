@@ -17,6 +17,12 @@ import java.util.Map;
 public class LoginService {
     private static final Logger log = LoggerFactory.getLogger(LoginService.class);
 
+    private JwtService jwtService;
+
+    public LoginService(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
+
     public GithubToken authenticateGithub(String code) {
         String url = "https://github.com/login/oauth/access_token";
         String clientId = "ed017fb540a271bbf01b";
@@ -60,7 +66,7 @@ public class LoginService {
         UserVO userVO = requestUserInfo(githubToken);
         // user table에 저장
         // jwt 토큰 발행
-        String jwtToken = JwtUtil.createToken(userVO);
+        String jwtToken = jwtService.createToken(userVO);
         return jwtToken;
     }
 }
