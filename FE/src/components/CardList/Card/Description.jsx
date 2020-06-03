@@ -4,10 +4,11 @@ import { IconContext } from "react-icons";
 import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
 
-const Description = ({ data: { name, country, rating, superHost, oneNightRate } }) => {
+const Description = ({ data: { name, country, rating, superHost, oneNightRate, price } }) => {
+  const addedWonUnitRate = rate => `₩${rate}`;
   const SUPER_HOST_TEXT = "슈퍼호스트";
   const SELLING_RATE_TEXT = "/1박";
-  const addedWonUnitRate = rate => `₩${rate}`;
+  const TOTAL_PRICE_TEXT = priceNum => `총 요금: ${addedWonUnitRate(priceNum)}`;
 
   return (
     <div>
@@ -31,15 +32,20 @@ const Description = ({ data: { name, country, rating, superHost, oneNightRate } 
       </DetailWrapper>
       <NameText fontSize="lg">{name}</NameText>
       {oneNightRate && (
-        <RateWrapper>
-          <OriginalRateText fontSize="lg" color="gray3">
-            {addedWonUnitRate(oneNightRate.original)}
-          </OriginalRateText>
-          <Text fontSize="lg" fontWeight="bold">
-            {addedWonUnitRate(oneNightRate.selling)}
-          </Text>
-          <Text>{SELLING_RATE_TEXT}</Text>
-        </RateWrapper>
+        <>
+          <RateWrapper>
+            <OriginalRateText fontSize="lg" fontWeight="semiBold" color="gray3">
+              {addedWonUnitRate(oneNightRate.original)}
+            </OriginalRateText>
+            <Text fontSize="lg" fontWeight="bold">
+              {addedWonUnitRate(oneNightRate.selling)}
+            </Text>
+            <Text fontSize="lg">{SELLING_RATE_TEXT}</Text>
+          </RateWrapper>
+          <TotalPriceWrapper>
+            <Text color="gray3">{TOTAL_PRICE_TEXT(price.totalPrice)}</Text>
+          </TotalPriceWrapper>
+        </>
       )}
     </div>
   );
@@ -70,10 +76,7 @@ const RatingWrapper = styled.div`
 const RateWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-top: ${({ theme }) => theme.spacings.sm};
-  ${Text} {
-    line-height: 0;
-  }
+  padding-top: ${({ theme }) => theme.spacings.xxsm};
 `;
 
 const OriginalRateText = styled(Text)`
@@ -86,7 +89,11 @@ const NameText = styled(Text)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-top: ${({ theme }) => theme.spacings.xsm};
+  padding-top: ${({ theme }) => theme.spacings.xxsm};
+`;
+
+const TotalPriceWrapper = styled.div`
+  padding-top: ${({ theme }) => theme.spacings.xxsm};
 `;
 
 export default Description;
