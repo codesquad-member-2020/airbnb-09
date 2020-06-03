@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CardListContext } from "Contexts/cardListContext";
 import { fetchSuccess, fetchError } from "Actions/fetchAction";
+import { initURL } from "Utils/urls";
 import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
@@ -10,7 +11,7 @@ const CardList = () => {
   const { cardList, cardListDispatch } = useContext(CardListContext);
 
   const { loading, errorMsg } = useFetch({
-    url: `${process.env.API_KEY}`,
+    url: initURL,
     dispatch: cardListDispatch,
     actionType: {
       success: fetchSuccess,
