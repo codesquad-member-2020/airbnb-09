@@ -40,7 +40,7 @@ public class DBTest {
         LocalDate checkin = LocalDate.of(2020,5,11);
         LocalDate checkout = LocalDate.of(2020,5,15);
 
-        List<AccommodationVO> accommodationVOList = listingMapper.filterListingByDate(checkin, checkout);
+        List<AccommodationVO> accommodationVOList = listingMapper.filterListingByDate(checkin, checkout, 0, 0, 1000000000);
         for (AccommodationVO accommodationVO : accommodationVOList) {
             log.debug("accommodationVO : {}", accommodationVO);
         }

@@ -70,7 +70,7 @@ public class ListingService {
 
         log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
 
-        if (checkin != null && checkout != null) {
+        if (checkin != null || checkout != null) {
              accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
         }
 
