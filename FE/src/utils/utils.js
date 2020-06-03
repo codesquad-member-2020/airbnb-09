@@ -30,3 +30,44 @@ export const renderGuestButtonText = state => {
   if (numOfGuests <= 0) return `게스트`;
   return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
 };
+
+/*
+  generate data for price slider
+*/
+
+const getFirstTo = (minPrice, priceGap) => {
+  let firstTo = priceGap;
+  while (minPrice > firstTo) {
+    firstTo += priceGap;
+  }
+  return firstTo;
+};
+
+export const generateFormattedPrices = ({ average, minPrice, maxPrice, priceGap, countList }) => {
+  const initialRange = {
+    key: `0-${minPrice - minPrice + priceGap}`,
+    from: minPrice,
+    to: getFirstTo(minPrice, priceGap),
+    count: countList[0],
+  };
+
+  const range = countList.slice(1, countList.length - 1).reduce(
+    (acc, curr, i) => {
+      acc.push({
+        key: `${acc[i].to}-${acc[i].to + priceGap}`,
+        from: acc[i].to,
+        to: acc[i].to + priceGap,
+        count: curr,
+      });
+      return acc;
+    },
+    [initialRange],
+  );
+
+  return {
+    average,
+    min: minPrice,
+    max: maxPrice,
+    range,
+  };
+};

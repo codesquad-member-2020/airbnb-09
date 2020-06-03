@@ -4,56 +4,9 @@ import RangeSlider from "./components/RangeSlider";
 import Histogram from "./components/Histogram";
 import RangeInput from "./components/RangeInput";
 
-const prices = {
-  average: 132976.97,
-  minPrice: 17000,
-  maxPrice: 3000000,
-  priceGap: 10000,
-  countList: [120, 50, 225, 47, 4, 80, 14, 0, 10],
-};
-
-const getFirstTo = (minPrice, priceGap) => {
-  let firstTo = priceGap;
-  while (minPrice > firstTo) {
-    firstTo += priceGap;
-  }
-  return firstTo;
-};
-
-const generateFormattedPrices = ({ average, minPrice, maxPrice, priceGap, countList }) => {
-  const initialRange = {
-    key: `0-${minPrice - minPrice + priceGap}`,
-    from: minPrice,
-    to: getFirstTo(minPrice, priceGap),
-    count: countList[0],
-  };
-
-  const range = countList.slice(1, countList.length - 1).reduce(
-    (acc, curr, i) => {
-      acc.push({
-        key: `${acc[i].to}-${acc[i].to + priceGap}`,
-        from: acc[i].to,
-        to: acc[i].to + priceGap,
-        count: curr,
-      });
-      return acc;
-    },
-    [initialRange],
-  );
-
-  return {
-    average,
-    min: minPrice,
-    max: maxPrice,
-    range,
-  };
-};
-
-const sample = generateFormattedPrices(prices);
-
-const PriceSlider = () => {
-  const responseData = sample.range;
-  const maxData = sample.max;
+const PriceSlider = ({ data }) => {
+  const responseData = data.range;
+  const maxData = data.max;
   const countData = [];
   const priceData = [];
 
