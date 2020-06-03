@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { MdAdd, MdRemove } from "react-icons/md";
-import { guestActions } from "Actions/actions";
+import { changeGuest, changeAdults, resetGuest } from "Actions/guestAction";
+import { smallerThanMinNum, largerThanMaxNum, getTotalNumOfValue } from "Utils/utils";
 import Text from "Styles/Text";
 import Button from "Styles/Button";
 import Modal from "../Modal";
@@ -37,26 +38,23 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
 
     if (isOnlyOneAdult) {
       if (hasNotChildren) {
-        dispatch({ type: guestActions.CHANGE_GUEST(type), payload: -1 });
+        dispatch(changeGuest(type, -1));
       }
     } else {
-      dispatch({ type: guestActions.CHANGE_GUEST(type), payload: -1 });
+      dispatch(changeGuest(type, -1));
     }
   };
 
   const incrementButtonHandler = type => {
     const isOnlyChildren = guestNum.adults === 0 && type !== "adults";
 
-    dispatch({ type: guestActions.CHANGE_GUEST(type), payload: 1 });
+    dispatch(changeGuest(type, 1));
     if (isOnlyChildren) {
-      dispatch({ type: guestActions.CHANGE_ADULTS, payload: 1 });
+      dispatch(changeAdults(1));
     }
   };
 
-  const resetButtonHandler = () => dispatch({ type: guestActions.RESET });
-
-  const smallerThanMinNum = (minNum, num) => minNum >= num;
-  const largerThanMaxNum = (maxNum, num) => maxNum <= num;
+  const resetButtonHandler = () => dispatch(resetGuest());
 
   const modalContent = (
     <ContentsWrapper>
@@ -89,12 +87,6 @@ const GuestModal = ({ setToggle, guestNum, dispatch }) => {
       ))}
     </ContentsWrapper>
   );
-
-  const getTotalNumOfValue = obj =>
-    Object.values(obj).reduce((totalNum, curr) => {
-      totalNum += curr;
-      return totalNum;
-    }, 0);
 
   const modalOption = {
     contents: modalContent,

@@ -1,8 +1,7 @@
-import { fetchActions } from "Actions/actions";
+import { FETCH_SUCCESS, FETCH_ERROR } from "Actions/fetchAction";
 
 const cardReducer = (state, action) => {
   const { type, payload } = action;
-  const { FETCH_SUCCESS, FETCH_ERROR } = fetchActions;
 
   switch (type) {
     case FETCH_SUCCESS:

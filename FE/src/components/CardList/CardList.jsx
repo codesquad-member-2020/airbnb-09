@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { CardListContext } from "Contexts/cardListContext";
-import { fetchActions } from "Actions/actions";
+import { fetchSuccess, fetchError } from "Actions/fetchAction";
 import useFetch from "CustomHooks/useFetch";
 import Title from "./Title";
 import Card from "./Card/Card";
@@ -13,8 +13,8 @@ const CardList = () => {
     url: `${process.env.API_KEY}`,
     dispatch: cardListDispatch,
     actionType: {
-      success: fetchActions.FETCH_SUCCESS,
-      error: fetchActions.FETCH_ERROR,
+      success: fetchSuccess,
+      error: fetchError,
     },
   });
 

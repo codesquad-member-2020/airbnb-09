@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { filterInitialState } from "InitialStates/initialStates";
 import { FilterContext } from "Contexts/filterContext";
 import { CardListContext } from "Contexts/cardListContext";
-import { fetchActions, filterActions } from "Actions/actions";
+import { fetchSuccess, fetchError } from "Actions/fetchAction";
 import { filterByDate, filterByGuest } from "Actions/filterAction";
 import { isSameObject, isSameValue } from "Utils/utils";
 import useFetch from "CustomHooks/useFetch";
@@ -22,7 +22,7 @@ const Filter = () => {
   const fetchOptions = {
     url: `${process.env.API_KEY}/search?checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&infants=${infants}&priceMin=${priceMin}&priceMax=${priceMax}`,
     dispatch: cardListDispatch,
-    actionType: { success: fetchActions.FETCH_SUCCESS },
+    actionType: { success: fetchSuccess, error: fetchError },
     state: queries,
     isValidRequest,
   };
