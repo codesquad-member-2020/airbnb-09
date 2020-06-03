@@ -31,6 +31,17 @@ export const renderGuestButtonText = state => {
   return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
 };
 
+export const formatPrice = price => {
+  let priceWithComma = "";
+  const priceInString = price.toString();
+  for (let i = priceInString.length; i > 0; i -= 3) {
+    i - 3 > 0
+      ? (priceWithComma = `,${priceInString.slice(i - 3, i)}${priceWithComma}`)
+      : (priceWithComma = `${priceInString.slice(0, i)}${priceWithComma}`);
+  }
+  return priceWithComma;
+};
+
 /*
   generate data for price slider
 */
