@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FilterButton from "../FilterButton";
 import PriceModal from "./PriceModal";
 
-const Price = () => {
+const Price = ({ isDateSelected }) => {
   const [toggle, setToggle] = useState(false);
 
   const PRICE_BUTTON_TEXT = "요금";
@@ -15,7 +15,7 @@ const Price = () => {
   return (
     <PriceWrapper>
       <FilterButton clickHandler={setFilterState} active={toggle} text={PRICE_BUTTON_TEXT} />
-      {toggle && <PriceModal setToggle={setFilterState} />}
+      {toggle && <PriceModal setToggle={setFilterState} isDateSelected={isDateSelected} />}
     </PriceWrapper>
   );
 };

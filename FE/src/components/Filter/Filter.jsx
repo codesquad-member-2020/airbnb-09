@@ -40,7 +40,7 @@ const Filter = () => {
     <Wrapper>
       <Date dispatchHandler={dateFilterDispatch} />
       <Guest dispatchHandler={guestFilterDispatch} />
-      <Price />
+      <Price isDateSelected={queries.checkin} />
     </Wrapper>
   );
 };
