@@ -4,10 +4,7 @@ import styled from "styled-components";
 const ImageSlider = ({ thumbnails }) => {
   return (
     <ImageWrapper>
-      {/* {thumbnails.map((imageUrl, index) => (
-        <img key={index} src={imageUrl} alt="숙소 이미지" />
-      ))} */}
-      <Image src={thumbnails[0]} />
+      <Image src={thumbnails[0]} alt="숙소 이미지" />
     </ImageWrapper>
   );
 };
