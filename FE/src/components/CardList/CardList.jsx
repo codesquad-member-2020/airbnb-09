@@ -10,7 +10,7 @@ import Card from "./Card/Card";
 const CardList = () => {
   const { cardList, cardListDispatch } = useContext(CardListContext);
 
-  const { loading, errorMsg } = useFetch({
+  const { loading } = useFetch({
     url: listingURL,
     dispatch: cardListDispatch,
     actionType: {
@@ -19,10 +19,12 @@ const CardList = () => {
     },
   });
 
+  const LOADING_TEXT = "Loading...";
+
   return (
     <Wrapper>
       <Title numberOfResults={cardList.length} />
-      {loading ? <span>로딩중</span> : cardList.map(({ id, ...cardData }) => <Card key={id} data={cardData} />)}
+      {loading ? <span>{LOADING_TEXT}</span> : cardList.map(({ id, ...cardData }) => <Card key={id} data={cardData} />)}
     </Wrapper>
   );
 };

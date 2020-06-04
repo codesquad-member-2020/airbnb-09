@@ -4,10 +4,7 @@ import styled from "styled-components";
 const ImageSlider = ({ thumbnails }) => {
   return (
     <ImageWrapper>
-      {/* {thumbnails.map((imageUrl, index) => (
-        <img key={index} src={imageUrl} alt="숙소 이미지" />
-      ))} */}
-      <Image src={thumbnails[0]} />
+      <Image src={thumbnails[0]} alt="숙소 이미지" />
     </ImageWrapper>
   );
 };
@@ -20,10 +17,8 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
+  ${({ theme }) => theme.aligns.center};
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   object-fit: cover;

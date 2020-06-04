@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 테스트</title>
+</head>
+<body>
+    <h1>스프링부트 OAuth2 로그인 테스트</h1>
+    <div class="col-md-12">
+        <div class="row">
+            {{#userName}}
+                Logged in as : <span id="user">{{userName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="https://github.com/login/oauth/authorize?client_id=ed017fb540a271bbf01b&scope=user%20repo" class="btn btn-success active" role="button">Github Login</a>
+            {{/userName}}
+        </div>
+    </div>
+</body>
+</html>

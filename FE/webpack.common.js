@@ -51,6 +51,7 @@ module.exports = {
       CustomHooks: path.resolve(__dirname, "./src/customHooks/"),
       InitialStates: path.resolve(__dirname, "./src/initialStates/"),
       Utils: path.resolve(__dirname, "./src/utils/"),
+      Constants: path.resolve(__dirname, "./src/constants/"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },

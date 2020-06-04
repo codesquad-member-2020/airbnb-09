@@ -56,6 +56,12 @@ const DatesWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.gray6} !important;
   }
 
+  /* Outside Range Dates */
+  .CalendarDay__blocked_out_of_range {
+    pointer-events: none;
+    color: ${({ theme }) => theme.colors.gray5};
+  }
+
   /* Nav Arrow Wrapper Style */
   .DayPickerNavigation_button__horizontalDefault {
     top: 11px;

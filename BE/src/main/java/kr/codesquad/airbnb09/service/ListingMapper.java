@@ -2,7 +2,6 @@ package kr.codesquad.airbnb09.service;
 
 
 import kr.codesquad.airbnb09.domain.AccommodationVO;
-import kr.codesquad.airbnb09.web.ImageDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

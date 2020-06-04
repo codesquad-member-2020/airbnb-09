@@ -1,6 +1,6 @@
 -- user 데이터 추가
-INSERT INTO user (name)
-VALUES ('tester');
+INSERT INTO user(id, name, email) VALUE (1111, 'hahaha', 'hahaha@gmail.com');
+INSERT INTO user(id, name, email) VALUE (2222, 'lalala', 'lalala@codesquad.com');
 
 -- booking 데이터 추가
 INSERT INTO booking ( checkin, checkout, adults, children, infants, total_price, user_id

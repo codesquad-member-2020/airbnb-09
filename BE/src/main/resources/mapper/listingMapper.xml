@@ -23,7 +23,6 @@
         AND accommodates >= #{total_personnel}
         AND discount_price >= #{min_price}
         AND #{max_price} >= discount_price
-        LIMIT 20;
     </select>
 
     <select id="filterListingByAccommodates" parameterType="Integer" resultType="AccommodationVO">
