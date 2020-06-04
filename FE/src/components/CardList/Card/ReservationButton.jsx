@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "Styles/Button";
+import { RESERVATION_BUTTON_TEXT } from "Constants/constants";
 
-const ReservationButton = () => {
-  const BUTTON_TEXT = "예약하기";
-
+const ReservationButton = ({ clickHandler }) => {
   return (
     <Wrapper>
-      <PrimaryButton primary>{BUTTON_TEXT}</PrimaryButton>
+      <PrimaryButton primary onClick={clickHandler}>
+        {RESERVATION_BUTTON_TEXT}
+      </PrimaryButton>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  margin-top: ${({ theme }) => theme.spacings.base};
+  margin-top: ${({ theme }) => theme.spacings.xxsm};
 `;
 
 const PrimaryButton = styled(Button)`

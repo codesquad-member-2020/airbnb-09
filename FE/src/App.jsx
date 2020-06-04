@@ -17,8 +17,8 @@ const App = () => {
         <CardListProvider>
           <FilterProvider>
             <Filter />
+            <CardList />
           </FilterProvider>
-          <CardList />
         </CardListProvider>
       </Wrapper>
     </ThemeProvider>
