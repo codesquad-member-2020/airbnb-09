@@ -2,6 +2,7 @@ import React, { useState, useReducer } from "react";
 import styled from "styled-components";
 import guestReducer from "Reducers/guestReducer";
 import { guestInitialState } from "InitialStates/initialStates";
+import { renderGuestButtonText } from "Utils/utils";
 import FilterButton from "../FilterButton";
 import GuestModal from "./GuestModal";
 
@@ -12,19 +13,6 @@ const Guest = ({ dispatchHandler }) => {
   const setFilterState = () => {
     if (toggle) dispatchHandler(guestNum);
     setToggle(!toggle);
-  };
-
-  const renderGuestButtonText = state => {
-    let numOfGuests = 0;
-    let numOfInfants = 0;
-
-    Object.entries(state).forEach(([type, num]) => {
-      if (type !== "infants") numOfGuests += num;
-      else numOfInfants += num;
-    });
-
-    if (numOfGuests <= 0) return `게스트`;
-    return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
   };
 
   return (
