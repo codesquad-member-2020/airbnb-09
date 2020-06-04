@@ -1,6 +1,7 @@
 package kr.codesquad.airbnb09.web;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseListingsDTO {
+    private int priceInterval;
     private Double average;
-    private int maxPrice;
-    private int minPrice;
+    private int max;
+    private int min;
     private int[] counts;
-    private List<AllListingDTO> allListingDTO;
 }

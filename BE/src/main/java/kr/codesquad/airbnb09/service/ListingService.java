@@ -74,14 +74,16 @@ public class ListingService {
 
         // checkin, checkout 날짜가 선택된 경우
         accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
-
         fillAllListing(allListingDTOs, accommodationVOs, nights);
-        responseFilteredListing(allListingDTOs);
-
         return allListingDTOs;
     }
 
-    public ResponseListingsDTO responseFilteredListing(List<AllListingDTO> allListingDTOs) {
+    public ResponseListingsDTO searhAccommodationsPrice(SearchRequestDTO searchRequestDTO) {
+        List<AllListingDTO> allListingDTOs = searhAccommodations(searchRequestDTO);
+        return parseFilteredListingPrice(allListingDTOs);
+    }
+
+    public ResponseListingsDTO parseFilteredListingPrice(List<AllListingDTO> allListingDTOs) {
         ResponseListingsDTO.ResponseListingsDTOBuilder builder = new ResponseListingsDTO().builder();
         // 람다로 평균 1박 요금 구하는 로직
         List<Integer> selling = new ArrayList<>();
@@ -90,25 +92,24 @@ public class ListingService {
         }
         IntSummaryStatistics intSummaryStatistics = selling.stream().mapToInt(x -> x).summaryStatistics();
         log.debug("[*] average : {}, min : {}, max : {}", intSummaryStatistics.getAverage(), intSummaryStatistics.getMin(), intSummaryStatistics.getMax());
-        builder.allListingDTO(allListingDTOs);
         builder.average(intSummaryStatistics.getAverage());
-        builder.minPrice(intSummaryStatistics.getMin());
-        builder.maxPrice(intSummaryStatistics.getMax());
-        ResponseListingsDTO responseListingsDTO = builder.build();
+        builder.min(intSummaryStatistics.getMin());
+        builder.max(intSummaryStatistics.getMax());
 
         int interval = 10000;
         int max = 1000000;
         int[] counts = new int[max/interval];
 
-        for (AllListingDTO allListingDTO : allListingDTOs) {
-            int sellingPrice = Integer.parseInt(allListingDTO.getOneNightRate().getSelling().replace(",", ""));
+        for (Integer sellingPrice : selling) {
             if (sellingPrice >= max) {
                 counts[max/interval-1]++;
             }
             counts[sellingPrice/interval]++;
         }
 
-        responseListingsDTO.setCounts(counts);
+        builder.priceInterval(interval);
+        builder.counts(counts);
+        ResponseListingsDTO responseListingsDTO = builder.build();
         log.debug("[*] responseListingDTO : {}", responseListingsDTO);
         return responseListingsDTO;
     }
