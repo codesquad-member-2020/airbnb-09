@@ -2,11 +2,12 @@ import React from "react";
 import { IconContext } from "react-icons";
 import { IoIosStar } from "react-icons/io";
 import Text from "Styles/Text";
+import theme from "Styles/theme";
 
-const Rating = ({ color = "#FF5A5F", ratingValue, fontSize = "sm" }) => {
+const Rating = ({ color = "pink", ratingValue, fontSize = "sm" }) => {
   return (
     <>
-      <IconContext.Provider value={{ color }}>
+      <IconContext.Provider value={{ color: theme.colors[color] }}>
         <IoIosStar />
       </IconContext.Provider>
       <Text fontSize={fontSize}>{ratingValue}</Text>
