@@ -3,30 +3,6 @@ import styled from "styled-components";
 import Text from "Styles/Text";
 import PropTypes from "prop-types";
 
-const StyledRangeInput = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 45%;
-`;
-
-const InputField = styled.input`
-  border: 1.5px solid #ddd;
-  border-radius: 3px;
-  width: 100%;
-  height: 50px;
-  padding-left: 10px;
-  padding-bottom: 5px;
-`;
-
 const RangeInput = ({ inputRange, onChange }) => {
   const [defaultMin, defaultMax] = inputRange;
   const [rangeValue, setRangeValue] = useState(inputRange);
@@ -80,6 +56,30 @@ const RangeInput = ({ inputRange, onChange }) => {
     </StyledRangeInput>
   );
 };
+
+const StyledRangeInput = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 45%;
+`;
+
+const InputField = styled.input`
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+`;
 
 RangeInput.propTypes = {
   inputRange: PropTypes.array,

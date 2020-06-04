@@ -2,6 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+const SliderRail = ({ getRailProps }) => {
+  return (
+    <>
+      <StyledRailHotSpot {...getRailProps()} />
+      <StyledSliderRail />
+    </>
+  );
+};
+
 const trackHeight = 3;
 const thumbHeight = 25;
 
@@ -19,15 +28,6 @@ const StyledRailHotSpot = styled.div`
   position: absolute;
   cursor: pointer;
 `;
-
-const SliderRail = ({ getRailProps }) => {
-  return (
-    <>
-      <StyledRailHotSpot {...getRailProps()} />
-      <StyledSliderRail />
-    </>
-  );
-};
 
 SliderRail.propTypes = {
   getRailProps: PropTypes.func.isRequired,

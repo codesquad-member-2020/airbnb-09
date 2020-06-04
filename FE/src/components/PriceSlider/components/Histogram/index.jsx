@@ -3,11 +3,6 @@ import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
 import PropTypes from "prop-types";
 
-const StyledHistogram = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
 const Histogram = ({ data, highlight }) => {
   const trimData = data;
   trimData.pop();
@@ -49,6 +44,11 @@ const Histogram = ({ data, highlight }) => {
     </StyledHistogram>
   );
 };
+
+const StyledHistogram = styled.div`
+  position: relative;
+  width: 100%;
+`;
 
 Histogram.propTypes = {
   data: PropTypes.array,

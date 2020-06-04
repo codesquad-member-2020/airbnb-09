@@ -2,6 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+const SliderHandle = ({ domain: [min, max], handle: { id, value, percent }, getHandleProps }) => (
+  <StyledSliderHandle
+    role="slider"
+    aria-valuemin={min}
+    aria-valuemax={max}
+    aria-valuenow={value}
+    style={{ left: `${percent}%` }}
+    {...getHandleProps(id)}
+  />
+);
+
 const thumbHeight = 25;
 
 const StyledSliderHandle = styled.div`
@@ -17,17 +28,6 @@ const StyledSliderHandle = styled.div`
   z-index: 2;
   cursor: pointer;
 `;
-
-const SliderHandle = ({ domain: [min, max], handle: { id, value, percent }, getHandleProps }) => (
-  <StyledSliderHandle
-    role="slider"
-    aria-valuemin={min}
-    aria-valuemax={max}
-    aria-valuenow={value}
-    style={{ left: `${percent}%` }}
-    {...getHandleProps(id)}
-  />
-);
 
 SliderHandle.propTypes = {
   domain: PropTypes.array.isRequired,

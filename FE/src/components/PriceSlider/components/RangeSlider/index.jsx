@@ -6,11 +6,6 @@ import SliderRail from "./components/SliderRail";
 import SliderHandle from "./components/SliderHandle";
 import SliderTracks from "./components/SliderTracks";
 
-const StyledRangeSlider = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
 const RangeSlider = ({ domain, values, step, mode, onUpdate, onChange }) => {
   const handleUpdate = data => {
     onUpdate(data);
@@ -45,6 +40,11 @@ const RangeSlider = ({ domain, values, step, mode, onUpdate, onChange }) => {
     </StyledRangeSlider>
   );
 };
+
+const StyledRangeSlider = styled.div`
+  position: relative;
+  width: 100%;
+`;
 
 RangeSlider.propTypes = {
   domain: PropTypes.array,

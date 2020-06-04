@@ -1,6 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
+const SliderRail = ({ source, target, getTrackProps }) => {
+  const left = `${source.percent}%`;
+  const width = `${target.percent - source.percent}%`;
+
+  return (
+    <>
+      <StyledTrack left={left} width={width} />
+      <StyledTrackHotSpot left={left} width={width} {...getTrackProps()} />
+    </>
+  );
+};
+
 const trackHeight = 3;
 const thumbHeight = 25;
 
@@ -21,17 +33,5 @@ const StyledTrackHotSpot = styled.div`
   left: ${props => props.left};
   width: ${props => props.width};
 `;
-
-const SliderRail = ({ source, target, getTrackProps }) => {
-  const left = `${source.percent}%`;
-  const width = `${target.percent - source.percent}%`;
-
-  return (
-    <>
-      <StyledTrack left={left} width={width} />
-      <StyledTrackHotSpot left={left} width={width} {...getTrackProps()} />
-    </>
-  );
-};
 
 export default SliderRail;
