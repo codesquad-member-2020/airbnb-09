@@ -5,7 +5,7 @@ const trackHeight = 3;
 const thumbHeight = 25;
 
 const StyledTrack = styled.div`
-  background-color: #f86b23;
+  background-color: #b0b0b0;
   height: ${`${trackHeight}px`};
   position: absolute;
   z-index: 1;

@@ -10,7 +10,7 @@ const StyledSliderHandle = styled.div`
   margin-top: ${`${thumbHeight * -0.5}px`};
   width: ${`${thumbHeight}px`};
   height: ${`${thumbHeight}px`};
-  border: 1px solid #f86b23;
+  border: 2px solid #b0b0b0;
   border-radius: 50%;
   white-space: nowrap;
   position: absolute;

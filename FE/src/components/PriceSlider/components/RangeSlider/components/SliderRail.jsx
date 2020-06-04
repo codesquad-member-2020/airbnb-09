@@ -6,7 +6,7 @@ const trackHeight = 3;
 const thumbHeight = 25;
 
 const StyledSliderRail = styled.div`
-  background-color: #c8ced5;
+  background-color: #dddddd;
   width: 100%;
   height: ${`${trackHeight}px`};
   position: absolute;

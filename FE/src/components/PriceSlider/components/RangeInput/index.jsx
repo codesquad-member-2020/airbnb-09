@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Text from "Styles/Text";
 import PropTypes from "prop-types";
 
 const StyledRangeInput = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;
 
-const InputField = styled.input``;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 45%;
+`;
+
+const InputField = styled.input`
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+`;
 
 const RangeInput = ({ inputRange, onChange }) => {
   const [defaultMin, defaultMax] = inputRange;
@@ -44,8 +62,21 @@ const RangeInput = ({ inputRange, onChange }) => {
 
   return (
     <StyledRangeInput>
-      <InputField type="tel" data-type="min" value={rangeValue[0]} onChange={handleChange} onBlur={handleBlur} />
-      <InputField type="tel" data-type="max" value={rangeValue[1]} onChange={handleChange} onBlur={handleBlur} />
+      <InputWrapper>
+        <Text fontSize="md" color="gray4">
+          최저 요금
+        </Text>
+        <InputField type="tel" data-type="min" value={rangeValue[0]} onChange={handleChange} onBlur={handleBlur} />
+      </InputWrapper>
+      <Text fontSize="xl" color="gray4">
+        -
+      </Text>
+      <InputWrapper>
+        <Text fontSize="md" color="gray4">
+          최고 요금
+        </Text>
+        <InputField type="tel" data-type="max" value={rangeValue[1]} onChange={handleChange} onBlur={handleBlur} />
+      </InputWrapper>
     </StyledRangeInput>
   );
 };

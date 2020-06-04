@@ -9,6 +9,7 @@ const StyledHistogram = styled.div`
 `;
 
 const Histogram = ({ data, highlight }) => {
+  console.log(data);
   const trimData = data;
   trimData.pop();
 
@@ -21,8 +22,8 @@ const Histogram = ({ data, highlight }) => {
       {
         categoryPercentage: 1,
         barPercentage: 1,
-        backgroundColor: trimData.map((val, i) => (i >= highlight[0] && i < highlight[1] ? "#FCE1D3" : "#C8CED5")),
-        hoverBackgroundColor: "#FCE1D3",
+        backgroundColor: trimData.map((val, i) => (i >= highlight[0] && i < highlight[1] ? "#B0B0B0" : "#DDDDDD")),
+        hoverBackgroundColor: "#B0B0B0",
         data: trimData,
       },
     ],
