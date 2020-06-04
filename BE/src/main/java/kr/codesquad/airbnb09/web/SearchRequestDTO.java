@@ -22,6 +22,8 @@ public class SearchRequestDTO {
     private Integer infants;
     private Integer priceMin;
     private Integer priceMax;
+    private Integer offset;
+    private Integer limit;
 
     public void setDefaultValue() {
         if (this.adults == null) {
@@ -47,6 +49,14 @@ public class SearchRequestDTO {
         if (this.checkin == null) {
             this.checkin = LocalDate.now();
             this.checkout = this.checkin.plus(1, ChronoUnit.DAYS);
+        }
+
+        if (this.limit == null) {
+            this.limit = 30;
+        }
+
+        if (this.offset == null) {
+            this.offset = 0;
         }
     }
 

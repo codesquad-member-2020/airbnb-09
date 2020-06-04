@@ -23,13 +23,13 @@ public class ListingService {
         this.listingMapper = listingMapper;
     }
 
-    public List<AccommodationVO> getAllListing(int count) {
-        return listingMapper.selectAllListing(count);
+    public List<AccommodationVO> getAllListing(int limit, int offset) {
+        return listingMapper.selectAllListing(limit, offset);
     }
 
-    public List<AllListingDTO> getAccommodations(int count) {
+    public List<AllListingDTO> getAccommodations(int limit, int offset) {
         List<AllListingDTO> allListingDTOs = new ArrayList<>();
-        List<AccommodationVO> accommodationVOs = getAllListing(count);
+        List<AccommodationVO> accommodationVOs = getAllListing(limit, offset);
 
         for (AccommodationVO accommodationVO : accommodationVOs) {
             AllListingDTO allListingDTO;
@@ -55,7 +55,7 @@ public class ListingService {
 
 //         날짜가 비어있는 경우
         if (searchRequestDTO.isEmptyDate()) {
-            accommodationVOs = listingMapper.filterListingByAccommodates(searchRequestDTO.totalPeraonnel());
+            accommodationVOs = listingMapper.filterListingByAccommodates(searchRequestDTO.totalPeraonnel(), searchRequestDTO.getLimit(), searchRequestDTO.getOffset());
             fillAllListing(allListingDTOs,accommodationVOs, 0);
             log.debug("[*] count of accommodationVOs : {}", allListingDTOs.size());
 
@@ -69,11 +69,13 @@ public class ListingService {
         int accommodates = searchRequestDTO.totalPeraonnel();
         int minPrice = searchRequestDTO.getPriceMin();
         int maxPrice = searchRequestDTO.getPriceMax();
+        int limit = searchRequestDTO.getLimit();
+        int offset = searchRequestDTO.getOffset();
 
         log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
 
         // checkin, checkout 날짜가 선택된 경우
-        accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
+        accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice, limit, offset);
         fillAllListing(allListingDTOs, accommodationVOs, nights);
         return allListingDTOs;
     }
