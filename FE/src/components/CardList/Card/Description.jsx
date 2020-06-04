@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Text from "Styles/Text";
+import { addedWonUnitRate } from "Utils/utils";
 import Rating from "./Rating";
 
 const Description = ({ data: { name, country, rating, superHost, oneNightRate, price } }) => {
-  const addedWonUnitRate = rate => `₩${rate}`;
   const SUPER_HOST_TEXT = "슈퍼호스트";
   const SELLING_RATE_TEXT = "/1박";
   const TOTAL_PRICE_TEXT = priceNum => `총 요금: ${addedWonUnitRate(priceNum)}`;
