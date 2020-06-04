@@ -9,7 +9,6 @@ const StyledHistogram = styled.div`
 `;
 
 const Histogram = ({ data, highlight }) => {
-  console.log(data);
   const trimData = data;
   trimData.pop();
 
@@ -52,7 +51,7 @@ const Histogram = ({ data, highlight }) => {
 };
 
 Histogram.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   highlight: PropTypes.array,
 };
 
