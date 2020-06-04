@@ -5,7 +5,7 @@ import Text from "Styles/Text";
 import { IconContext } from "react-icons";
 import { MdClose } from "react-icons/md";
 import { FilterContext } from "Contexts/filterContext";
-import { SELLING_RATE_TEXT } from "Constants/constants";
+import { SELLING_RATE_TEXT, RESERVATION_BUTTON_TEXT } from "Constants/constants";
 import { addedWonUnitRate, renderGuestButtonText } from "Utils/utils";
 import Rating from "./Rating";
 
@@ -21,7 +21,7 @@ const ReservationModal = ({
   const {
     queries: { checkin, checkout, adults, children, infants },
   } = useContext(FilterContext);
-  const RESERVATION_BUTTON_TEXT = "예약하기";
+
   const NOTIFICATION_TEXT = "예약 확정 전에는 요금이 청구되지 않습니다";
   const reservationConfirmHandler = () => {
     alert("숙소가 예약되었습니다.");
