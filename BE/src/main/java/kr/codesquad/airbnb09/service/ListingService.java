@@ -103,6 +103,7 @@ public class ListingService {
         for (Integer sellingPrice : selling) {
             if (sellingPrice >= max) {
                 counts[max/interval-1]++;
+                continue;
             }
             counts[sellingPrice/interval]++;
         }
