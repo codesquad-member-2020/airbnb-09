@@ -34,4 +34,11 @@ public class ListingController {
 
         return listingService.searhAccommodations(searchRequestDTO);
     }
+
+    @GetMapping("/search/price")
+    public ResponseListingsDTO searchPrice(SearchRequestDTO searchRequestDTO) {
+        log.debug("[*] searchRequestDto : {}", searchRequestDTO);
+
+        return listingService.searhAccommodationsPrice(searchRequestDTO);
+    }
 }

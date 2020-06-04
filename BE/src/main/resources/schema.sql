@@ -52,11 +52,11 @@ DROP TABLE IF EXISTS `airbnb`.`user`;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`user`
 (
-    `index` BIGINT      NOT NULL AUTO_INCREMENT,
+    `index_key` BIGINT      NOT NULL AUTO_INCREMENT,
     `id`    BIGINT      NOT NULL UNIQUE COMMENT 'github userId',
     `name`  VARCHAR(64) NULL COMMENT 'github name',
     `email` VARCHAR(64) NULL,
-    PRIMARY KEY (`index`)
+    PRIMARY KEY (`index_key`)
 )
     ENGINE = InnoDB;
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`booking`
     `user_id`     BIGINT   NOT NULL,
     `listing_id`  BIGINT   NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`user_id`) REFERENCES user (id),
+    FOREIGN KEY (`user_id`) REFERENCES user (index_key),
     FOREIGN KEY (`listing_id`) REFERENCES listing (id)
 )
     ENGINE = InnoDB;
