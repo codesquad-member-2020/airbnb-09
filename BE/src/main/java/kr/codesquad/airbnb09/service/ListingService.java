@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 @Service
@@ -57,6 +58,7 @@ public class ListingService {
             accommodationVOs = listingMapper.filterListingByAccommodates(searchRequestDTO.totalPeraonnel());
             fillAllListing(allListingDTOs,accommodationVOs, 0);
             log.debug("[*] count of accommodationVOs : {}", allListingDTOs.size());
+
             return allListingDTOs;
         }
 
@@ -70,12 +72,45 @@ public class ListingService {
 
         log.debug("[*] searchRequestDTO : {}", searchRequestDTO);
 
-        if (checkin != null || checkout != null) {
-             accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
-        }
+        // checkin, checkout 날짜가 선택된 경우
+        accommodationVOs = listingMapper.filterListingByDate(checkin, checkout, accommodates, minPrice, maxPrice);
 
         fillAllListing(allListingDTOs, accommodationVOs, nights);
+        responseFilteredListing(allListingDTOs);
+
         return allListingDTOs;
+    }
+
+    public ResponseListingsDTO responseFilteredListing(List<AllListingDTO> allListingDTOs) {
+        ResponseListingsDTO.ResponseListingsDTOBuilder builder = new ResponseListingsDTO().builder();
+        // 람다로 평균 1박 요금 구하는 로직
+        List<Integer> selling = new ArrayList<>();
+        for (AllListingDTO allListingDTO : allListingDTOs) {
+            selling.add(Integer.parseInt(allListingDTO.getOneNightRate().getSelling().replace(",","")));
+        }
+        IntSummaryStatistics intSummaryStatistics = selling.stream().mapToInt(x -> x).summaryStatistics();
+        log.debug("[*] average : {}, min : {}, max : {}", intSummaryStatistics.getAverage(), intSummaryStatistics.getMin(), intSummaryStatistics.getMax());
+        builder.allListingDTO(allListingDTOs);
+        builder.average(intSummaryStatistics.getAverage());
+        builder.minPrice(intSummaryStatistics.getMin());
+        builder.maxPrice(intSummaryStatistics.getMax());
+        ResponseListingsDTO responseListingsDTO = builder.build();
+
+        int interval = 10000;
+        int max = 1000000;
+        int[] counts = new int[max/interval];
+
+        for (AllListingDTO allListingDTO : allListingDTOs) {
+            int sellingPrice = Integer.parseInt(allListingDTO.getOneNightRate().getSelling().replace(",", ""));
+            if (sellingPrice >= max) {
+                counts[max/interval-1]++;
+            }
+            counts[sellingPrice/interval]++;
+        }
+
+        responseListingsDTO.setCounts(counts);
+        log.debug("[*] responseListingDTO : {}", responseListingsDTO);
+        return responseListingsDTO;
     }
 
     private void fillAllListing(List<AllListingDTO> allListingDTOs, List<AccommodationVO> accommodationVOs, int nights) {
