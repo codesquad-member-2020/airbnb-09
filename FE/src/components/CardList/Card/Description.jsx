@@ -61,12 +61,7 @@ const SuperHostBadge = styled.div`
 `;
 
 const RatingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   margin-left: auto;
-  ${Text} {
-    margin-left: 2px;
-  }
 `;
 
 const RateWrapper = styled.div`
