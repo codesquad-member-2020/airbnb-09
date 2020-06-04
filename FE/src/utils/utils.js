@@ -46,19 +46,19 @@ export const formatPrice = price => {
   generate data for price slider
 */
 
-const getFirstTo = (minPrice, priceGap) => {
+const getFirstTo = (min, priceGap) => {
   let firstTo = priceGap;
-  while (minPrice > firstTo) {
+  while (min > firstTo) {
     firstTo += priceGap;
   }
   return firstTo;
 };
 
-export const generateFormattedPrices = ({ average, minPrice, maxPrice, priceGap, countList }) => {
+export const generateFormattedPrices = ({ average, min, max, priceGap, countList }) => {
   const initialRange = {
-    key: `0-${minPrice - minPrice + priceGap}`,
-    from: minPrice,
-    to: getFirstTo(minPrice, priceGap),
+    key: `0-${min - min + priceGap}`,
+    from: min,
+    to: getFirstTo(min, priceGap),
     count: countList[0],
   };
 
@@ -75,10 +75,13 @@ export const generateFormattedPrices = ({ average, minPrice, maxPrice, priceGap,
     [initialRange],
   );
 
+  const pos = [0, countList.length - 1];
+
   return {
     average,
-    min: minPrice,
-    max: maxPrice,
+    min,
+    max,
     range,
+    pos,
   };
 };

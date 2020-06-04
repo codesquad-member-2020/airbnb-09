@@ -1,38 +1,37 @@
-import React, { useState } from "react";
-import Text from "Styles/Text";
+import React from "react";
 import styled from "styled-components";
+import { setPrice, setPositions, resetPrice } from "Actions/priceAction";
 import { Histogram, RangeSlider, RangeInput } from "Components/PriceSlider/index";
+import Text from "Styles/Text";
 import Modal from "../Modal";
 
-const PriceModal = ({ setToggle, isDateSelected, data }) => {
+const PriceModal = ({ setToggle, isDateSelected, priceInfo, dispatch, initialPrice }) => {
   const NO_DATE_MESSAGE = "체크인/체크아웃 날짜를 선택하면\n 요금을 확인할 수 있습니다.";
 
-  const responseData = data.range;
-  const maxData = data.max;
+  const responseData = priceInfo.range;
+  const maxData = priceInfo.max;
   const countData = [];
   const priceData = [];
 
   for (let i = 0; i < responseData.length; i += 1) {
-    const thisPrice = responseData[i].from ? responseData[i].from : 0;
+    const thisPrice = responseData[i].from;
     const thisCount = responseData[i].count;
-    countData.push(thisCount || 0);
-    priceData.push(thisPrice || 0);
+    countData.push(thisCount);
+    priceData.push(thisPrice);
   }
   countData[countData.length] = countData[countData.length - 1];
   priceData[priceData.length] = maxData;
 
   const range = [0, countData.length - 1];
   const domain = range;
-  const defaultInputValue = [Number(priceData[0]), Number(priceData[priceData.length - 1])];
-  const [updateValue, setUpdateValue] = useState(domain);
-  const [inputValue, setInputValue] = useState(defaultInputValue);
+
   const onUpdateCallBack = v => {
-    setUpdateValue(v);
-    setInputValue([].concat(Number(priceData[v[0]]), Number(priceData[v[1]])));
+    dispatch(setPrice([].concat(Number(priceData[v[0]]), Number(priceData[v[1]]))));
+    dispatch(setPositions(v));
   };
   const onChangeCallBack = v => {
-    setUpdateValue(v);
-    setInputValue([].concat(Number(priceData[v[0]]), Number(priceData[v[1]])));
+    dispatch(setPrice([].concat(Number(priceData[v[0]]), Number(priceData[v[1]]))));
+    dispatch(setPositions(v));
   };
 
   const handleInputChange = v => {
@@ -51,19 +50,18 @@ const PriceModal = ({ setToggle, isDateSelected, data }) => {
         updateAry[1] = priceData.length;
       }
     }
-    setUpdateValue([].concat(updateAry));
+    dispatch(setPositions(v));
   };
 
   const resetFn = () => {
-    setUpdateValue(domain);
-    setInputValue(defaultInputValue);
+    dispatch(resetPrice([initialPrice.min, initialPrice.max, range]));
   };
 
   const modalContent = isDateSelected ? (
     <DIV>
-      <Histogram data={countData} highlight={updateValue} domain={domain} />
+      <Histogram data={countData} highlight={priceInfo.pos} domain={domain} />
       <RangeSlider
-        values={updateValue}
+        values={priceInfo.pos}
         mode={2}
         step={1}
         domain={domain}
@@ -71,7 +69,7 @@ const PriceModal = ({ setToggle, isDateSelected, data }) => {
         onUpdate={onUpdateCallBack}
       />
       <SPACE />
-      <RangeInput inputRange={inputValue} onChange={handleInputChange} />
+      <RangeInput inputRange={[priceInfo.min, priceInfo.max]} onChange={handleInputChange} />
     </DIV>
   ) : (
     NO_DATE_MESSAGE.split("\n").map(chunk => (
