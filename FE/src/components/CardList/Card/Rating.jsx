@@ -18,7 +18,7 @@ const Rating = ({ color = "pink", ratingValue = 0, fontSize = "sm" }) => {
 
 const RatingWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  align-content: center;
   ${Text} {
     margin-left: 2px;
   }
