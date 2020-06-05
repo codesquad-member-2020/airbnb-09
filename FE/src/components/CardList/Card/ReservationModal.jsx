@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "Styles/Button";
 import Text from "Styles/Text";
-import { IconContext } from "react-icons";
-import { MdClose } from "react-icons/md";
 import { FilterContext } from "Contexts/filterContext";
 import { SELLING_RATE_TEXT, RESERVATION_BUTTON_TEXT } from "Constants/constants";
 import { addedWonUnitRate, renderGuestButtonText } from "Utils/utils";
+import useCookie from "CustomHooks/useCookie";
+import { IconContext } from "react-icons";
+import { MdClose } from "react-icons/md";
 import Rating from "./Rating";
 
 const ReservationModal = ({
@@ -22,9 +23,12 @@ const ReservationModal = ({
     queries: { checkin, checkout, adults, children, infants },
   } = useContext(FilterContext);
 
+  const isCookieExist = useCookie();
+  const ALERT_MESSAGE = isCookieExist ? "숙소가 예약되었습니다." : "로그인해야 이용 가능합니다.";
   const NOTIFICATION_TEXT = "예약 확정 전에는 요금이 청구되지 않습니다";
+
   const reservationConfirmHandler = () => {
-    alert("숙소가 예약되었습니다.");
+    alert(ALERT_MESSAGE);
     clickHandler();
   };
 

@@ -31,6 +31,10 @@ export const renderGuestButtonText = state => {
   return numOfInfants > 0 ? `게스트 ${numOfGuests}명, 유아 ${numOfInfants}명` : `게스트 ${numOfGuests}명`;
 };
 
+export const deleteCookie = name => {
+  const updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent("")};max-age=-1`;
+  document.cookie = updatedCookie;
+
 export const formatPrice = price => {
   let priceWithComma = "";
   const priceInString = price.toString();
