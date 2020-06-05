@@ -49,7 +49,7 @@ const Wrapper = styled.div`
   display: flex;
   padding-top: ${({ theme }) => theme.spacings.unit(12)};
   & > div + div {
-    padding: 0 ${({ theme }) => theme.spacings.xsm};
+    padding-left: ${({ theme }) => theme.spacings.xsm};
   }
 `;
 
