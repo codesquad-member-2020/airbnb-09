@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "Styles/Button";
 import logo from "Assets/logo.svg";
+import { oauthURL } from "Utils/urls";
 
 const Header = () => {
   const TITLE_TEXT = "에어비앤비";
@@ -14,9 +15,11 @@ const Header = () => {
           <Title>{TITLE_TEXT}</Title>
           <Logo type="image/svg+xml" data={logo} />
         </LogoLink>
-        <Button rounded shadow>
-          {LOGIN_TEXT}
-        </Button>
+        <a href={oauthURL}>
+          <Button rounded shadow>
+            {LOGIN_TEXT}
+          </Button>
+        </a>
       </Wrapper>
     </Placeholder>
   );
