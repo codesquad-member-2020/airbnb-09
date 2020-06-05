@@ -1,4 +1,4 @@
-import React, { useState, useRef, useReducer, useContext } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import styled from "styled-components";
 import priceReducer from "Reducers/priceReducer";
 import { formatPrice } from "Utils/utils";
@@ -17,8 +17,6 @@ const Price = ({ dispatchHandler, isDateSelected }) => {
   const [priceInfo, dispatch] = useReducer(priceReducer, null);
 
   const PRICE_BUTTON_TEXT = "요금";
-
-  const preventInitialRendering = useRef(true);
 
   const isValidRequest = queries.checkin && queries.checkout;
 
@@ -40,15 +38,10 @@ const Price = ({ dispatchHandler, isDateSelected }) => {
     setToggle(!toggle);
   };
 
-  const renderPriceButtonText = () => {
-    if (preventInitialRendering.current && !isDateSelected) {
-      preventInitialRendering.current = false;
-      return PRICE_BUTTON_TEXT;
-    }
-    return priceInfo && isDateSelected && !preventInitialRendering.current
+  const renderPriceButtonText = () =>
+    priceInfo && isDateSelected
       ? `￦${formatPrice(priceInfo.min)} - ￦${formatPrice(priceInfo.max)}`
       : PRICE_BUTTON_TEXT;
-  };
 
   return (
     <PriceWrapper>
