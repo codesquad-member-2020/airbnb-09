@@ -1,12 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "Styles/Button";
-import logo from "Assets/logo.svg";
+import useCookie from "CustomHooks/useCookie";
 import { oauthURL } from "Utils/urls";
+import { deleteCookie } from "Utils/utils";
+import { JWT_TOKEN } from "Constants/constants";
+import logo from "Assets/logo.svg";
 
 const Header = () => {
   const TITLE_TEXT = "에어비앤비";
   const LOGIN_TEXT = "로그인";
+  const LOGOUT_TEXT = "로그아웃";
+
+  const isCookieExist = useCookie();
+
+  const logOutHandler = e => {
+    if (isCookieExist) {
+      e.preventDefault();
+      deleteCookie(JWT_TOKEN);
+      window.location.reload();
+    }
+  };
 
   return (
     <Placeholder>
@@ -15,9 +29,9 @@ const Header = () => {
           <Title>{TITLE_TEXT}</Title>
           <Logo type="image/svg+xml" data={logo} />
         </LogoLink>
-        <a href={oauthURL}>
+        <a href={oauthURL} onClick={logOutHandler}>
           <Button rounded shadow>
-            {LOGIN_TEXT}
+            {isCookieExist ? LOGOUT_TEXT : LOGIN_TEXT}
           </Button>
         </a>
       </Wrapper>
