@@ -51,6 +51,7 @@ const Date = ({ dispatchHandler }) => {
 
 const DateWrapper = styled.div`
   position: relative;
+  margin-right: 6px;
 `;
 
 export default Date;

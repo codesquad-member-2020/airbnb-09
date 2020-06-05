@@ -15,3 +15,10 @@ export const filterByGuest = payload => {
     payload,
   };
 };
+
+export const filterByPrice = payload => {
+  return {
+    type: FILTER_BY_PRICE,
+    payload,
+  };
+};

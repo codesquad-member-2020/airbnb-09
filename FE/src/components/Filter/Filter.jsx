@@ -4,7 +4,7 @@ import { filterInitialState } from "InitialStates/initialStates";
 import { FilterContext } from "Contexts/filterContext";
 import { CardListContext } from "Contexts/cardListContext";
 import { fetchSuccess, fetchError } from "Actions/fetchAction";
-import { filterByDate, filterByGuest } from "Actions/filterAction";
+import { filterByDate, filterByGuest, filterByPrice } from "Actions/filterAction";
 import { isSameObject, isSameValue } from "Utils/utils";
 import { generateFilteringURL } from "Utils/urls";
 import useFetch from "CustomHooks/useFetch";
@@ -35,12 +35,13 @@ const Filter = () => {
 
   const dateFilterDispatch = date => filterDispatch(filterByDate(date));
   const guestFilterDispatch = guest => filterDispatch(filterByGuest(guest));
+  const priceFilterDispatch = price => filterDispatch(filterByPrice(price));
 
   return (
     <Wrapper>
       <Date dispatchHandler={dateFilterDispatch} />
       <Guest dispatchHandler={guestFilterDispatch} />
-      <Price />
+      <Price dispatchHandler={priceFilterDispatch} isDateSelected={queries.checkin} />
     </Wrapper>
   );
 };

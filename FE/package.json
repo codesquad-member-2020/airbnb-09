@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
     "dotenv-webpack": "^1.8.0",
     "moment": "^2.26.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
+    "react-compound-slider": "^2.5.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
