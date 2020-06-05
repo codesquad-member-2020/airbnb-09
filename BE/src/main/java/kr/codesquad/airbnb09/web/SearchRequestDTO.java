@@ -66,6 +66,6 @@ public class SearchRequestDTO {
     }
 
     public boolean isEmptyDate() {
-        return this.checkin == null && this.checkout == null;
+        return this.checkin == null || this.checkout == null;
     }
 }
