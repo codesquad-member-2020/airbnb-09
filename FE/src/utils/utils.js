@@ -34,6 +34,7 @@ export const renderGuestButtonText = state => {
 export const deleteCookie = name => {
   const updatedCookie = `${encodeURIComponent(name)}=${encodeURIComponent("")};max-age=-1`;
   document.cookie = updatedCookie;
+};
 
 export const formatPrice = price => {
   let priceWithComma = "";
