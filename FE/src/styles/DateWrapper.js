@@ -59,6 +59,7 @@ const DatesWrapper = styled.div`
   /* Outside Range Dates */
   .CalendarDay__blocked_out_of_range {
     pointer-events: none;
+    text-decoration: line-through;
     color: ${({ theme }) => theme.colors.gray5};
   }
 
@@ -77,6 +78,14 @@ const DatesWrapper = styled.div`
   /* Nav Arrow svg Style */
   .DayPickerNavigation_svg__horizontal {
     fill: ${({ theme }) => theme.colors.black};
+  }
+
+  .DayPickerNavigation_button__disabled {
+    pointer-events: none;
+  }
+
+  .DayPickerNavigation_svg__disabled {
+    fill: ${({ theme }) => theme.colors.gray5} !important;
   }
 
   /* Nav Arrow Wrapper border  */
