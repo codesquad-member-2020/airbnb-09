@@ -95,7 +95,7 @@ const PriceModal = ({ setToggle, isDateSelected, priceInfo, dispatch, initialDat
 
   const modalOption = {
     contents: modalContent,
-    hasContents: true,
+    hasContents: priceInfo ? priceInfo.min !== initialData.min || priceInfo.max !== initialData.max : false,
     clearHandler: resetFn,
     toggleHandler: setToggle,
     withButtons: isDateSelected,
