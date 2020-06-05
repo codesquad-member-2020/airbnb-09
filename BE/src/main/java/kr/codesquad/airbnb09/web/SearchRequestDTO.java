@@ -22,6 +22,8 @@ public class SearchRequestDTO {
     private Integer infants;
     private Integer priceMin;
     private Integer priceMax;
+    private Integer offset;
+    private Integer limit;
 
     public void setDefaultValue() {
         if (this.adults == null) {
@@ -48,6 +50,14 @@ public class SearchRequestDTO {
             this.checkin = LocalDate.now();
             this.checkout = this.checkin.plus(1, ChronoUnit.DAYS);
         }
+
+        if (this.limit == null) {
+            this.limit = 30;
+        }
+
+        if (this.offset == null) {
+            this.offset = 0;
+        }
     }
 
     public int totalPeraonnel() {
@@ -56,6 +66,6 @@ public class SearchRequestDTO {
     }
 
     public boolean isEmptyDate() {
-        return this.checkin == null && this.checkout == null;
+        return this.checkin == null || this.checkout == null;
     }
 }

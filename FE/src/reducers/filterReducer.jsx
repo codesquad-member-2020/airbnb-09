@@ -9,7 +9,7 @@ const filterReducer = (state, action) => {
     case FILTER_BY_GUEST:
       return { ...state, adults: payload.adults, children: payload.children, infants: payload.infants };
     case FILTER_BY_PRICE:
-      return { ...state, priceMin: payload.priceMin, priceMax: payload.priceMax };
+      return { ...state, priceMin: payload.min, priceMax: payload.max };
     default:
       return state;
   }

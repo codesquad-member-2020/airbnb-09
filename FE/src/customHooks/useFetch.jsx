@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useFetch = ({ url, dispatch, actionType: { success, error }, state = null, isValidRequest = true }) => {
+const useFetch = ({
+  url,
+  dispatch,
+  actionType: { success, error },
+  state = null,
+  isValidRequest = true,
+  dataSettingFn,
+}) => {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -11,6 +18,7 @@ const useFetch = ({ url, dispatch, actionType: { success, error }, state = null,
     console.log("[log] fetchingData:", data);
     try {
       dispatch(success(data));
+      dataSettingFn(data);
     } catch (e) {
       dispatch(error());
       setErrorMsg(e);

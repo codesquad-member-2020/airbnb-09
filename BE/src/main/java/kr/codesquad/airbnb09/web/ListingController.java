@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RequestMapping("/listing")
@@ -24,8 +26,8 @@ public class ListingController {
     }
 
     @GetMapping
-    public List<AllListingDTO> viewAllListing() {
-        return listingService.getAccommodations(30);
+    public List<AllListingDTO> viewAllListing(@RequestParam(value="limit", required = false, defaultValue = "30") int limit, @RequestParam(value="offset", required = false, defaultValue = "0") int offset) {
+        return listingService.getAccommodations(limit, offset);
     }
 
     @GetMapping("/search")
