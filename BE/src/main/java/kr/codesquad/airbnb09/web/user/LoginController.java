@@ -31,7 +31,7 @@ public class LoginController {
         Cookie cookie = new Cookie("jwtToken", jwtToken);
         cookie.setPath("/");
         response.addCookie(cookie);
-        response.sendRedirect("/");
+        response.sendRedirect("http://3.34.15.148/index.html");
         return ResponseEntity.ok("logined");
     }
 }
