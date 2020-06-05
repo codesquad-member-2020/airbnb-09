@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { setPrice, setPositions, resetPrice } from "Actions/priceAction";
+import { formatPrice } from "Utils/utils";
 import { Histogram, RangeSlider, RangeInput } from "Components/PriceSlider/index";
 import Text from "Styles/Text";
 import Modal from "../Modal";
@@ -68,19 +69,22 @@ const PriceModal = ({ setToggle, isDateSelected, priceInfo, dispatch, initialDat
 
   const modalContent =
     isDateSelected && priceInfo ? (
-      <DIV>
-        <Histogram data={countData} highlight={priceInfo.pos} domain={domain} />
-        <RangeSlider
-          values={priceInfo.pos}
-          mode={2}
-          step={1}
-          domain={domain}
-          onChange={onChangeCallBack}
-          onUpdate={onUpdateCallBack}
-        />
-        <SPACE />
-        <RangeInput inputRange={[priceInfo.min, priceInfo.max]} onChange={handleInputChange} />
-      </DIV>
+      <>
+        <Text>평균 1박 요금은 ￦{formatPrice(Math.floor(priceInfo.average))}입니다.</Text>
+        <DIV>
+          <Histogram data={countData} highlight={priceInfo.pos} domain={domain} />
+          <RangeSlider
+            values={priceInfo.pos}
+            mode={2}
+            step={1}
+            domain={domain}
+            onChange={onChangeCallBack}
+            onUpdate={onUpdateCallBack}
+          />
+          <SPACE />
+          <RangeInput inputRange={[priceInfo.min, priceInfo.max]} onChange={handleInputChange} />
+        </DIV>
+      </>
     ) : (
       NO_DATE_MESSAGE.split("\n").map(chunk => (
         <Text key={chunk} fontSize="md">
