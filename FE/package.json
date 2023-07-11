@@ -10,7 +10,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "chart.js": "^2.9.3",
     "dotenv-webpack": "^1.8.0",
     "moment": "^2.26.0",
